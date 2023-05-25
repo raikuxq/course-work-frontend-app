@@ -1,0 +1,71 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.LayoutMain__sidebar {
+  position: fixed;
+  top: $app-offset;
+  width: $app-sidebar;
+  height: calc(100% - #{$app-offset * 2});
+  left: $app-offset;
+  transition: $transition_time $transition_effect;
+
+  opacity: 0;
+  transform-origin: left;
+  transform: translateX(-100%);
+
+  .is-sidebar-active & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.LayoutMain__header {
+  position: relative;
+}
+
+.LayoutMain__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 $app-offset;
+}
+
+.LayoutMain__wrapper {
+  padding-left: 0;
+  padding-top: $app-offset;
+  height: 100vh;
+  transition: $transition_time $transition_effect;
+
+  &.is-sidebar-active {
+    padding-left: calc(#{$app-sidebar + $app-offset});
+  }
+}
+
+.LayoutMain__main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  //overflow: hidden;
+  padding: $app-offset 0;
+}
+
+//
+// router components animation
+//
+$router-animation-time: 0.35s;
+$router-animation-effect: cubic-bezier(.73, 1.09, .85, .9);
+
+.router-animation {
+  &-enter-active,
+  &-leave-active {
+    transition: 0.15s cubic-bezier(.73, 1.09, .85, .9);
+    opacity: 1;
+  }
+
+  &-enter,
+  &-leave-to {
+    transition: 0.25s cubic-bezier(.73, 1.09, .85, .9);
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}

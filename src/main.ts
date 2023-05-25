@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/styles/app.scss'
 
 import { createApp, provide, h } from 'vue'
 import { createPinia } from 'pinia'
@@ -15,7 +15,7 @@ import router from './router'
 /**
  * Инициализация Vue-i18n
  */
-const i18n = createI18n({
+export const i18n = createI18n({
     locale: localStorage.getItem('lang'),
     fallbackLocale: 'ru',
     messages: { en: langEn, ru: langRu }

@@ -1,0 +1,21 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.LayoutAuth {
+  width: 100vw;
+  height: 100vh;
+  background: #1C263F;
+}
+
+.LayoutAuth__animation {
+  &-enter-active,
+  &-leave-active {
+    transition: 0.3s cubic-bezier(.73,1.09,.85,.9);
+    opacity: 1;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transition: none;
+  }
+}

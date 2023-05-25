@@ -1,0 +1,64 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.sidebar {
+  @include style-block();
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $app-offset;
+    width: 100%;
+    height: $app-header;
+    border-bottom: 2px solid transparent;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__logoImg {
+    display: block;
+    width: 100%;
+  }
+
+  &__nav {
+    flex-grow: 1;
+  }
+
+  &__navHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(#{$app-offset} / 2) $app-offset;
+  }
+
+  &__navItem {
+    position: relative;
+  }
+
+  &__title {
+    color: $color-brand-primary;
+    font-weight: 600;
+    font-size: 26px;
+  }
+
+  &__widget {
+    display: flex;
+    align-items: center;
+    &-text {
+      display: inline-block;
+      color: $color-white;
+      text-decoration: none;
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
+}

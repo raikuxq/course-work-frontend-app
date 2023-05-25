@@ -1,16 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import {RouterView, useRoute} from 'vue-router'
+import {computed} from "vue";
+import {ELayoutType} from "@/router";
+import TheLayoutAuth from "@/common/layouts/TheLayoutAuth/TheLayoutAuth.vue";
+import TheLayoutMain from "@/common/layouts/TheLayoutMain/TheLayoutMain.vue";
+
+const currentRoute = useRoute()
+
+const layoutComponent = computed(() => {
+  const routeLayout = currentRoute.meta['layout'] as ELayoutType
+
+  switch (routeLayout) {
+    case ELayoutType.AUTH: {
+      return TheLayoutAuth
+    }
+    case ELayoutType.MAIN: {
+      return TheLayoutMain
+    }
+    default: {
+      return TheLayoutMain
+    }
+  }
+})
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/auth">Auth</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <component :is="layoutComponent">
+    <RouterView />
+  </component>
 </template>

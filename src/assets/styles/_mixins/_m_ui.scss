@@ -1,0 +1,82 @@
+@mixin full-in-inner() {
+    margin-left: -$app-offset * 2;
+    margin-right: -$app-offset * 2;
+    width: calc(100% + #{$app-offset * 4});
+}
+
+@mixin input-default($with-hover: false) {
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: $color-text-primary;
+    background-color: $color-white;
+
+    &::placeholder {
+        color: $color-text-secondary;
+    }
+    border-radius: $border-radius_secondary;
+    border: none;
+    height: auto;
+
+    @if($with-hover) {
+        background-color: $color-white;
+        background-image: $color-brand-primary;
+        background-repeat: no-repeat;
+        background-position: right -4px top 0;
+        background-size: 4px 100%;
+        &:focus {
+            background-size: 4px 100%;
+            background-position: right 0 top 0;
+        }
+    }
+}
+
+@mixin color-gradient($grad: $color-brand-primary) {
+    background: $grad;
+    background-position: 0 -50%, 0 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: $color-brand-primary;
+}
+
+@mixin bg-gradient($grad: $color-brand-primary) {
+    background: $grad;
+}
+
+@mixin font-icons($size: 24px) {
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Material Icons';
+    font-size: $size;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+@mixin main-link {
+    color: $color-text-primary;
+    @include transition();
+    &:hover {
+        color: $color-brand-primary;
+    }
+}
+
+
+@mixin style-block {
+    background: $color-bg-secondary;
+    color: $color-white;
+    border-radius: $border-radius_primary;
+}
+
+@mixin style-block-dark {
+    background: $color-bg-primary;
+    color: $color-white;
+    border-radius: $border-radius_primary;
+}

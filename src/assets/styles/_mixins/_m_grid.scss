@@ -1,0 +1,39 @@
+@mixin grid-sizer($screen-prefix){
+    $total-columns: 12;
+    $col-widths: ();
+    // генерируем дробные размеры
+    @for $i from 1 through $total-columns {
+        @for $j from 1 through $i {
+            // определяем текущий размеры
+            $width: ($j/$i);
+            // если такого размера ещё не было, то создаём стили
+            @if not index($col-widths, $width) {
+                $width-col: 'calc(' + $width * 100% + ' - ' +  $gutter-width + ')';
+                // разделение на медиа
+                @if($screen-prefix != ''){
+                    .l-col-#{$screen-prefix}-#{$j}-#{$i} {
+                        width:  unquote($width-col);
+                    }
+                }
+                    // и стандартные
+                @else {
+                    .l-col-#{$j}-#{$i} {
+                        width:  unquote($width-col);
+                    }
+                }
+                // и записываем размер в массив существуюих размеров
+                $col-widths: append($col-widths, $width, comma);
+            }
+        }
+    }
+}
+
+
+@mixin grid-sizer-media($grid-screen){
+    // проходим про всем разрешениям и генерируем медиа запросы
+    @each $screen-prefix, $screen-size in $grid-screen {
+        @media (max-width: $screen-size) {
+            @include grid-sizer($screen-prefix);
+        }
+    }
+}

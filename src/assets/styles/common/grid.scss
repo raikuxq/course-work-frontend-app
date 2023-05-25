@@ -1,0 +1,39 @@
+/** ======================================
+ * Layout : Grid
+ * ======================================= */
+
+$gutter-width: 20px;
+
+.l-grid {
+    display: flex;
+    flex-wrap: wrap;
+    + .l-grid {
+        margin-top: $gutter-width;
+        @include media-min($sm) {
+            margin-top: $gutter-width/2;
+        }
+    }
+    @include media-min($sm) {
+        margin: -$gutter-width/2;
+    }
+}
+
+[class*="l-col-"] {
+    @include media-min($sm) {
+        width: 100%;
+    }
+    @include media-min($sm) {
+        margin: $gutter-width/2;
+        width: calc(100% - #{$gutter-width});
+    }
+}
+
+@include grid-sizer('');
+
+$grid-screen: (
+        sm: $sm,
+        md: $md,
+        lg: $lg,
+);
+
+@include grid-sizer-media($grid-screen);

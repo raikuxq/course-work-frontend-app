@@ -1,0 +1,86 @@
+@keyframes k-opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes k-list-item {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes k-fade-in-right {
+    from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes k-scale-y-top {
+    from {
+        transform-origin: top;
+        opacity: 0;
+        transform: scaleY(0.55);
+    }
+    50% {
+        opacity: 0;
+    }
+    to {
+        transform-origin: top;
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes k-move-down {
+    from {
+        margin-top: 0;
+    }
+    to {
+        margin-top: 5px;
+    }
+}
+
+.a-move-down {
+    animation: k-move-down $transition_time;
+}
+
+.a-opacity {
+    animation: k-opacity $transition_time;
+}
+
+.a-scale-y-top {
+    animation: k-scale-y-top $transition_time;
+}
+
+//
+// vue transitions
+//
+.a-fade-enter-active, .a-fade-leave-active {
+    transition: opacity .5s;
+}
+.a-fade-enter, .a-fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+}
+
+.a-move-up-enter-active, .a-move-up-leave-active {
+    transition: $transition_time $transition_effect;
+}
+.a-move-up-enter, .a-move-up-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+    transform: translateY($app-offset);
+}
