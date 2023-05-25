@@ -10,6 +10,7 @@ export enum ELayoutType {
 export enum ERouteName {
   HOME = 'home',
   AUTH = 'auth',
+  CHANNEL = 'channel'
 }
 
 

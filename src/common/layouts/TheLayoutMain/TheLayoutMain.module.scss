@@ -8,15 +8,6 @@
   height: calc(100% - #{$app-offset * 2});
   left: $app-offset;
   transition: $transition_time $transition_effect;
-
-  opacity: 0;
-  transform-origin: left;
-  transform: translateX(-100%);
-
-  .is-sidebar-active & {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .LayoutMain__header {

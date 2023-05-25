@@ -8,7 +8,7 @@
     <div :class="s.sidebar__nav">
       <div :class="s.sidebar__navItem">
         <div :class="s.sidebar__navHeader">
-          Projects list
+          <ChannelsList />
 
           Btn Create Button
         </div>
@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
 import s from './TheSidebar.module.scss'
+import ChannelsList from "@/modules/channels/components/ChannelsList/ChannelsList.vue";
 </script>
 
 <style lang="scss" module src="./TheSidebar.module.scss" />
