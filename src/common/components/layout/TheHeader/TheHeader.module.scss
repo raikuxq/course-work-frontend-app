@@ -20,6 +20,8 @@
 
   &__nav {
     position: relative;
+    display: flex;
+    gap: $app-offset;
   }
 
   &__profile,

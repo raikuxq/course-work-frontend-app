@@ -20,7 +20,7 @@
     transition: all $time $effect;
 }
 
-@mixin appearance{
+@mixin appearance-none{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -29,7 +29,7 @@
     }
 }
 
-@mixin user-select{
+@mixin user-select-none{
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
