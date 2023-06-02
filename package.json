@@ -23,6 +23,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "pinia": "^2.0.36",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vee-validate": "^4.9.5",
     "vue": "^3.3.2",
     "vue-i18n": "^9.2.2",

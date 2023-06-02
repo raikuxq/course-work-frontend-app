@@ -7,6 +7,7 @@ import { AUTH_SIGNUP_MUTATION } from '../../api/AuthRegMutation';
 import { useRouter } from 'vue-router';
 import { NInput, NForm, NFormItemRow, NButton } from 'naive-ui'
 import {ERouteName} from "@/router";
+import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/app/constants";
 
 const email = ref('');
 const password = ref('');
@@ -27,8 +28,8 @@ const handleReg = async (event) => {
       password: password.value
     });
     const { accessToken, refreshToken, user } = data.authSignup;
-    await localStorage.setItem('accessToken', accessToken);
-    await localStorage.setItem('refreshToken', refreshToken);
+    await localStorage.setItem(LS_KEY_ACCESS_TOKEN, accessToken);
+    await localStorage.setItem(LS_KEY_REFRESH_TOKEN, refreshToken);
     authStore.setUser(user);
     router.push({ name: ERouteName.HOME});
     alert('Успех входа')

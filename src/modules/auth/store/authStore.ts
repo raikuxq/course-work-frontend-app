@@ -1,7 +1,7 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import {EStoreSubmodules} from "@/stores/config";
 
-export const useAuthStore = defineStore('auth', {
+export const useAuthStore = defineStore(EStoreSubmodules.AUTH, {
     state: () => ({
         user: null
     }),
@@ -12,5 +12,6 @@ export const useAuthStore = defineStore('auth', {
         clearUser() {
             this.user = null;
         }
-    }
+    },
+    persist: true
 });

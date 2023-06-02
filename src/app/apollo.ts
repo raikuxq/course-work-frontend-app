@@ -5,15 +5,19 @@ import {
     InMemoryCache,
 } from '@apollo/client/core';
 import jwtDecode from 'jwt-decode';
-import { GRAPHQL_API_ENDPOINT_URL } from './constants';
+import {GRAPHQL_API_ENDPOINT_URL, LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from './constants';
 import {setContext} from "@apollo/client/link/context";
+import {useAuthStore} from "@/modules/auth/store/authStore";
+import {AUTH_REFRESH_TOKEN_MUTATION} from "@/modules/auth/api/AuthRefreshToken";
 
 interface DecodedToken {
     exp: number;
 }
 
 const refreshToken = async (): Promise<string | null> => {
-    const token = await localStorage.getItem('accessToken');
+    const authStore = useAuthStore()
+
+    const token = await localStorage.getItem(LS_KEY_ACCESS_TOKEN);
 
     if (!token) {
         return null;
@@ -21,9 +25,12 @@ const refreshToken = async (): Promise<string | null> => {
 
     try {
         const decodedToken: DecodedToken = jwtDecode(token);
+
         const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
         if (!isTokenExpired) {
             return token;
+        } else {
+            authStore.setUser(null)
         }
     } catch (e) {
         console.log(e)
@@ -32,8 +39,9 @@ const refreshToken = async (): Promise<string | null> => {
 
 
 
-    const refreshToken = await localStorage.getItem('refreshToken');
+    const refreshToken = await localStorage.getItem(LS_KEY_REFRESH_TOKEN);
     if (!refreshToken) {
+        authStore.setUser(null)
         return null;
     }
 
@@ -42,6 +50,8 @@ const refreshToken = async (): Promise<string | null> => {
         const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
         if (!isTokenExpired) {
             return refreshToken;
+        } else {
+            authStore.setUser(null)
         }
     } catch (e) {
         console.log(e)
@@ -53,14 +63,7 @@ const refreshToken = async (): Promise<string | null> => {
             'content-type': 'application/json',
         },
         body: JSON.stringify({
-            query: `
-        mutation authRefreshToken($token: JWT!) {
-          authRefreshToken(token: $token) {
-            accessToken
-            refreshToken
-          }
-        }
-      `,
+            query: AUTH_REFRESH_TOKEN_MUTATION,
             variables: {
                 token: refreshToken,
             },
@@ -69,7 +72,7 @@ const refreshToken = async (): Promise<string | null> => {
 
     const json = await response.json();
     const newAccessToken = json.data.authRefreshToken.accessToken;
-    await localStorage.setItem('accessToken', newAccessToken);
+    await localStorage.setItem(LS_KEY_ACCESS_TOKEN, newAccessToken);
     return newAccessToken;
 };
 

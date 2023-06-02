@@ -5,7 +5,7 @@ import {computed} from "vue";
 import {ERouteName} from "@/router";
 import {NList, NListItem} from 'naive-ui';
 
-const { result, loading, error } = useQuery(CHANNELS_LIST_SHORT_QUERY);
+const {result, loading, error} = useQuery(CHANNELS_LIST_SHORT_QUERY);
 
 
 const channelsListMember = computed(() => {
@@ -14,7 +14,7 @@ const channelsListMember = computed(() => {
   }
 
   try {
-    const { userChannelsMemberOf } = result.value
+    const {userChannelsMemberOf} = result.value
 
     return userChannelsMemberOf.map((userChannel) => userChannel.channel);
   } catch (e) {
@@ -29,14 +29,13 @@ const channelsListOwn = computed(() => {
   }
 
   try {
-    const { userChannelsOwn } = result.value
+    const {userChannelsOwn} = result.value
 
     return userChannelsOwn
   } catch (e) {
     return []
   }
 });
-
 
 
 </script>
@@ -48,12 +47,11 @@ const channelsListOwn = computed(() => {
           v-for="item in channelsListOwn"
           :key="item?.id"
       >
-        <!--        <RouterLink-->
-        <!--            :to="{ name: ERouteName.CHANNEL, params: { id: item.id } }"-->
-        <!--        >-->
-        <!--          {{ item.title }}-->
-        <!--        </RouterLink>-->
-        {{ item.title }}
+        <RouterLink
+            :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+        >
+          {{ item.title }}
+        </RouterLink>
       </n-list-item>
     </n-list>
   </div>
@@ -64,11 +62,11 @@ const channelsListOwn = computed(() => {
           v-for="item in channelsListMember"
           :key="item?.id"
       >
-        <!--        <RouterLink-->
-        <!--            :to="{ name: ERouteName.CHANNEL, params: { id: item.id } }"-->
-        <!--        >-->
-        <!--          {{ item.title }}-->
-        <!--        </RouterLink>-->
+        <RouterLink
+            :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+        >
+          {{ item.title }}
+        </RouterLink>
         {{ item.title }}
       </n-list-item>
     </n-list>

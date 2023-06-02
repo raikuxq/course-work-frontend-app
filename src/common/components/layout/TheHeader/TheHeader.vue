@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import s from './TheHeader.module.scss'
 import {RouterLink} from "vue-router";
+import {useLogout} from "@/common/hooks/useLogout";
+
+const {logout} = useLogout()
 </script>
 
 <template>
@@ -12,6 +15,7 @@ import {RouterLink} from "vue-router";
     <nav :class="s.header__nav">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/auth">Auth</RouterLink>
+      <RouterLink to="/auth" @click.prevent="logout">Logout</RouterLink>
     </nav>
 
     <div :class="s.header__profile">
