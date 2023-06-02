@@ -22,14 +22,10 @@
 }
 
 .LayoutMain__wrapper {
-  padding-left: 0;
   padding-top: $app-offset;
   height: 100vh;
   transition: $transition_time $transition_effect;
-
-  &.is-sidebar-active {
-    padding-left: calc(#{$app-sidebar + $app-offset});
-  }
+  padding-left: calc(#{$app-sidebar + $app-offset});
 }
 
 .LayoutMain__main {

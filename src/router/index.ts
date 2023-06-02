@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PageAuth from "@/modules/auth/pages/PageAuth/PageAuth.vue";
 import PageChannelDetails from "@/modules/channels/pages/PageChannelDetails/PageChannelDetails.vue";
-import {useAuthStore} from "@/modules/auth/store/authStore";
+import {authGuard} from "@/router/middlewares/auth";
 
 export enum ELayoutType {
   MAIN = 'MAIN',
@@ -59,19 +59,9 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to) => {
-  const meta = to.meta
-
-  if (meta.requiresAuth) {
-    const authStore = useAuthStore()
-
-    const isAuthorized = Boolean(authStore.user)
-
-    if (!isAuthorized) {
-      return ({ name: ERouteName.AUTH })
-    }
-  }
-})
-
+/**
+ * Apply route guards
+ */
+router.beforeEach(authGuard)
 
 export default router
