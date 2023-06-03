@@ -4,6 +4,7 @@ import {CHANNELS_LIST_SHORT_QUERY} from "@/modules/channels/api/ChannelsList";
 import {computed} from "vue";
 import {ERouteName} from "@/router";
 import {NList, NListItem} from 'naive-ui';
+import s from './ChannelsList.module.scss'
 
 const {result, loading, error} = useQuery(CHANNELS_LIST_SHORT_QUERY);
 
@@ -41,38 +42,38 @@ const channelsListOwn = computed(() => {
 </script>
 
 <template>
-  <div>
-    <n-list>
-      <n-list-item
-          v-for="item in channelsListOwn"
-          :key="item?.id"
-      >
-        <RouterLink
-            :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+  <div :class="s.channelsList">
+    <div :class="s.channelsList__container">
+      <n-list>
+        <n-list-item
+            v-for="item in channelsListOwn"
+            :key="item?.id"
         >
-          {{ item.title }}
-        </RouterLink>
-      </n-list-item>
-    </n-list>
-  </div>
-  <br>
-  <div>
-    <n-list>
-      <n-list-item
-          v-for="item in channelsListMember"
-          :key="item?.id"
-      >
-        <RouterLink
-            :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+          <RouterLink
+              :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+          >
+            {{ item.title }}
+          </RouterLink>
+        </n-list-item>
+      </n-list>
+    </div>
+    <div :class="s.channelsList__container">
+      <n-list>
+        <n-list-item
+            v-for="item in channelsListMember"
+            :key="item?.id"
         >
+          <RouterLink
+              :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
+          >
+            {{ item.title }}
+          </RouterLink>
           {{ item.title }}
-        </RouterLink>
-        {{ item.title }}
-      </n-list-item>
-    </n-list>
+        </n-list-item>
+      </n-list>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" module src="./ChannelsList.module.scss" />
 
-</style>

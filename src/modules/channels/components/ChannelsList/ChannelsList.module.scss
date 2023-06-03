@@ -1,0 +1,14 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.channelsList {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $app-offset;
+}
+
+.channelsList__container {
+  width: 100%;
+}

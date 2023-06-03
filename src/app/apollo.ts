@@ -29,8 +29,6 @@ const refreshToken = async (): Promise<string | null> => {
         const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
         if (!isTokenExpired) {
             return token;
-        } else {
-            authStore.setUser(null)
         }
     } catch (e) {
         console.log(e)

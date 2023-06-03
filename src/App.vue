@@ -4,6 +4,16 @@ import {computed} from "vue";
 import {ELayoutType} from "@/router";
 import TheLayoutAuth from "@/common/layouts/TheLayoutAuth/TheLayoutAuth.vue";
 import TheLayoutMain from "@/common/layouts/TheLayoutMain/TheLayoutMain.vue";
+import { NConfigProvider, GlobalThemeOverrides } from 'naive-ui'
+
+const themeOverrides: GlobalThemeOverrides = {
+  // common: {
+  //   primaryColor: '#2196f3',
+  // },
+  // Button: {
+  //   textColor: '#FFFFFF'
+  // }
+}
 
 const currentRoute = useRoute()
 
@@ -25,7 +35,9 @@ const layoutComponent = computed(() => {
 </script>
 
 <template>
-  <component :is="layoutComponent">
-    <RouterView />
-  </component>
+  <n-config-provider :theme-overrides="themeOverrides">
+    <component :is="layoutComponent">
+      <RouterView />
+    </component>
+  </n-config-provider>
 </template>
