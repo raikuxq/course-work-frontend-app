@@ -15,16 +15,6 @@ import {useFetchUserCurrent} from "@/common/hooks/useFetchUserCurrent";
 
 
 /**
- * Инициализация Vue-i18n
- */
-export const i18n = createI18n({
-    locale: localStorage.getItem('lang'),
-    fallbackLocale: 'ru',
-    messages: { en: langEn, ru: langRu }
-})
-
-
-/**
  * Инициализация корневого инстанса Vue
  */
 const app = createApp({
@@ -37,10 +27,28 @@ const app = createApp({
     render: () => h(App),
 })
 
-const pinia = createPinia()
 
+/**
+ * Инициализация Vue-i18n
+ */
+export const i18n = createI18n({
+    legacy: false,
+    locale: localStorage.getItem('lang') || 'ru',
+    fallbackLocale: 'ru',
+    messages: { en: langEn, ru: langRu }
+})
+
+
+/**
+ * Инициализация pinia
+ */
+const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
+
+/**
+ * Подключение библиотек к инстансу app
+ */
 app.use(pinia)
 app.use(router)
 app.use(i18n)

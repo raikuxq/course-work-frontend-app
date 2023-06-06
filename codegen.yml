@@ -1,0 +1,10 @@
+schema: schema.graphql
+generates:
+  src/types/graphql2.ts:
+    plugins:
+      - typescript
+    config:
+      useIndexSignature: true
+      onlyOperationTypes: false
+      namingConvention: keep
+      documentMode: documentNode

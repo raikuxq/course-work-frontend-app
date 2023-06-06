@@ -14,9 +14,31 @@ export default {
     show: 'Смотреть',
     loading: 'Загрузка...',
     auth: {
-        sign: 'Войти',
-        next: 'Далее',
-        logout: 'Выйти из аккаунта'
+        firstname: {
+            label: 'Имя',
+            placeholder: 'Иван'
+        },
+        lastname: {
+            label: 'Фамилия',
+            placeholder: 'Иванов'
+        },
+        email: {
+            label: 'E-mail',
+            placeholder: 'mail@mail.com'
+        },
+        password: {
+            label: 'Пароль',
+            placeholder: '********'
+        },
+        passwordConfirm: {
+            label: 'Подтверждение пароля',
+            placeholder: '********'
+        },
+        signIn: 'Войти',
+        signInError: 'Ошибка входа, проверьте корректность данных.',
+        signUp: 'Регистрация',
+        signUpError: 'Ошибка регистрации, проверьте корректность данных.',
+        logout: 'Выйти из аккаунта',
     },
     confirm: 'Подтвердить данное действие?',
     actions: {

@@ -1,39 +1,55 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useAuthStore } from '../../store/authStore';
-import { useMutation } from '@vue/apollo-composable'
-import { AUTH_LOGIN_MUTATION } from '../../api/AuthLoginMutation';
-// import { VALIDATION_RULES } from '@/app/validation';
-import { useRouter } from 'vue-router';
-import { NInput, NForm, NFormItemRow, NButton } from 'naive-ui'
+import {ref} from 'vue';
+import {useAuthStore} from '../../store/authStore';
+import {useMutation} from '@vue/apollo-composable'
+import {AUTH_LOGIN_MUTATION} from '../../api/AuthLoginMutation';
+import {useRouter} from 'vue-router';
+import {NInput, NForm, NFormItemRow, NButton, NGradientText} from 'naive-ui'
 import {ERouteName} from "@/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/app/constants";
+import {useField} from 'vee-validate';
+import {useValidation} from "@/common/hooks/useValidation";
+import {useI18n} from "vue-i18n";
+
+
+const router = useRouter();
+const authStore = useAuthStore();
+const {t} = useI18n()
+
 
 const email = ref('');
 const password = ref('');
+const { VALIDATION_EMAIL, VALIDATION_PASSWORD } = useValidation()
+const { errorMessage: emailError } = useField(email, VALIDATION_EMAIL)
+const { errorMessage: passwordError } = useField(password, VALIDATION_PASSWORD)
 
-const authStore = useAuthStore();
-const { mutate: authLogin, loading, error } = useMutation(AUTH_LOGIN_MUTATION);
-const router = useRouter();
+const {mutate: authLogin, loading, error} = useMutation(AUTH_LOGIN_MUTATION);
 
+/**
+ *
+ */
 const handleLogin = async (event) => {
   event.preventDefault();
 
   try {
-    const { data } = await authLogin({
-        email: email.value,
-        password: password.value
+    const {data} = await authLogin({
+      email: email.value,
+      password: password.value
     });
-    const { accessToken, refreshToken, user } = data.authLogin;
+
+    const {accessToken, refreshToken, user} = data.authLogin;
+
+    authStore.setUser(user);
+
     await localStorage.setItem(LS_KEY_ACCESS_TOKEN, accessToken);
     await localStorage.setItem(LS_KEY_REFRESH_TOKEN, refreshToken);
-    authStore.setUser(user);
-    router.push({ name: ERouteName.HOME});
+
+    await router.push({name: ERouteName.HOME});
   } catch (error) {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      alert('Ошибка входа ' + error.message);
+      alert(t('app.auth.singInError') + error.message);
     }
   }
 };
@@ -41,15 +57,43 @@ const handleLogin = async (event) => {
 
 <template>
   <n-form @submit="handleLogin">
-    <n-form-item-row label="Email">
-      <n-input type="email" placeholder="" v-model:value="email" />
+    <n-form-item-row :label="$t('app.auth.email.label')">
+      <n-input
+          type="email"
+          :placeholder="$t('app.auth.email.placeholder')"
+          v-model:value.trim="email"
+      />
+
+      <n-gradient-text v-if="emailError" type="error">
+        {{ emailError }}
+      </n-gradient-text>
     </n-form-item-row>
-    <n-form-item-row label="Пароль">
-      <n-input type="password" placeholder="" v-model:value="password" />
+
+    <n-form-item-row :label="$t('app.auth.password.label')">
+      <n-input
+          type="password"
+          :placeholder="$t('app.auth.password.placeholder')"
+          v-model:value.trim="password"
+      />
+
+      <n-gradient-text v-if="passwordError" type="error">
+        {{ passwordError }}
+      </n-gradient-text>
     </n-form-item-row>
-    <n-button type="primary" block secondary strong attr-type="submit">
-      Sign in
+
+    <n-button
+        type="primary"
+        :loading="loading"
+        block
+        strong
+        attr-type="submit"
+    >
+      {{ $t('app.auth.signIn') }}
     </n-button>
+
+    <n-gradient-text v-if="error" type="error">
+      {{ error }}
+    </n-gradient-text>
   </n-form>
 
 </template>

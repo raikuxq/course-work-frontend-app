@@ -4,7 +4,18 @@
 .LayoutAuth {
   width: 100vw;
   height: 100vh;
-  background: #1C263F;
+  background: $color-bg-light;
+  padding: 48px 16px;
+}
+
+.LayoutAuth__logo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.LayoutAuth__content {
+  width: 100%;
 }
 
 .LayoutAuth__animation {

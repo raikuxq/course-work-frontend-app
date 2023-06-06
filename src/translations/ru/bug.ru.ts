@@ -37,7 +37,19 @@ export default {
         minor: 'Слабый',
         major: 'Высокий'
     },
+    type_type: {
+        func: 'Функциональность',
+        report: 'Отчетность',
+        ui: 'Интерфейс',
+        vulnerability: 'Уязвимость'
+    },
+    role_type: {
+        qa: 'QA',
+        guest: 'Гость',
+        dev: 'Разработчик'
+    },
     status_type: {
+        fulfilment: 'Выполнение',
         new: 'Новый',
         to_verify: 'На проверку',
         cant_reproduce: 'Не воспроизводится',

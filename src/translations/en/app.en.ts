@@ -14,9 +14,31 @@ export default {
     goto: 'Go to',
     show: 'Show',
     auth: {
-        sign: 'Sign In',
-        next: 'Next',
-        logout: 'Logout'
+        firstname: {
+            label: 'First Name',
+            placeholder: 'John'
+        },
+        lastname: {
+            label: 'Last Name',
+            placeholder: 'Doe'
+        },
+        email: {
+            label: 'Email',
+            placeholder: 'mail@mail.com'
+        },
+        password: {
+            label: 'Password',
+            placeholder: ''
+        },
+        passwordConfirm: {
+            label: 'Confirm Password',
+            placeholder: ''
+        },
+        signIn: 'Sign In',
+        signInError: 'Error signing in, please check your credentials.',
+        signUp: 'Sign Up',
+        signUpError: 'Error registering, please check your data.',
+        logout: 'Logout',
     },
     confirm: 'Do you want to confirm this?',
     actions: {

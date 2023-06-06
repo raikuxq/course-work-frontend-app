@@ -1,0 +1,19 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.TheBrandLogo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.TheBrandLogo__icon {
+  color: $color-brand-primary;
+}
+
+.TheBrandLogo__text {
+  font-size: 24px;
+  font-weight: 700;
+  color: $color-text-primary;
+}

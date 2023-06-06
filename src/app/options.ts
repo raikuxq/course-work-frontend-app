@@ -2,31 +2,31 @@ import { EnumRole, EnumStatus, EnumType, EnumPriority} from "@/types/issueReport
 import type {TLabelMap, TSelectItemType} from "@/types/common.types";
 
 export const roleOptions: TSelectItemType<EnumRole>[] = [
-    {label: 'Разработчик', value: EnumRole.DEV},
-    {label: 'QA', value: EnumRole.QA},
-    {label: 'Гость', value: EnumRole.GUEST}
+    {label: 'bug.role_type.dev', value: EnumRole.DEV},
+    {label: 'bug.role_type.qa', value: EnumRole.QA},
+    {label: 'bug.role_type.guest', value: EnumRole.GUEST}
 ]
 
 export const priorityOptions: TSelectItemType<EnumPriority>[] = [
-    {label: 'Критический', value: EnumPriority.CRITICAL},
-    {label: 'Высокий', value: EnumPriority.HIGH},
-    {label: 'Низкий', value: EnumPriority.LOW},
-    {label: 'Обычный', value: EnumPriority.NORMAL},
+    {label: 'bug.priority_type.critical', value: EnumPriority.CRITICAL},
+    {label: 'bug.priority_type.major', value: EnumPriority.HIGH},
+    {label: 'bug.priority_type.minor', value: EnumPriority.LOW},
+    {label: 'bug.priority_type.normal', value: EnumPriority.NORMAL},
 ];
 
 export const statusOptions: TSelectItemType<EnumStatus>[] = [
-    {label: 'Закрыто', value: EnumStatus.CLOSED},
-    {label: 'Обсуждение', value: EnumStatus.DISCUSSION},
-    {label: 'Выполнение', value: EnumStatus.FULFILMENT},
-    {label: 'Готово', value: EnumStatus.READY},
-    {label: 'На утверждении', value: EnumStatus.TO_APPROVE},
+    {label: 'bug.status_type.closed', value: EnumStatus.CLOSED},
+    {label: 'bug.status_type.to_be_discussed', value: EnumStatus.DISCUSSION},
+    {label: 'bug.status_type.fulfilment', value: EnumStatus.FULFILMENT},
+    {label: 'bug.status_type.verified', value: EnumStatus.READY},
+    {label: 'bug.status_type.to_verify', value: EnumStatus.TO_APPROVE},
 ];
 
 export const typeOptions: TSelectItemType<EnumType>[] = [
-    {label: 'Функциональность', value: EnumType.FUNCTIONALITY},
-    {label: 'Отчетность', value: EnumType.REPORTING},
-    {label: 'Интерфейс', value: EnumType.UI},
-    {label: 'Уязвимость', value: EnumType.VULNERABILITY},
+    {label: 'bug.type_type.func', value: EnumType.FUNCTIONALITY},
+    {label: 'bug.type_type.report', value: EnumType.REPORTING},
+    {label: 'bug.type_type.ui', value: EnumType.UI},
+    {label: 'bug.type_type.vulnerability', value: EnumType.VULNERABILITY},
 ];
 
 export const labelsRole: TLabelMap = roleOptions.reduce((acc, option) => {

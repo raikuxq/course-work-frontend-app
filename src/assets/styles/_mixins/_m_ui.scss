@@ -72,11 +72,11 @@
 @mixin style-block {
     background: $color-bg-secondary;
     color: $color-white;
-    border-radius: $border-radius_primary;
+    border-radius: 0;
 }
 
 @mixin style-block-dark {
     background: $color-bg-primary;
     color: $color-white;
-    border-radius: $border-radius_primary;
+    border-radius: 0;
 }

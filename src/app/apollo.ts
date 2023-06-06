@@ -9,6 +9,7 @@ import {GRAPHQL_API_ENDPOINT_URL, LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} fro
 import {setContext} from "@apollo/client/link/context";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {AUTH_REFRESH_TOKEN_MUTATION} from "@/modules/auth/api/AuthRefreshToken";
+import {print} from 'graphql'
 
 interface DecodedToken {
     exp: number;
@@ -27,6 +28,7 @@ const refreshToken = async (): Promise<string | null> => {
         const decodedToken: DecodedToken = jwtDecode(token);
 
         const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
+
         if (!isTokenExpired) {
             return token;
         }
@@ -46,10 +48,10 @@ const refreshToken = async (): Promise<string | null> => {
     try {
         const decodedToken: DecodedToken = jwtDecode(refreshToken);
         const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
-        if (!isTokenExpired) {
-            return refreshToken;
-        } else {
+
+        if (isTokenExpired) {
             authStore.setUser(null)
+            return null;
         }
     } catch (e) {
         console.log(e)
@@ -61,7 +63,7 @@ const refreshToken = async (): Promise<string | null> => {
             'content-type': 'application/json',
         },
         body: JSON.stringify({
-            query: AUTH_REFRESH_TOKEN_MUTATION,
+            query: print(AUTH_REFRESH_TOKEN_MUTATION),
             variables: {
                 token: refreshToken,
             },
@@ -70,7 +72,9 @@ const refreshToken = async (): Promise<string | null> => {
 
     const json = await response.json();
     const newAccessToken = json.data.authRefreshToken.accessToken;
+    const newRefreshToken = json.data.authRefreshToken.refreshToken;
     await localStorage.setItem(LS_KEY_ACCESS_TOKEN, newAccessToken);
+    await localStorage.setItem(LS_KEY_REFRESH_TOKEN, newRefreshToken);
     return newAccessToken;
 };
 

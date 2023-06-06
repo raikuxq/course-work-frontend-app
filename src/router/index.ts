@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PageAuth from "@/modules/auth/pages/PageAuth/PageAuth.vue";
 import PageChannelDetails from "@/modules/channels/pages/PageChannelDetails/PageChannelDetails.vue";
 import {authGuard} from "@/router/middlewares/auth";
+import PageTrackerDetails from "@/modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue";
 
 export enum ELayoutType {
   MAIN = 'MAIN',
@@ -12,7 +13,8 @@ export enum ELayoutType {
 export enum ERouteName {
   HOME = 'home',
   AUTH = 'auth',
-  CHANNEL = 'channel'
+  CHANNEL = 'channel',
+  TRACKER = 'tracker'
 }
 
 type TRoutesPath = {
@@ -22,7 +24,8 @@ type TRoutesPath = {
 const ROUTES_PATHS: TRoutesPath = {
   [ERouteName.AUTH]: '/auth',
   [ERouteName.HOME]: '/',
-  [ERouteName.CHANNEL]: '/channel/:channelId'
+  [ERouteName.CHANNEL]: '/channel/:channelId',
+  [ERouteName.TRACKER]: 'tracker/:trackerId'
 }
 
 
@@ -54,7 +57,17 @@ const router = createRouter({
       meta: {
         layout: ELayoutType.MAIN,
         requiresAuth: true,
-      }
+      },
+      children: [
+        {
+          path: ROUTES_PATHS[ERouteName.TRACKER],
+          name: ERouteName.TRACKER,
+          component: PageTrackerDetails,
+          meta: {
+            requiresAuth: true
+          }
+        }
+      ]
     }
   ]
 })

@@ -1,0 +1,28 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.PageChannelDetails {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-left: calc(#{$app-sidebar} + 16px);
+  background: $color-bg-primary;
+}
+
+.PageChannelDetails__sidebar {
+  @include style-block();
+  flex: 0 0 400px;
+  padding: 20px;
+  position: fixed;
+  left: $app-sidebar;
+  background: $color-bg-secondary;
+  border-left: 1px solid $color-bg-body;
+  border-right: 1px solid $color-bg-body;
+  top: 0;
+  height: 100vh;
+  width: $app-sidebar;
+}
+
+.PageChannelDetails__content {
+  flex: 1 0 auto;
+}

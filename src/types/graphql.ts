@@ -364,9 +364,311 @@ export type T_GQL_channelDeleteVariables = {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: issueReport
+// ====================================================
+
+export type T_GQL_issueReport_issueReport_responsiblePerson_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_issueReport_issueReport_responsiblePerson = {
+  __typename: "TrackerMember";
+  id: string;
+  role: TrackerMemberRole;
+  user: T_GQL_issueReport_issueReport_responsiblePerson_user;
+}
+
+export type T_GQL_issueReport_issueReport_author_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_issueReport_issueReport_author = {
+  __typename: "TrackerMember";
+  role: TrackerMemberRole;
+  id: string;
+  user: T_GQL_issueReport_issueReport_author_user;
+}
+
+export type T_GQL_issueReport_issueReport_tracker_members_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_issueReport_issueReport_tracker_members = {
+  __typename: "TrackerMember";
+  id: string;
+  user: T_GQL_issueReport_issueReport_tracker_members_user;
+}
+
+export type T_GQL_issueReport_issueReport_tracker = {
+  __typename: "Tracker";
+  id: string;
+  title: string;
+  members: T_GQL_issueReport_issueReport_tracker_members[];
+}
+
+export type T_GQL_issueReport_issueReport = {
+  __typename: "IssueReport";
+  id: string;
+  title: string;
+  type: IssueReportType;
+  status: IssueReportStatus;
+  priority: IssueReportPriority;
+  description: string;
+  createdAt: any;
+  updatedAt: any;
+  responsiblePerson: T_GQL_issueReport_issueReport_responsiblePerson;
+  author: T_GQL_issueReport_issueReport_author;
+  tracker: T_GQL_issueReport_issueReport_tracker;
+}
+
+export type T_GQL_issueReport = {
+  issueReport: T_GQL_issueReport_issueReport;
+}
+
+export type T_GQL_issueReportVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: issueReportCreate
+// ====================================================
+
+export type T_GQL_issueReportCreate_issueReportCreate = {
+  __typename: "IssueReport";
+  id: string;
+}
+
+export type T_GQL_issueReportCreate = {
+  issueReportCreate: T_GQL_issueReportCreate_issueReportCreate;
+}
+
+export type T_GQL_issueReportCreateVariables = {
+  trackerId: string;
+  title: string;
+  priority: IssueReportPriority;
+  responsiblePersonId: string;
+  description: string;
+  status: IssueReportStatus;
+  type: IssueReportType;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: issueReportUpdate
+// ====================================================
+
+export type T_GQL_issueReportUpdate_issueReportUpdate = {
+  __typename: "IssueReport";
+  id: string;
+}
+
+export type T_GQL_issueReportUpdate = {
+  issueReportUpdate: T_GQL_issueReportUpdate_issueReportUpdate;
+}
+
+export type T_GQL_issueReportUpdateVariables = {
+  issueReportId: string;
+  title: string;
+  priority: IssueReportPriority;
+  responsiblePersonId: string;
+  description: string;
+  status: IssueReportStatus;
+  type: IssueReportType;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerAddMember
+// ====================================================
+
+export type T_GQL_trackerAddMember_trackerAddMember = {
+  __typename: "Tracker";
+  id: string;
+}
+
+export type T_GQL_trackerAddMember = {
+  trackerAddMember: T_GQL_trackerAddMember_trackerAddMember;
+}
+
+export type T_GQL_trackerAddMemberVariables = {
+  trackerId: string;
+  role: TrackerMemberRole;
+  userId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: tracker
+// ====================================================
+
+export type T_GQL_tracker_tracker_members_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_tracker_tracker_members = {
+  __typename: "TrackerMember";
+  id: string;
+  role: TrackerMemberRole;
+  user: T_GQL_tracker_tracker_members_user;
+}
+
+export type T_GQL_tracker_tracker_reports_responsiblePerson_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_tracker_tracker_reports_responsiblePerson = {
+  __typename: "TrackerMember";
+  id: string;
+  role: TrackerMemberRole;
+  user: T_GQL_tracker_tracker_reports_responsiblePerson_user;
+}
+
+export type T_GQL_tracker_tracker_reports_author_user = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_tracker_tracker_reports_author = {
+  __typename: "TrackerMember";
+  id: string;
+  role: TrackerMemberRole;
+  user: T_GQL_tracker_tracker_reports_author_user;
+}
+
+export type T_GQL_tracker_tracker_reports = {
+  __typename: "IssueReport";
+  id: string;
+  title: string;
+  status: IssueReportStatus;
+  priority: IssueReportPriority;
+  type: IssueReportType;
+  updatedAt: any;
+  createdAt: any;
+  responsiblePerson: T_GQL_tracker_tracker_reports_responsiblePerson;
+  author: T_GQL_tracker_tracker_reports_author;
+}
+
+export type T_GQL_tracker_tracker = {
+  __typename: "Tracker";
+  id: string;
+  title: string;
+  members: T_GQL_tracker_tracker_members[];
+  description: string;
+  /**
+   * Identifies the date and time when the object was created.
+   */
+  createdAt: any;
+  reports: T_GQL_tracker_tracker_reports[];
+}
+
+export type T_GQL_tracker = {
+  tracker: T_GQL_tracker_tracker;
+}
+
+export type T_GQL_trackerVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerCreate
+// ====================================================
+
+export type T_GQL_trackerCreate_trackerCreate = {
+  __typename: "Tracker";
+  id: string;
+  title: string;
+}
+
+export type T_GQL_trackerCreate = {
+  trackerCreate: T_GQL_trackerCreate_trackerCreate;
+}
+
+export type T_GQL_trackerCreateVariables = {
+  channelId: string;
+  title: string;
+  description?: string | null;
+  channelCategoryId?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+/**
+ * Issue report priority
+ */
+export enum IssueReportPriority {
+  CRITICAL = "CRITICAL",
+  HIGH = "HIGH",
+  LOW = "LOW",
+  NORMAL = "NORMAL",
+}
+
+/**
+ * Issue report status
+ */
+export enum IssueReportStatus {
+  CLOSED = "CLOSED",
+  DISCUSSION = "DISCUSSION",
+  FULFILMENT = "FULFILMENT",
+  READY = "READY",
+  TO_APPROVE = "TO_APPROVE",
+}
+
+/**
+ * Issue report type
+ */
+export enum IssueReportType {
+  FUNCTIONALITY = "FUNCTIONALITY",
+  REPORTING = "REPORTING",
+  UI = "UI",
+  VULNERABILITY = "VULNERABILITY",
+}
 
 /**
  * User role
@@ -374,6 +676,15 @@ export type T_GQL_channelDeleteVariables = {
 export enum Role {
   ADMIN = "ADMIN",
   USER = "USER",
+}
+
+/**
+ * Tracker member role
+ */
+export enum TrackerMemberRole {
+  DEV = "DEV",
+  GUEST = "GUEST",
+  QA = "QA",
 }
 
 //==============================================================

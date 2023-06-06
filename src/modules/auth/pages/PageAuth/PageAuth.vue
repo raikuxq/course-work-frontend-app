@@ -7,12 +7,6 @@ import s from "./PageAuth.module.scss"
 
 <template>
   <div :class="s.PageAuth">
-    <n-page-header subtitle="A podcast to improve designs">
-      <template #title>
-        Auth
-      </template>
-    </n-page-header>
-
     <div :class="s.PageAuth__tabs">
       <n-card>
         <n-tabs

@@ -1,14 +1,23 @@
+const ALLOWED_LETTER_CHARS = 'а-яА-ЯёЁa-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆŠŽ∂ð'
+
 export const VALIDATION_RULES = {
-    FIRSTNAME: {
-        MIN: 2,
-        MAX: 30,
+    MESSAGE: {
+        MAX_LENGTH: 1000,
+        MIN_LENGTH: 2,
+        REGEX: new RegExp(/[a-zA-Zа-яА-Я\d]{2,100}/gm),
     },
-    LASTNAME: {
-        MIN: 2,
-        MAX: 30,
+    NAME: {
+        MAX_LENGTH: 32,
+        MIN_LENGTH: 2,
+        REGEX: new RegExp(`^(?!.*-.*-.*-.*)(?!.*'.*'.*'.*)(?!.*\\s.*\\s.*\\s.*)[${ALLOWED_LETTER_CHARS}' -]+[${ALLOWED_LETTER_CHARS}]$`),
     },
     PASSWORD: {
-        MIN: 8,
-        MAX: 30,
+        MAX_LENGTH: 32,
+        MIN_LENGTH: 4,
+        REGEX: new RegExp(/[^a-zA-Z0-9_!@#$%^&*]/g)
+    },
+    TITLE: {
+        MAX_LENGTH: 150,
+        MIN_LENGTH: 2,
     },
 }

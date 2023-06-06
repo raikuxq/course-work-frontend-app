@@ -6,6 +6,8 @@ import bug from './ru/bug.ru'
 import tracker from './ru/tracker.ru'
 import project from './ru/project.ru'
 import comments from './ru/comments.ru'
+import channels from './ru/channel.ru'
+import validations from './ru/validations.ru'
 
 export const langRu = {
     app,
@@ -15,5 +17,7 @@ export const langRu = {
     project,
     tracker,
     bug,
-    comments
+    comments,
+    channels,
+    validations
 }

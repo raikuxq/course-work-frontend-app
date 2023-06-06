@@ -5,6 +5,7 @@ import {CHANNELS_BY_ID_QUERY} from "@/modules/channels/api/ChannelsById";
 import {useRoute} from "vue-router";
 import type {T_GQL_channel} from "@/types/graphql";
 import {watch} from "vue";
+import s from './PageChannelDetails.module.scss'
 
 const route = useRoute()
 
@@ -23,9 +24,13 @@ watch(() => route.params.channelId, (newChannelId, oldChannelId) => {
 
 
 <template>
-  <div>
-    <div v-if="result">
+  <div :class="s.PageChannelDetails">
+    <div v-if="result" :class="s.PageChannelDetails__sidebar">
       <ChannelsDetails v-bind="result.channel" />
+    </div>
+
+    <div :class="s.PageChannelDetails__content">
+      <RouterView />
     </div>
   </div>
 </template>
