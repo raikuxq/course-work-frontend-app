@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   gap: 16px;
-  padding-left: calc(#{$app-sidebar} + 16px);
+  padding-right: calc(#{$app-sidebar} + 16px);
   background: $color-bg-primary;
 }
 
@@ -14,13 +14,13 @@
   flex: 0 0 400px;
   padding: 20px;
   position: fixed;
-  left: $app-sidebar;
-  background: $color-bg-secondary;
-  border-left: 1px solid $color-bg-body;
-  border-right: 1px solid $color-bg-body;
+  right: 0;
+  border: 1px solid $color-dark-bg-fields;
+  background-color: $color-dark-bg-body;
   top: 0;
   height: 100vh;
   width: $app-sidebar;
+  color: $color-dark-text-primary !important;
 }
 
 .PageChannelDetails__content {

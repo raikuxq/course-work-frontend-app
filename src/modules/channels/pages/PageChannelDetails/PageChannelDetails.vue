@@ -6,16 +6,31 @@ import {useRoute} from "vue-router";
 import type {T_GQL_channel} from "@/types/graphql";
 import {watch} from "vue";
 import s from './PageChannelDetails.module.scss'
+import { useLoadingBar } from 'naive-ui'
 
 const route = useRoute()
+const loadingBar = useLoadingBar()
+
 
 const {result, loading, error, refetch} = useQuery<T_GQL_channel>(CHANNELS_BY_ID_QUERY, {
   id: route.params.channelId
 });
 
-watch(() => route.params.channelId, (newChannelId, oldChannelId) => {
+
+watch(() => loading, (value, oldValue) => {
+  if (!oldValue && value) {
+    loadingBar.start()
+  }
+
+  if (!value) {
+    loadingBar.finish()
+  }
+})
+
+
+watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
   if (oldChannelId !== newChannelId) {
-    refetch({
+    await refetch({
       id: newChannelId
     })
   }

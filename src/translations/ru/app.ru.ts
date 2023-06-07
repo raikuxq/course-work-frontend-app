@@ -1,5 +1,5 @@
 export default {
-    head_title: ' | DS БагТрекер',
+    head_title: ' | BugTracker',
     menu: {
         open: 'Открыть меню',
         hide: 'Закрыть меню'
@@ -34,11 +34,28 @@ export default {
             label: 'Подтверждение пароля',
             placeholder: '********'
         },
+        oldPassword: {
+            label: 'Старый пароль',
+            placeholder: '********'
+        },
+        newPassword: {
+            label: 'Новый пароль',
+            placeholder: '********'
+        },
+        id: 'ID',
         signIn: 'Войти',
         signInError: 'Ошибка входа, проверьте корректность данных.',
         signUp: 'Регистрация',
         signUpError: 'Ошибка регистрации, проверьте корректность данных.',
         logout: 'Выйти из аккаунта',
+        changePassword: 'Сменить пароль',
+        changePasswordTitle: 'Смена пароля',
+        changePasswordError: 'Ошибка смены пароля, проверьте корректность ввода старого пароля.',
+        changePasswordSuccess: 'Пароль успешно изменен',
+        updateUser: 'Обновить профиль',
+        updateUserTitle: 'Обновление профиля',
+        updateUserError: 'Ошибка изменения профиля, проверьте корректность введенных данных.',
+        updateUserSuccess: 'Профиль успешно обновлен'
     },
     confirm: 'Подтвердить данное действие?',
     actions: {
@@ -49,8 +66,6 @@ export default {
     locales: {
         'ru': 'Русский',
         'en': 'Английский',
-        'it': 'Итальянский',
-        'ar': 'Арабский'
     },
     language: {
         change: 'Изменить на English'

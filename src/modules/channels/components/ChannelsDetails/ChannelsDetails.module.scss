@@ -1,0 +1,32 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.ChannelsDetails {
+  position: relative;
+}
+
+.ChannelsDetails__descContainer {
+  --n-title-text-color: var(--color-brand-primary) !important;
+  --n-th-text-color: var(--color-dark-text-secondary) !important;
+  --n-td-text-color: var(--color-dark-text-primary) !important;
+}
+
+.ChannelsDetails__descItem {
+  color: $color-dark-text-primary;
+  font-weight: 500;
+  font-size: $fz-main;
+}
+
+.ChannelsDetails__linkItem {
+  color: $color-dark-text-primary;
+  font-weight: 500;
+  font-size: $fz-main;
+}
+
+.ChannelsDetails__linkContainer {
+  padding: 4px 0;
+}
+
+.ChannelsDetails__divider {
+  --n-color: var(--color-text-primary) !important;
+}

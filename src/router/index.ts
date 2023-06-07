@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import PageAuth from "@/modules/auth/pages/PageAuth/PageAuth.vue";
 import PageChannelDetails from "@/modules/channels/pages/PageChannelDetails/PageChannelDetails.vue";
 import {authGuard} from "@/router/middlewares/auth";
 import PageTrackerDetails from "@/modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue";
+import PageProfile from "@/modules/profile/pages/PageProfile/PageProfile.vue";
+import PageHome from "@/modules/home/pages/PageHome.vue";
 
 export enum ELayoutType {
   MAIN = 'MAIN',
@@ -14,7 +15,8 @@ export enum ERouteName {
   HOME = 'home',
   AUTH = 'auth',
   CHANNEL = 'channel',
-  TRACKER = 'tracker'
+  TRACKER = 'tracker',
+  PROFILE = 'profile'
 }
 
 type TRoutesPath = {
@@ -23,6 +25,7 @@ type TRoutesPath = {
 
 const ROUTES_PATHS: TRoutesPath = {
   [ERouteName.AUTH]: '/auth',
+  [ERouteName.PROFILE]: '/profile',
   [ERouteName.HOME]: '/',
   [ERouteName.CHANNEL]: '/channel/:channelId',
   [ERouteName.TRACKER]: 'tracker/:trackerId'
@@ -35,10 +38,19 @@ const router = createRouter({
     {
       path: ROUTES_PATHS[ERouteName.HOME],
       name: ERouteName.HOME,
-      component: HomeView,
+      component: PageHome,
       meta: {
         layout: ELayoutType.MAIN,
         requiresAuth: true,
+      }
+    },
+    {
+      path: ROUTES_PATHS[ERouteName.PROFILE],
+      name: ERouteName.PROFILE,
+      component: PageProfile,
+      meta: {
+        layout: ELayoutType.MAIN,
+        requiresAuth: true
       }
     },
     {

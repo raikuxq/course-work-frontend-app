@@ -1,0 +1,17 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.PageProfile {
+  position: relative;
+  padding-left: 16px;
+  padding-top: 16px;
+  background: $color-bg-primary;
+}
+
+.PageProfile__static {
+  max-width: $app-inner-content;
+}
+
+.PageProfile__form {
+  max-width: $app-inner-content;
+}

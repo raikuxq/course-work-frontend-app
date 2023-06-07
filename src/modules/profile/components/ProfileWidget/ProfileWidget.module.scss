@@ -1,0 +1,54 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.ProfileWidget {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  padding: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1px solid $color-dark-bg-fields;
+  border-bottom: 1px solid $color-dark-bg-fields;
+  background-color: $color-dark-bg-primary;
+}
+
+.ProfileWidget__container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.ProfileWidget__avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ProfileWidget__user {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ProfileWidget__userRow {
+  @include crop-text;
+  color: $color-white;
+  font-size: $fz-main;
+  font-weight: 500;
+}
+
+.ProfileWidget__actions {
+  display: flex;
+  gap: 16px;
+}
+
+.ProfileWidget__actionsIcon {
+  color: $color-brand-primary;
+}
+
+.ProfileWidget__avatarIcon {
+  background-color: $color-brand-primary;
+  border-color: $color-white;
+}

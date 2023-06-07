@@ -24,7 +24,7 @@
 .LayoutMain__wrapper {
   height: 100vh;
   transition: $transition_time $transition_effect;
-  padding-left: $app-sidebar;
+  padding-left: calc(#{$app-sidebar} + 16px);
 }
 
 .LayoutMain__main {

@@ -1,4 +1,8 @@
 body {
+    --color-state-success: #69AA73;
+    --color-state-warning: #febc5a;
+    --color-state-error: #EA5756;
+
     --color-brand-primary: #18a058;
     --color-brand-secondary: #8CD790;
 
@@ -8,32 +12,18 @@ body {
     --color-bg-light: #f6f9f8;
     --color-bg-body: #eef0ef;
     --color-bg-fields: #f6f8f7;
+    --color-dark-bg-primary: #2f2f2f;
+    --color-dark-bg-secondary: #2a2a2a;
+    --color-dark-bg-middle: #282828;
+    --color-dark-bg-light: #414345;
+    --color-dark-bg-body: #202020;
+    --color-dark-bg-fields: #3d3d3f;
+
 
     --color-text-primary: #444444;
     --color-text-secondary: #747D88;
-
-    --color-state-success: #69AA73;
-    --color-state-warning: #febc5a;
-    --color-state-error: #EA5756;
-}
-
-body.theme-dark {
-    --color-brand-primary: #778DA6;
-    --color-brand-secondary: #56CCF8;
-
-    --color-bg-primary: #2f2f2f;
-    --color-bg-secondary: #2a2a2a;
-    --color-bg-middle: #282828;
-    --color-bg-light: #414345;
-    --color-bg-body: #202020;
-    --color-bg-fields: #3d3d3f;
-
-    --color-text-primary: #efefef;
-    --color-text-secondary: #b8c2cd;
-
-    --color-state-success: #69AA73;
-    --color-state-warning: #febc5a;
-    --color-state-error: #EA5756;
+    --color-dark-text-primary: #efefef;
+    --color-dark-text-secondary: #757575;
 }
 
 $color-bg-primary: var(--color-bg-primary);
@@ -42,6 +32,12 @@ $color-bg-middle: var(--color-bg-middle);
 $color-bg-light: var(--color-bg-light);
 $color-bg-body: var(--color-bg-body);
 $color-bg-fields: var(--color-bg-fields);
+$color-dark-bg-primary: var(--color-dark-bg-primary);
+$color-dark-bg-secondary: var(--color-dark-bg-secondary);
+$color-dark-bg-middle: var(--color-dark-bg-middle);
+$color-dark-bg-light: var(--color-dark-bg-light);
+$color-dark-bg-body: var(--color-dark-bg-body);
+$color-dark-bg-fields: var(--color-dark-bg-fields);
 
 $color-brand-primary: var(--color-brand-primary);
 $color-brand-secondary: var(--color-brand-secondary);
@@ -49,6 +45,8 @@ $color-brand-secondary: var(--color-brand-secondary);
 $color-white: #ffffff;
 $color-text-primary: var(--color-text-primary);
 $color-text-secondary: var(--color-text-secondary);
+$color-dark-text-primary: var(--color-dark-text-primary);
+$color-dark-text-secondary: var(--color-dark-text-secondary);
 
 $color-state-success: var(--color-state-success);
 $color-state-warning: var(--color-state-warning);

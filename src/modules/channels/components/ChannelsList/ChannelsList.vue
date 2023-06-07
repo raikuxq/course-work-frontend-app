@@ -44,12 +44,14 @@ const channelsListOwn = computed(() => {
 <template>
   <div :class="s.channelsList">
     <div :class="s.channelsList__container">
-      <n-list>
+      <n-list :class="s.channelsList__containerList" :show-divider="false">
         <n-list-item
             v-for="item in channelsListOwn"
             :key="item?.id"
+            :class="s.channelsList__containerListItem"
         >
           <RouterLink
+              :class="s.channelsList__link"
               :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
           >
             {{ item.title }}
@@ -58,12 +60,14 @@ const channelsListOwn = computed(() => {
       </n-list>
     </div>
     <div :class="s.channelsList__container">
-      <n-list>
+      <n-list :class="s.channelsList__containerList" :show-divider="false">
         <n-list-item
             v-for="item in channelsListMember"
             :key="item?.id"
+            :class="s.channelsList__containerListItem"
         >
           <RouterLink
+              :class="s.channelsList__link"
               :to="{ name: ERouteName.CHANNEL, params: { channelId: item.id } }"
           >
             {{ item.title }}

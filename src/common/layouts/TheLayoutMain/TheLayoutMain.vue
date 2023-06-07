@@ -12,13 +12,11 @@ import TheHeader from "@/common/components/layout/TheHeader/TheHeader.vue";
     </div>
 
     <div :class="s.LayoutMain__container">
-
-      <div :class="s.LayoutMain__main">
+      <main :class="s.LayoutMain__main">
         <transition name="router-animation" mode="out-in">
           <slot />
         </transition>
-      </div>
-
+      </main>
     </div>
 
   </div>

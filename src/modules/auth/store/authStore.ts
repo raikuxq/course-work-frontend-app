@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia'
 import {EStoreSubmodules} from "@/stores/config";
+import type {T_GQL_userCurrent_userCurrent} from "@/types/graphql";
+
+export type TUseAuthStoreStateUser = Omit<T_GQL_userCurrent_userCurrent, '__typename'>
 
 export const useAuthStore = defineStore(EStoreSubmodules.AUTH, {
     state: () => ({
-        user: null
+        user: null as TUseAuthStoreStateUser | null
     }),
     actions: {
-        setUser(user: any) {
+        setUser(user: TUseAuthStoreStateUser | null) {
             this.user = user;
         },
         clearUser() {

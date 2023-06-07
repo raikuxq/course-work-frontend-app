@@ -1,5 +1,5 @@
 export default {
-    head_title: ' | DS BugTracker',
+    head_title: ' | BugTracker',
     menu: {
         open: 'Open menu',
         hide: 'Hide menu'
@@ -28,17 +28,29 @@ export default {
         },
         password: {
             label: 'Password',
-            placeholder: ''
+            placeholder: '********'
         },
         passwordConfirm: {
-            label: 'Confirm Password',
-            placeholder: ''
+            label: 'Confirm password',
+            placeholder: '********'
+        },
+        oldPassword: {
+            label: 'Old password',
+            placeholder: '********'
+        },
+        newPassword: {
+            label: 'New password',
+            placeholder: '********'
         },
         signIn: 'Sign In',
         signInError: 'Error signing in, please check your credentials.',
         signUp: 'Sign Up',
         signUpError: 'Error registering, please check your data.',
         logout: 'Logout',
+        changePassword: 'Change password',
+        changePasswordTitle: 'Change password',
+        changePasswordError: 'Password change error, please check that the old password is correct.',
+        changePasswordSuccess: 'Password has been changed successfully.'
     },
     confirm: 'Do you want to confirm this?',
     actions: {
@@ -49,8 +61,6 @@ export default {
     locales: {
         'ru': 'Russian',
         'en': 'English',
-        'it': 'Italian',
-        'ar': 'Arabic'
     },
     language: {
         change: 'Change to Russian'

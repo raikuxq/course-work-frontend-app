@@ -12,3 +12,16 @@
 .channelsList__container {
   width: 100%;
 }
+
+.channelsList__containerList {
+  background: transparent;
+}
+
+.channelsList__containerListItem {
+}
+
+.channelsList__link {
+  color: $color-dark-text-primary;
+  font-weight: 500;
+  font-size: $fz-main;
+}

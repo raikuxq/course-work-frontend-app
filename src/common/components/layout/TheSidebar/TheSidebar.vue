@@ -4,21 +4,20 @@ import ChannelsList from "@/modules/channels/components/ChannelsList/ChannelsLis
 import {NButton} from 'naive-ui'
 import TheBrandLogo from "@/common/components/layout/TheBrandLogo/TheBrandLogo.vue";
 import {RouterLink} from "vue-router";
-import {useLogout} from "@/common/hooks/useLogout";
-
-const {logout} = useLogout()
+import ProfileWidget from "@/modules/profile/components/ProfileWidget/ProfileWidget.vue";
+import {ERouteName} from "@/router";
 </script>
 
 <template>
   <aside :class="s.sidebar">
-    <router-link :to="{ name: 'home'}" :class="s.sidebar__logo">
-      <TheBrandLogo />
+    <router-link :to="{ name: ERouteName.HOME }" :class="s.sidebar__logo">
+      <TheBrandLogo/>
     </router-link>
 
     <div :class="s.sidebar__nav">
       <div :class="s.sidebar__navItem">
         <div :class="s.sidebar__navContent">
-          <ChannelsList />
+          <ChannelsList/>
         </div>
 
         <div :class="s.sidebar__navContent">
@@ -30,15 +29,11 @@ const {logout} = useLogout()
             Create channel
           </n-button>
         </div>
-
-        <div :class="s.sidebar__navContent">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/auth">Auth</RouterLink>
-          <RouterLink to="/auth" @click.prevent="logout">Logout</RouterLink>
-        </div>
       </div>
+
+      <ProfileWidget/>
     </div>
   </aside>
 </template>
 
-<style lang="scss" module src="./TheSidebar.module.scss" />
+<style lang="scss" module src="./TheSidebar.module.scss"/>

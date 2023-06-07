@@ -51,7 +51,19 @@ const createdAtToShow = computed(() => {
   <div>
     {{ members.map(membersItem => `${membersItem.user.firstname} ${membersItem.user.lastname} (${membersItem.role})`) }}
 
-    <h3>Issue reports</h3>
+    <n-page-header :title="'Список баг-репортов'">
+      <template #extra>
+        <n-space>
+          <n-dropdown :options="[]" placement="bottom-start">
+            <n-button type="primary" block strong :bordered="false">
+              Создать баг-репорт
+            </n-button>
+          </n-dropdown>
+        </n-space>
+      </template>
+    </n-page-header>
+
+    <br>
 
     <TrackersDetailsIssues :key="id" :reports="reports"/>
   </div>

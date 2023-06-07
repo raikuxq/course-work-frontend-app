@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {T_GQL_tracker_tracker, T_GQL_tracker_tracker_reports} from "@/types/graphql";
+import {IssueReportPriority, T_GQL_tracker_tracker, T_GQL_tracker_tracker_reports} from "@/types/graphql";
 import {computed, toRefs} from "vue";
 import {DataTableColumns, NDataTable} from 'naive-ui'
 import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/app/options'
@@ -17,7 +17,6 @@ const {
 } = toRefs(props)
 
 
-
 const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => {
   return [
     {
@@ -25,32 +24,44 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
       key: 'idx'
     },
     {
-      title: 'Title',
-      key: 'title'
+      title: t('bug.title'),
+      key: 'title',
+      sorter: 'default'
     },
     {
-      title: 'Status',
-      key: 'status'
+      title: t('bug.status'),
+      key: 'status',
+      sorter: 'default'
     },
     {
-      title: 'Priority',
-      key: 'priority'
+      title: t('bug.priority'),
+      key: 'priority',
+      sorter: 'default',
     },
     {
-      title: 'Type',
-      key: 'type'
+      title: t('bug.type'),
+      key: 'type',
+      sorter: 'default',
     },
     {
-      title: 'Author',
-      key: 'author'
+      title: t('bug.person'),
+      key: 'responsiblePerson',
+      sorter: 'default',
     },
     {
-      title: 'Created at',
-      key: 'createdAt'
+      title: t('bug.author'),
+      key: 'author',
+      sorter: 'default'
     },
     {
-      title: 'Responsible',
-      key: 'responsiblePerson'
+      title: t('bug.created_at'),
+      key: 'createdAt',
+      sorter: 'default',
+    },
+    {
+      title: t('bug.updated_at'),
+      key: 'updatedAt',
+      sorter: 'default',
     },
   ]
 })
@@ -58,7 +69,7 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
 const data = computed(() => {
 
   return reports.value.map((reportsItem: T_GQL_tracker_tracker_reports, index) => ({
-    idx: index + 1,
+    idx: `${index + 1}`,
     title: reportsItem.title.slice(0, 30),
     author: `${reportsItem.author.user.firstname} ${reportsItem.author.user.lastname}`,
     createdAt: new Date(reportsItem.createdAt).toLocaleString(),
@@ -70,14 +81,69 @@ const data = computed(() => {
     responsiblePerson: `${reportsItem.responsiblePerson.user.firstname} ${reportsItem.responsiblePerson.user.lastname} (${t(labelsRole[reportsItem.responsiblePerson.role])})`
   }) as T_GQL_tracker_tracker_reports)
 })
+
+
+const rowClassName = (row: T_GQL_tracker_tracker_reports) => {
+  console.log('row:')
+  console.log(row)
+  switch (row.priority) {
+    case t(labelsPriority[IssueReportPriority.CRITICAL]):
+      return 'priority-critical';
+    case t(labelsPriority[IssueReportPriority.HIGH]):
+      return 'priority-high'
+    case t(labelsPriority[IssueReportPriority.LOW]):
+      return 'priority-low'
+    case t(labelsPriority[IssueReportPriority.NORMAL]):
+      return 'priority-normal'
+    default:
+      return ''
+  }
+}
 </script>
 
 <template>
-  <div>
+  <div class="n-data-table-container">
     <n-data-table
         :columns="columns"
         :data="data"
         :bordered="false"
+        :row-class-name="rowClassName"
     />
   </div>
 </template>
+
+
+<style scoped lang="scss">
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.n-data-table-container {
+  width: calc(100% + 32px);
+  margin-left: -16px;
+}
+
+:deep(.n-data-table-th__title) {
+  font-weight: 600;
+}
+
+:deep(.n-data-table-td) {
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+:deep(.priority-critical [data-col-key="priority"]) {
+  color: $color-state-error !important;
+}
+
+:deep(.priority-high [data-col-key="priority"]) {
+  color: $color-state-warning !important;
+}
+
+:deep(.priority-low [data-col-key="priority"]) {
+  color: $color-state-success !important;
+}
+
+:deep(.priority-normal [data-col-key="priority"]) {
+  color: $color-text-primary !important;
+}
+</style>

@@ -7,6 +7,8 @@
   flex-direction: column;
   height: 100%;
   overflow-y: hidden;
+  background: $color-dark-bg-body;
+  color: $color-dark-text-primary;
 
   &__logo {
     display: flex;
@@ -15,7 +17,9 @@
     padding: $app-offset;
     width: 100%;
     height: $app-header;
-    border-bottom: 2px solid transparent;
+    border-top: 1px solid $color-dark-bg-fields;
+    border-bottom: 1px solid $color-dark-bg-fields;
+    background-color: $color-dark-bg-primary;
     &:focus {
       outline: none;
     }
@@ -30,18 +34,25 @@
   }
 
   &__nav {
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &__navContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: calc(#{$app-offset} / 2) $app-offset;
+    padding: $app-offset $app-offset;
+  }
+
+  &__navBtn {
+    color: $color-dark-text-primary;
   }
 
   &__navItem {
     position: relative;
+    flex: 1;
   }
 
   &__title {
