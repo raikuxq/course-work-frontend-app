@@ -95,5 +95,4 @@ const handleLogin = async (event) => {
       {{ error }}
     </n-gradient-text>
   </n-form>
-
 </template>

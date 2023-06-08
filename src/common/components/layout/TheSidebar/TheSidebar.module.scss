@@ -20,11 +20,13 @@
     border-top: 1px solid $color-dark-bg-fields;
     border-bottom: 1px solid $color-dark-bg-fields;
     background-color: $color-dark-bg-primary;
+    text-decoration: none !important;
+    @include transition();
     &:focus {
       outline: none;
     }
     &:hover {
-      opacity: 1;
+      opacity: 0.85;
     }
   }
 

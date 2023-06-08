@@ -5,9 +5,13 @@
     </div>
 
     <div :class="s.LayoutAuth__content">
-      <transition :name="s.LayoutAuth__animation">
-        <slot />
-      </transition>
+      <router-view v-slot="{ Component, route }">
+        <transition name="router-animation" mode="out-in">
+          <div :key="route.name">
+            <component :is="Component" />
+          </div>
+        </transition>
+      </router-view>
     </div>
   </div>
 

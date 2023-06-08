@@ -1,0 +1,47 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.ChannelsDetailsNav {
+  position: relative;
+}
+
+.ChannelsDetailsNav__container {
+  padding-right: $app-sidebar;
+}
+
+.ChannelsDetailsNav__descContainer {
+  position: relative;
+  --n-title-text-color: var(--color-brand-primary) !important;
+  --n-th-text-color: var(--color-text-secondary) !important;
+  --n-td-text-color: var(--color-text-primary) !important;
+}
+
+.ChannelsDetailsNav__descItem {
+  color: $color-text-primary;
+  font-weight: 500;
+  font-size: $fz-main;
+}
+
+.ChannelsDetailsNav__linkItem {
+  position: relative;
+  color: $color-text-primary;
+  font-weight: 500;
+  font-size: $fz-main;
+  &:before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: calc(50% - 1px);
+    width: 6px;
+    height: 1px;
+    background-color: $color-text-primary;
+  }
+}
+
+.ChannelsDetailsNav__linkContainer {
+  padding: 4px 16px;
+}
+
+.ChannelsDetailsNav__divider {
+  --n-color: var(--color-text-primary) !important;
+}

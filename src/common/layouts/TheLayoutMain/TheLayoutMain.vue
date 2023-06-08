@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import s from './TheLayoutMain.module.scss'
 import TheSidebar from "@/common/components/layout/TheSidebar/TheSidebar.vue";
-import TheHeader from "@/common/components/layout/TheHeader/TheHeader.vue";
 </script>
 
 <template>
@@ -11,11 +10,17 @@ import TheHeader from "@/common/components/layout/TheHeader/TheHeader.vue";
       <TheSidebar />
     </div>
 
+    <div :class="s.LayoutMain__header" />
+
     <div :class="s.LayoutMain__container">
       <main :class="s.LayoutMain__main">
-        <transition name="router-animation" mode="out-in">
-          <slot />
-        </transition>
+        <router-view v-slot="{ Component, route }">
+          <transition name="router-animation" mode="out-in">
+            <div :key="route.name">
+              <component :is="Component" />
+            </div>
+          </transition>
+        </router-view>
       </main>
     </div>
 

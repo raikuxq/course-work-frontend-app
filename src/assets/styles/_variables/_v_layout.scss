@@ -8,48 +8,10 @@ $lg: 1780px;
 //
 //  App layout
 //
-$app-offset: 20px;
+$app-offset: 16px;
 $form-offset: 20px;
 
 $app-sidebar: 320px;
 $app-header: 80px;
 $app-inner-content: 540px;
 $app-icon-height: 24px;
-$app-form-field-height: 42px;
-
-
-//
-//  Bug
-//
-$bug-w-id: 35px;
-$bug-w-priority: 150px;
-$bug-w-status: 190px;
-$bug-w-person: 210px;
-$bug-w-actions: 160px;
-$bug-w-browser: 105px;
-$bug-w-locale: 75px;
-$bug-w-menu: 145px;
-$bug-w-resolution: 125px;
-
-$bug-offset: 10px;
-$bug-w-all-row: $bug-w-id + $bug-w-priority + $bug-w-status + $bug-w-person + $bug-w-resolution + $bug-w-locale + $bug-w-browser + $bug-w-actions + $bug-w-menu;
-$bug-w-text: calc(100% - #{$bug-w-all-row});
-
-
-//
-// Bug Small ($md and smaller)
-//
-$bug-w-id-small: 30px;
-$bug-w-priority-small: 125px;
-$bug-w-status-small: 150px;
-$bug-w-person-small: 170px;
-$bug-w-actions-small: 180px;
-$bug-w-browser-small: 95px;
-$bug-w-locale-small: 65px;
-$bug-w-menu-small: 145px;
-$bug-w-resolution-small: 95px;
-
-
-$bug-offset-small: 5px;
-$bug-w-all-row-small: $bug-w-id + $bug-w-priority + $bug-w-status + $bug-w-person + $bug-w-resolution + $bug-w-locale + $bug-w-browser + $bug-w-actions + $bug-w-menu;
-$bug-w-text-small: calc(100% - #{$bug-w-all-row});

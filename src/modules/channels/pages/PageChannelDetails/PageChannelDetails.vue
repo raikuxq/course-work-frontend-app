@@ -7,6 +7,8 @@ import type {T_GQL_channel} from "@/types/graphql";
 import {watch} from "vue";
 import s from './PageChannelDetails.module.scss'
 import { useLoadingBar } from 'naive-ui'
+import {ERouteName} from "@/router";
+import ChannelsDetailsNav from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.vue";
 
 const route = useRoute()
 const loadingBar = useLoadingBar()
@@ -40,12 +42,30 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
 
 <template>
   <div :class="s.PageChannelDetails">
-    <div v-if="result" :class="s.PageChannelDetails__sidebar">
-      <ChannelsDetails v-bind="result.channel" />
-    </div>
+    <template v-if="result">
+      <div :class="s.PageChannelDetails__sidebar">
+        <ChannelsDetails v-bind="result.channel" />
+      </div>
 
-    <div :class="s.PageChannelDetails__content">
-      <RouterView />
-    </div>
+      <div :class="s.PageChannelDetails__content">
+        <template v-if="route.name === ERouteName.CHANNEL">
+          <ChannelsDetailsNav
+              :id="result.channel.id"
+              :title="result.channel.title"
+              :categories="result.channel.categories"
+          />
+        </template>
+
+        <template v-else>
+          <router-view v-slot="{ Component, route }">
+            <transition name="router-animation" mode="out-in">
+              <div :key="route.name">
+                <component :is="Component" />
+              </div>
+            </transition>
+          </router-view>
+        </template>
+      </div>
+    </template>
   </div>
 </template>

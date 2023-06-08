@@ -1,9 +1,48 @@
-.n-form-item-label__text,
-.n-tabs-tab__label {
-  font-weight: 500;
-}
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+#app {
+  .n-form-item-label__text,
+  .n-tabs-tab__label {
+    font-weight: 500;
+  }
 
 
-.n-list .n-list-item {
-  padding: 8px 0;
+  .n-list .n-list-item {
+    padding: 8px 0;
+  }
+
+  .n-descriptions-table-header {
+    margin-bottom: 4px;
+    font-size: $fz-main;
+    font-weight: 500 !important;
+  }
+
+  .n-page-header-wrapper[data-dark] {
+    position: fixed;
+    top: 0;
+    background-color: $color-dark-bg-primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% - #{$app-sidebar});
+    margin-bottom: $app-offset;
+    margin-left: calc(-1 * #{$app-offset});
+    padding: $app-offset $app-offset;
+    min-height: $app-header;
+    border: 1px solid $color-dark-bg-fields;
+  }
+
+  .n-page-header-wrapper[data-dark] .n-page-header {
+    height: 100%;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .n-page-header-wrapper[data-dark] .n-page-header__title {
+    color: $color-dark-text-primary;
+    font-size: $fz-main-big;
+    font-weight: 700;
+  }
+
 }

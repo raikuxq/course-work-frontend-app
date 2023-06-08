@@ -7,10 +7,10 @@ import {useRouter} from 'vue-router';
 import {NInput, NForm, NFormItemRow, NButton, NGradientText} from 'naive-ui'
 import {ERouteName} from "@/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/app/constants";
-import {useForm} from 'vee-validate';
-import {useValidation} from "@/common/hooks/useValidation";
-import {useI18n} from "vue-i18n";
-import * as yup from 'yup';
+// import {useForm} from 'vee-validate';
+// import {useValidation} from "@/common/hooks/useValidation";
+// import {useI18n} from "vue-i18n";
+// import * as yup from 'yup';
 
 
 enum EAuthRegFields {
@@ -35,12 +35,12 @@ const passwordConfirm = ref('');
 const firstname = ref('');
 const lastname = ref('');
 
-const {
-  VALIDATION_EMAIL,
-  VALIDATION_PASSWORD,
-  VALIDATION_LASTNAME,
-  VALIDATION_FIRSTNAME,
-} = useValidation()
+// const {
+//   VALIDATION_EMAIL,
+//   VALIDATION_PASSWORD,
+//   VALIDATION_LASTNAME,
+//   VALIDATION_FIRSTNAME,
+// } = useValidation()
 
 // const schema = computed(() => {
 //   return yup.object({

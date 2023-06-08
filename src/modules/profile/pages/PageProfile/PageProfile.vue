@@ -21,7 +21,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
 
 <template>
   <div :class="s.PageProfile">
-    <n-page-header :title="'Настройки профиля'">
+    <n-page-header data-dark :title="'Настройки профиля'">
       <template #extra>
         <n-space>
           <n-button

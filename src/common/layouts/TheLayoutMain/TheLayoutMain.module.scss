@@ -3,6 +3,7 @@
 
 .LayoutMain__sidebar {
   position: fixed;
+  z-index: 9;
   top: 0;
   width: $app-sidebar;
   height: 100vh;
@@ -12,19 +13,27 @@
 }
 
 .LayoutMain__header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: $app-header;
+  background-color: $color-dark-bg-primary;
+  z-index: 0;
 }
 
 .LayoutMain__container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-width: calc(100% - 16px);
 }
 
 .LayoutMain__wrapper {
   height: 100vh;
   transition: $transition_time $transition_effect;
-  padding-left: calc(#{$app-sidebar} + 16px);
+  padding-left: calc(#{$app-sidebar} + #{$app-offset});
+  padding-top: calc(#{$app-header} + #{$app-offset});
 }
 
 .LayoutMain__main {
@@ -49,7 +58,6 @@ $router-animation-effect: cubic-bezier(.73, 1.09, .85, .9);
   &-enter,
   &-leave-to {
     transition: 0.25s cubic-bezier(.73, 1.09, .85, .9);
-    transform: translateY(30px);
     opacity: 0;
   }
 }
