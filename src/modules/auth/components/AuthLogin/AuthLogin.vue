@@ -57,28 +57,26 @@ const handleLogin = async (event) => {
 
 <template>
   <n-form @submit="handleLogin">
-    <n-form-item-row :label="$t('app.auth.email.label')">
+    <n-form-item-row
+        :label="$t('app.auth.email.label')"
+        :feedback="emailError || ''"
+    >
       <n-input
           type="email"
           :placeholder="$t('app.auth.email.placeholder')"
           v-model:value.trim="email"
       />
-
-      <n-gradient-text v-if="emailError" type="error">
-        {{ emailError }}
-      </n-gradient-text>
     </n-form-item-row>
 
-    <n-form-item-row :label="$t('app.auth.password.label')">
+    <n-form-item-row
+        :label="$t('app.auth.password.label')"
+        :feedback="passwordError || ''"
+    >
       <n-input
           type="password"
           :placeholder="$t('app.auth.password.placeholder')"
           v-model:value.trim="password"
       />
-
-      <n-gradient-text v-if="passwordError" type="error">
-        {{ passwordError }}
-      </n-gradient-text>
     </n-form-item-row>
 
     <n-button
