@@ -2,5 +2,29 @@
 @import "@/assets/styles/app/variables";
 
 .PageTrackerDetails {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  background: $color-bg-primary;
   padding-right: $app-sidebar;
+}
+
+.PageTrackerDetails__sidebar {
+  @include style-block();
+  position: fixed;
+  top: $app-header;
+  right: 0;
+  z-index: 1;
+  overflow: auto;
+  flex: 0 0 400px;
+  padding: 20px;
+  border: 1px solid $color-dark-bg-fields;
+  background-color: $color-dark-bg-body;
+  height: calc(100vh - #{$app-header});
+  width: $app-sidebar;
+  color: $color-dark-text-primary !important;
+}
+
+.PageTrackerDetails__content {
+  flex: 1 0 auto;
 }

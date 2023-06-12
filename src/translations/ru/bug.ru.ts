@@ -1,5 +1,6 @@
 export default {
     bug: 'Баг репорт',
+    list: 'Список баг-репортов',
     id: 'ID',
     position: '№',
     created_at: 'Создан',
@@ -46,9 +47,9 @@ export default {
         vulnerability: 'Уязвимость'
     },
     role_type: {
-        qa: 'QA',
+        qa: 'Проверяющий',
         guest: 'Гость',
-        dev: 'Разработчик'
+        dev: 'Исполнитель'
     },
     status_type: {
         fulfilment: 'Выполнение',
@@ -72,7 +73,11 @@ export default {
     },
     form: {
         success: 'Баг-репорт создан успешно',
+        error: 'Ошибка создания баг-репорта',
         title: 'Создание баг-репорта',
+        submit: 'Подтвердить',
+        create: 'Создать баг-репорт',
+        update: 'Обновить баг-репорт',
         field_title: {
             label: 'Заголовок',
             placeholder: ''
@@ -91,19 +96,11 @@ export default {
         },
         responsible: {
             label: 'Ответственный',
-            placeholder: 'Выбрать разработчика'
+            placeholder: 'Выбрать ответственного'
         },
-        locales: {
-            label: 'Языки',
-            placeholder: 'Выбрать языки'
-        },
-        browsers: {
-            label: 'Браузеры',
-            placeholder: 'Выбрать браузеры'
-        },
-        resolutions: {
-            label: 'Разрешения',
-            placeholder: 'Выбрать разрешения'
+        type: {
+            label: 'Тип',
+            placeholder: 'Выбрать тип'
         }
     },
     history: {

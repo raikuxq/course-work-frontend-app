@@ -41,23 +41,3 @@
   display: flex;
   flex-direction: column;
 }
-
-//
-// router components animation
-//
-$router-animation-time: 0.35s;
-$router-animation-effect: cubic-bezier(.73, 1.09, .85, .9);
-
-.router-animation {
-  &-enter-active,
-  &-leave-active {
-    transition: 0.15s cubic-bezier(.73, 1.09, .85, .9);
-    opacity: 1;
-  }
-
-  &-enter,
-  &-leave-to {
-    transition: 0.25s cubic-bezier(.73, 1.09, .85, .9);
-    opacity: 0;
-  }
-}

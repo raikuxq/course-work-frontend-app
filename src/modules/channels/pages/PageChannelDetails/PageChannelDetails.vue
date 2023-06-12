@@ -6,7 +6,7 @@ import {useRoute} from "vue-router";
 import type {T_GQL_channel} from "@/types/graphql";
 import {watch} from "vue";
 import s from './PageChannelDetails.module.scss'
-import { useLoadingBar } from 'naive-ui'
+import {useLoadingBar} from 'naive-ui'
 import {ERouteName} from "@/router";
 import ChannelsDetailsNav from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.vue";
 
@@ -14,7 +14,7 @@ const route = useRoute()
 const loadingBar = useLoadingBar()
 
 
-const {result, loading, error, refetch} = useQuery<T_GQL_channel>(CHANNELS_BY_ID_QUERY, {
+const {result, loading, refetch} = useQuery<T_GQL_channel>(CHANNELS_BY_ID_QUERY, {
   id: route.params.channelId
 });
 
@@ -43,29 +43,27 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
 <template>
   <div :class="s.PageChannelDetails">
     <template v-if="result">
-      <div :class="s.PageChannelDetails__sidebar">
-        <ChannelsDetails v-bind="result.channel" />
-      </div>
+      <template v-if="route.name === ERouteName.CHANNEL">
+        <div :class="s.PageChannelDetails__sidebar">
+          <ChannelsDetails v-bind="result.channel"/>
+        </div>
 
-      <div :class="s.PageChannelDetails__content">
-        <template v-if="route.name === ERouteName.CHANNEL">
+        <div :class="s.PageChannelDetails__content">
           <ChannelsDetailsNav
               :id="result.channel.id"
               :title="result.channel.title"
               :categories="result.channel.categories"
           />
-        </template>
+        </div>
 
-        <template v-else>
-          <router-view v-slot="{ Component, route }">
-            <transition name="router-animation" mode="out-in">
-              <div :key="route.name">
-                <component :is="Component" />
-              </div>
-            </transition>
-          </router-view>
-        </template>
+      </template>
+
+      <div :class="s.PageChannelDetails__content" v-else>
+        <router-view v-slot="{ Component }">
+          <component :is="Component"/>
+        </router-view>
       </div>
+
     </template>
   </div>
 </template>

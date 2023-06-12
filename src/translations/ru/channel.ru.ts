@@ -3,6 +3,7 @@ export default {
         title: 'Список каналов'
     },
     labels: {
+        info: 'Информация',
         name: 'Название канала',
         task: 'Задача',
         author: 'Автор',

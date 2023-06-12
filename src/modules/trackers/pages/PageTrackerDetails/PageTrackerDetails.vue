@@ -6,12 +6,13 @@ import type {T_GQL_tracker} from "@/types/graphql";
 import {watch} from "vue";
 import {TRACKERS_BY_ID_QUERY} from "@/modules/trackers/api/TrackersById";
 import s from './PageTrackerDetails.module.scss'
-import { useLoadingBar } from 'naive-ui'
+import {useLoadingBar} from 'naive-ui'
+import TrackersDetailsInfo from "@/modules/trackers/components/TrackersDetailsInfo/TrackersDetailsInfo.vue";
 
 const route = useRoute()
 const loadingBar = useLoadingBar()
 
-const {result, loading, error, refetch} = useQuery<T_GQL_tracker>(TRACKERS_BY_ID_QUERY, {
+const {result, loading, refetch} = useQuery<T_GQL_tracker>(TRACKERS_BY_ID_QUERY, {
   id: route.params.trackerId
 });
 
@@ -34,10 +35,24 @@ watch(() => loading, (value, oldValue) => {
 </script>
 
 <template>
-  <div
-      v-if="result"
-      :class="s.PageTrackerDetails"
-  >
-    <TrackersDetails v-bind="result.tracker"/>
+  <div :class="s.PageTrackerDetails">
+    <template v-if="result">
+      <div :class="s.PageTrackerDetails__sidebar">
+        <TrackersDetailsInfo v-bind="result.tracker" />
+      </div>
+
+      <div :class="s.PageTrackerDetails__content">
+        <TrackersDetails
+            :title="result.tracker.title"
+            :created-at="result.tracker.createdAt"
+            :description="result.tracker.description"
+            :id="result.tracker.id"
+            :members="result.tracker.members"
+            :reports="result.tracker.reports"
+            @update-data="refetch({ id: route.params.trackerId })"
+        />
+      </div>
+
+    </template>
   </div>
 </template>

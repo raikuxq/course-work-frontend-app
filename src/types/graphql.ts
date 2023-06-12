@@ -13,7 +13,7 @@ export type T_GQL_userCurrent_userCurrent = {
   email: string;
   firstname: string | null;
   lastname: string | null;
-  role: Role;
+  role: ERole;
 }
 
 export type T_GQL_userCurrent = {
@@ -35,7 +35,7 @@ export type T_GQL_authLogin_authLogin_user = {
   email: string;
   firstname: string | null;
   lastname: string | null;
-  role: Role;
+  role: ERole;
 }
 
 export type T_GQL_authLogin_authLogin = {
@@ -104,7 +104,7 @@ export type T_GQL_authSignup_authSignup_user = {
   email: string;
   firstname: string | null;
   lastname: string | null;
-  role: Role;
+  role: ERole;
 }
 
 export type T_GQL_authSignup_authSignup = {
@@ -152,7 +152,7 @@ export type T_GQL_channel_channel_members = {
   id: string;
   lastname: string | null;
   firstname: string | null;
-  role: Role;
+  role: ERole;
 }
 
 export type T_GQL_channel_channel_categories_trackers = {
@@ -378,7 +378,7 @@ export type T_GQL_issueReport_issueReport_responsiblePerson_user = {
 export type T_GQL_issueReport_issueReport_responsiblePerson = {
   __typename: "TrackerMember";
   id: string;
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   user: T_GQL_issueReport_issueReport_responsiblePerson_user;
 }
 
@@ -391,7 +391,7 @@ export type T_GQL_issueReport_issueReport_author_user = {
 
 export type T_GQL_issueReport_issueReport_author = {
   __typename: "TrackerMember";
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   id: string;
   user: T_GQL_issueReport_issueReport_author_user;
 }
@@ -420,9 +420,9 @@ export type T_GQL_issueReport_issueReport = {
   __typename: "IssueReport";
   id: string;
   title: string;
-  type: IssueReportType;
-  status: IssueReportStatus;
-  priority: IssueReportPriority;
+  type: EIssueReportType;
+  status: EIssueReportStatus;
+  priority: EIssueReportPriority;
   description: string;
   createdAt: any;
   updatedAt: any;
@@ -460,11 +460,11 @@ export type T_GQL_issueReportCreate = {
 export type T_GQL_issueReportCreateVariables = {
   trackerId: string;
   title: string;
-  priority: IssueReportPriority;
+  priority: EIssueReportPriority;
   responsiblePersonId: string;
   description: string;
-  status: IssueReportStatus;
-  type: IssueReportType;
+  status: EIssueReportStatus;
+  type: EIssueReportType;
 }
 
 /* tslint:disable */
@@ -488,11 +488,11 @@ export type T_GQL_issueReportUpdate = {
 export type T_GQL_issueReportUpdateVariables = {
   issueReportId: string;
   title: string;
-  priority: IssueReportPriority;
+  priority: EIssueReportPriority;
   responsiblePersonId: string;
   description: string;
-  status: IssueReportStatus;
-  type: IssueReportType;
+  status: EIssueReportStatus;
+  type: EIssueReportType;
 }
 
 /* tslint:disable */
@@ -515,7 +515,7 @@ export type T_GQL_trackerAddMember = {
 
 export type T_GQL_trackerAddMemberVariables = {
   trackerId: string;
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   userId: string;
 }
 
@@ -538,7 +538,7 @@ export type T_GQL_tracker_tracker_members_user = {
 export type T_GQL_tracker_tracker_members = {
   __typename: "TrackerMember";
   id: string;
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   user: T_GQL_tracker_tracker_members_user;
 }
 
@@ -552,7 +552,7 @@ export type T_GQL_tracker_tracker_reports_responsiblePerson_user = {
 export type T_GQL_tracker_tracker_reports_responsiblePerson = {
   __typename: "TrackerMember";
   id: string;
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   user: T_GQL_tracker_tracker_reports_responsiblePerson_user;
 }
 
@@ -566,7 +566,7 @@ export type T_GQL_tracker_tracker_reports_author_user = {
 export type T_GQL_tracker_tracker_reports_author = {
   __typename: "TrackerMember";
   id: string;
-  role: TrackerMemberRole;
+  role: ETrackerMemberRole;
   user: T_GQL_tracker_tracker_reports_author_user;
 }
 
@@ -574,9 +574,9 @@ export type T_GQL_tracker_tracker_reports = {
   __typename: "IssueReport";
   id: string;
   title: string;
-  status: IssueReportStatus;
-  priority: IssueReportPriority;
-  type: IssueReportType;
+  status: EIssueReportStatus;
+  priority: EIssueReportPriority;
+  type: EIssueReportType;
   updatedAt: any;
   createdAt: any;
   responsiblePerson: T_GQL_tracker_tracker_reports_responsiblePerson;
@@ -642,7 +642,7 @@ export type T_GQL_trackerCreateVariables = {
 /**
  * Issue report priority
  */
-export enum IssueReportPriority {
+export enum EIssueReportPriority {
   CRITICAL = "CRITICAL",
   HIGH = "HIGH",
   LOW = "LOW",
@@ -652,7 +652,7 @@ export enum IssueReportPriority {
 /**
  * Issue report status
  */
-export enum IssueReportStatus {
+export enum EIssueReportStatus {
   CLOSED = "CLOSED",
   DISCUSSION = "DISCUSSION",
   FULFILMENT = "FULFILMENT",
@@ -663,7 +663,7 @@ export enum IssueReportStatus {
 /**
  * Issue report type
  */
-export enum IssueReportType {
+export enum EIssueReportType {
   FUNCTIONALITY = "FUNCTIONALITY",
   REPORTING = "REPORTING",
   UI = "UI",
@@ -673,7 +673,7 @@ export enum IssueReportType {
 /**
  * User role
  */
-export enum Role {
+export enum ERole {
   ADMIN = "ADMIN",
   USER = "USER",
 }
@@ -681,7 +681,7 @@ export enum Role {
 /**
  * Tracker member role
  */
-export enum TrackerMemberRole {
+export enum ETrackerMemberRole {
   DEV = "DEV",
   GUEST = "GUEST",
   QA = "QA",

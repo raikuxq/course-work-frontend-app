@@ -6,14 +6,7 @@ import TheLayoutAuth from "@/common/layouts/TheLayoutAuth/TheLayoutAuth.vue";
 import TheLayoutMain from "@/common/layouts/TheLayoutMain/TheLayoutMain.vue";
 import { NConfigProvider, GlobalThemeOverrides, NMessageProvider, NLoadingBarProvider } from 'naive-ui'
 
-const themeOverrides: GlobalThemeOverrides = {
-  // common: {
-  //   primaryColor: '#2196f3',
-  // },
-  // Button: {
-  //   textColor: '#FFFFFF'
-  // }
-}
+const themeOverrides: GlobalThemeOverrides = {}
 
 const currentRoute = useRoute()
 

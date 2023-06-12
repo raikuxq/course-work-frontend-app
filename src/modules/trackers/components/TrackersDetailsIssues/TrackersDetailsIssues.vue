@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {IssueReportPriority, T_GQL_tracker_tracker, T_GQL_tracker_tracker_reports} from "@/types/graphql";
+import {EIssueReportPriority, T_GQL_tracker_tracker, T_GQL_tracker_tracker_reports} from "@/types/graphql";
 import {computed, toRefs} from "vue";
 import {DataTableColumns, NDataTable} from 'naive-ui'
 import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/app/options'
@@ -67,7 +67,6 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
 })
 
 const data = computed(() => {
-
   return reports.value.map((reportsItem: T_GQL_tracker_tracker_reports, index) => ({
     idx: `${index + 1}`,
     title: reportsItem.title.slice(0, 30),
@@ -79,21 +78,19 @@ const data = computed(() => {
     status: t(labelsStatus[reportsItem.status]),
     type: t(labelsType[reportsItem.type]),
     responsiblePerson: `${reportsItem.responsiblePerson.user.firstname} ${reportsItem.responsiblePerson.user.lastname} (${t(labelsRole[reportsItem.responsiblePerson.role])})`
-  }) as T_GQL_tracker_tracker_reports)
+  }))
 })
 
 
 const rowClassName = (row: T_GQL_tracker_tracker_reports) => {
-  console.log('row:')
-  console.log(row)
   switch (row.priority) {
-    case t(labelsPriority[IssueReportPriority.CRITICAL]):
+    case t(labelsPriority[EIssueReportPriority.CRITICAL]):
       return 'priority-critical';
-    case t(labelsPriority[IssueReportPriority.HIGH]):
+    case t(labelsPriority[EIssueReportPriority.HIGH]):
       return 'priority-high'
-    case t(labelsPriority[IssueReportPriority.LOW]):
+    case t(labelsPriority[EIssueReportPriority.LOW]):
       return 'priority-low'
-    case t(labelsPriority[IssueReportPriority.NORMAL]):
+    case t(labelsPriority[EIssueReportPriority.NORMAL]):
       return 'priority-normal'
     default:
       return ''

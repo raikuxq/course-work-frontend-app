@@ -39,6 +39,10 @@
     align-items: center;
   }
 
+  .n-page-header-wrapper[data-dark] .n-page-header .n-page-header__back {
+    color: $color-dark-text-primary;
+  }
+
   .n-page-header-wrapper[data-dark] .n-page-header__title {
     color: $color-dark-text-primary;
     font-size: $fz-main-big;

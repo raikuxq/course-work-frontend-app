@@ -14,12 +14,8 @@ import TheSidebar from "@/common/components/layout/TheSidebar/TheSidebar.vue";
 
     <div :class="s.LayoutMain__container">
       <main :class="s.LayoutMain__main">
-        <router-view v-slot="{ Component, route }">
-          <transition name="router-animation" mode="out-in">
-            <div :key="route.name">
-              <component :is="Component" />
-            </div>
-          </transition>
+        <router-view v-slot="{ Component }">
+          <component :is="Component" />
         </router-view>
       </main>
     </div>

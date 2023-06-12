@@ -1,6 +1,15 @@
 export default {
     title: 'Трекер',
     list_title: 'Список трекеров',
+    list_members: 'Список участников',
+    manage_members: 'Управление участниками',
+    labels: {
+        info: 'Информация',
+        title_name: 'Название трекера',
+        description: 'Описание',
+        created_at: 'Дата создания',
+        members: 'Участники'
+    },
     current: {
         title: 'Текущие трекеры'
     },

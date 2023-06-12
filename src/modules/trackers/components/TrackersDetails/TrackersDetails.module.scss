@@ -1,0 +1,8 @@
+@import "@/assets/styles/app/mixins";
+@import "@/assets/styles/app/variables";
+
+.TrackerDetails__filters {
+  & > * {
+    width: 24.5%;
+  }
+}
