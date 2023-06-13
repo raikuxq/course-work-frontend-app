@@ -60,7 +60,7 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
     },
     {
       title: t('bug.updated_at'),
-      key: 'updatedAt',
+      key: 'id',
       sorter: 'default',
     },
   ]

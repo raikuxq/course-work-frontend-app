@@ -8,6 +8,7 @@ import {TRACKERS_BY_ID_QUERY} from "@/modules/trackers/api/TrackersById";
 import s from './PageTrackerDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'
 import TrackersDetailsInfo from "@/modules/trackers/components/TrackersDetailsInfo/TrackersDetailsInfo.vue";
+import {ERouteName} from "@/router";
 
 const route = useRoute()
 const loadingBar = useLoadingBar()
@@ -37,22 +38,31 @@ watch(() => loading, (value, oldValue) => {
 <template>
   <div :class="s.PageTrackerDetails">
     <template v-if="result">
-      <div :class="s.PageTrackerDetails__sidebar">
-        <TrackersDetailsInfo v-bind="result.tracker" />
-      </div>
+      <template v-if="route.name === ERouteName.TRACKER">
+        <div :class="s.PageTrackerDetails__sidebar">
+          <TrackersDetailsInfo v-bind="result.tracker"/>
+        </div>
 
-      <div :class="s.PageTrackerDetails__content">
-        <TrackersDetails
-            :title="result.tracker.title"
-            :created-at="result.tracker.createdAt"
-            :description="result.tracker.description"
-            :id="result.tracker.id"
-            :members="result.tracker.members"
-            :reports="result.tracker.reports"
-            @update-data="refetch({ id: route.params.trackerId })"
-        />
-      </div>
+        <div :class="s.PageTrackerDetails__content">
+          <TrackersDetails
+              :title="result.tracker.title"
+              :created-at="result.tracker.createdAt"
+              :description="result.tracker.description"
+              :id="result.tracker.id"
+              :members="result.tracker.members"
+              :reports="result.tracker.reports"
+              @update-data="refetch({ id: route.params.trackerId })"
+          />
+        </div>
+      </template>
 
+      <template v-else>
+        <div :class="s.PageTrackerDetails__content">
+          <router-view v-slot="{ Component }">
+            <component :is="Component"/>
+          </router-view>
+        </div>
+      </template>
     </template>
   </div>
 </template>
