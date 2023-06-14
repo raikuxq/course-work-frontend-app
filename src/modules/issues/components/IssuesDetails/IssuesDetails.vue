@@ -139,11 +139,8 @@ const onDeleteBtnClick = () => {
     <n-page-header :title="$t('bug.description')"/>
 
     <n-space>
-      <n-text
-          :class="s.IssuesDetails__description"
-          strong
-      >
-        {{ description }}
+      <n-text :class="s.IssuesDetails__description" strong>
+        <pre :class="s.IssuesDetails__pre">{{ description.trim() }}</pre>
       </n-text>
     </n-space>
 

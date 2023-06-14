@@ -14,7 +14,7 @@ const {
   content
 } = toRefs(props)
 
-const createdAtToDisplay = computed(() => new Date(createdAt as string).toLocaleDateString())
+const createdAtToDisplay = computed(() => new Date(createdAt.value).toLocaleDateString())
 </script>
 
 <template>
