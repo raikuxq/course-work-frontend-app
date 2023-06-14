@@ -7,6 +7,7 @@ import {useRoute, useRouter} from "vue-router";
 import {ERouteName} from "@/router";
 import CommentCard from "@/modules/comments/components/CommentCard/CommentCard.vue";
 import IssuesUpdateForm from "@/modules/issues/components/IssuesUpdateForm/IssuesUpdateForm.vue";
+import s from './IssuesDetails.module.scss'
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
 
@@ -57,7 +58,10 @@ const isModalUpdateIssueOpen = ref<boolean>(false)
     <n-page-header :title="$t('bug.description')"/>
 
     <n-space>
-      <n-text strong>
+      <n-text
+          :class="s.IssuesDetails__description"
+          strong
+      >
         {{ description }}
       </n-text>
     </n-space>

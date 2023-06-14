@@ -12,6 +12,12 @@
     padding: 8px 0;
   }
 
+  .n-page-header__title {
+    font-weight: 600;
+    font-size: $fz-main-lg;
+    line-height: 1.6;
+  }
+
   .n-descriptions-table-header {
     margin-bottom: 4px;
     font-size: $fz-main;
