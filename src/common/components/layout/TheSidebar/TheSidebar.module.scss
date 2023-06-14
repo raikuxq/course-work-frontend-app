@@ -41,11 +41,25 @@
     flex-direction: column;
   }
 
+  &__space {
+    position: relative;
+    width: 100%;
+  }
+
+  &__descContainer {
+    position: relative;
+    --n-title-text-color: var(--color-brand-primary) !important;
+    --n-th-font-weight: 600 !important;
+  }
+
   &__navContent {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: $app-offset $app-offset;
+    &:first-child {
+      flex: 1;
+    }
   }
 
   &__navBtn {
@@ -54,6 +68,8 @@
 
   &__navItem {
     position: relative;
+    display: flex;
+    flex-direction: column;
     flex: 1;
   }
 

@@ -3,7 +3,7 @@ import type {T_GQL_issueReport_issueReport} from "@/types/graphql";
 import {computed, toRefs} from "vue";
 import {NDescriptions, NDescriptionsItem, NDivider} from 'naive-ui'
 import s from './IssuesDetailsInfo.module.scss'
-import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/app/options';
+import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/options/options';
 import {useI18n} from "vue-i18n";
 
 type TIssuesDetailsInfoProps = T_GQL_issueReport_issueReport

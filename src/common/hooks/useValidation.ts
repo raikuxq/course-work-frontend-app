@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import {VALIDATION_RULES} from "@/app/validation";
+import {VALIDATION_RULES} from "@/options/validation";
 // @ts-ignore
-// import {useI18n} from "vue-i18n";
+import {useI18n} from "vue-i18n";
 
 
 /**
@@ -9,8 +9,7 @@ import {VALIDATION_RULES} from "@/app/validation";
  */
 export const useValidation = () => {
 
-    // const {t} = useI18n()
-    const t = (s: string) => s
+    const {t} = useI18n()
 
     const VALIDATION_EMAIL = yup.string()
         .required(t('validations.common.required'))

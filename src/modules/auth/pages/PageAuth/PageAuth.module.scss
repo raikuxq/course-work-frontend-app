@@ -2,12 +2,11 @@
 @import "@/assets/styles/app/variables";
 
 .PageAuth {
-  padding: 40px 20px;
+  padding: calc(#{$app-offset} * 2) $app-offset;
 }
 
 
 .PageAuth__tabs {
-  margin: 40px auto;
-  max-width: 440px;
-
+  margin: calc(#{$app-offset} * 2) auto;
+  max-width: $app-inner-content-sm;
 }

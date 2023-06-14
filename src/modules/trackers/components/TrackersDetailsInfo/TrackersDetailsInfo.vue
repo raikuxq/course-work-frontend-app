@@ -3,7 +3,7 @@ import type {T_GQL_tracker_tracker} from "@/types/graphql";
 import {computed, toRefs} from "vue";
 import {NDescriptions, NDescriptionsItem, NDivider} from 'naive-ui'
 import s from './TrackersDetailsInfo.module.scss'
-import {labelsRole} from '@/app/options';
+import {labelsRole} from '@/options/options';
 
 type TTrackersDetailsInfoProps = T_GQL_tracker_tracker
 

@@ -6,18 +6,18 @@
   display: flex;
   gap: 16px;
   background: $color-bg-primary;
-  padding-left: $app-sidebar;
+  padding-right: $app-sidebar;
 }
 
 .PageChannelDetails__sidebar {
   @include style-block();
   position: fixed;
   top: $app-header;
-  left: $app-sidebar;
+  right: 0;
   z-index: 1;
   overflow: auto;
   flex: 0 0 400px;
-  padding: 20px;
+  padding: $app-offset;
   border: 1px solid $color-dark-bg-fields;
   border-top: none;
   background-color: $color-dark-bg-body;

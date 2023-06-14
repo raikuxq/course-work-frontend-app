@@ -6,7 +6,7 @@ import {AUTH_LOGIN_MUTATION} from '../../api/AuthLoginMutation';
 import {useRouter} from 'vue-router';
 import {NInput, NForm, NFormItemRow, NButton, NGradientText} from 'naive-ui'
 import {ERouteName} from "@/router";
-import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/app/constants";
+import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 import {useField} from 'vee-validate';
 import {useValidation} from "@/common/hooks/useValidation";
 import {useI18n} from "vue-i18n";

@@ -8,7 +8,7 @@ import { createI18n } from 'vue-i18n'
 import { langEn } from '@/translations/lang.en'
 import { langRu } from "@/translations/lang.ru";
 import { DefaultApolloClient } from '@vue/apollo-composable'
-import { client as apolloClient } from "@/app/apollo";
+import { client as apolloClient } from "@/options/apollo";
 import App from './App.vue'
 import router from './router'
 import {useFetchUserCurrent} from "@/common/hooks/useFetchUserCurrent";

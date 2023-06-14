@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   gap: 16px;
+  padding-right: $app-sidebar;
   background: $color-bg-primary;
 }
 
@@ -12,11 +13,11 @@
   @include style-block();
   position: fixed;
   top: $app-header;
-  left: $app-sidebar;
+  right: 0;
   z-index: 1;
   overflow: auto;
   flex: 0 0 400px;
-  padding: 20px;
+  padding: $app-offset;
   border: 1px solid $color-dark-bg-fields;
   border-top: none;
   background-color: $color-dark-bg-body;

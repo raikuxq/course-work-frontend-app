@@ -7,7 +7,7 @@ import {
 } from "@/types/graphql";
 import {computed, h, toRefs} from "vue";
 import {DataTableColumns, NButton, NDataTable, NIcon, NSpace, NTooltip} from 'naive-ui'
-import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/app/options'
+import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/options/options'
 import {useI18n} from "vue-i18n";
 import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 import {useAuthStore} from "@/modules/auth/store/authStore";

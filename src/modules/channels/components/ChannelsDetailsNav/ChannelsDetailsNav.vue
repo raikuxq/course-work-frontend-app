@@ -39,7 +39,7 @@ const {
           </n-button>
 
           <n-button type="primary" secondary block strong :bordered="true">
-            Создать баг-трекер
+            {{ $t('tracker.actions.create' )}}
           </n-button>
         </n-space>
       </template>

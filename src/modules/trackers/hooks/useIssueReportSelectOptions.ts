@@ -1,4 +1,4 @@
-import {priorityOptions, statusOptions, typeOptions} from "@/app/options";
+import {priorityOptions, statusOptions, typeOptions} from "@/options/options";
 import {toRefs, computed} from "vue";
 import type {T_GQL_tracker_tracker} from "@/types/graphql";
 // @ts-ignore

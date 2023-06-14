@@ -24,11 +24,10 @@ const {
 <template>
   <div>
     <n-descriptions
-
         :class="s.ChannelsDetails__descContainer"
         label-placement="top"
         :column="1"
-        title="Информация"
+        :title="$t('channels.labels.info')"
     >
       <n-descriptions-item
           :class="s.ChannelsDetails__descItem"

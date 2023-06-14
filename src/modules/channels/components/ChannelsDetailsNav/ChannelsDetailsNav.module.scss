@@ -46,3 +46,7 @@
 .ChannelsDetailsNav__divider {
   --n-color: var(--color-text-primary) !important;
 }
+
+.ChannelsDetailsNav__content {
+  position: relative;
+}

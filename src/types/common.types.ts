@@ -1,3 +1,7 @@
+export enum EStoreSubmodules {
+    AUTH = 'auth'
+}
+
 export type TSelectItemType<T> = {
     label: string;
     value: T;
