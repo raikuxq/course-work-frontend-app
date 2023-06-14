@@ -4,188 +4,51 @@ schema {
     query: Query
     mutation: Mutation
 }
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
 
 type Auth {
-    "JWT access token"
+    """JWT access token"""
     accessToken: JWT!
-    "JWT refresh token"
+
+    """JWT refresh token"""
     refreshToken: JWT!
     user: User!
+}
+
+input ChangePasswordInput {
+    newPassword: String!
+    oldPassword: String!
 }
 
 type Channel {
     author: User!
     categories: [ChannelCategory!]!
-    "Identifies the date and time when the object was created."
+
+    """Identifies the date and time when the object was created."""
     createdAt: DateTime!
     description: String!
     id: ID!
     inviteLink: String!
     members: [User!]!
     title: String!
-    "Identifies the date and time when the object was last updated."
+
+    """Identifies the date and time when the object was last updated."""
     updatedAt: DateTime!
 }
 
 type ChannelCategory {
     channel: Channel!
-    "Identifies the date and time when the object was created."
+
+    """Identifies the date and time when the object was created."""
     createdAt: DateTime!
     id: ID!
     title: String!
     trackers: [Tracker!]!
-    "Identifies the date and time when the object was last updated."
+
+    """Identifies the date and time when the object was last updated."""
     updatedAt: DateTime!
-}
-
-type IssueReport {
-    author: TrackerMember!
-    createdAt: DateTime!
-    description: String!
-    id: String!
-    priority: IssueReportPriority!
-    responsiblePerson: TrackerMember!
-    status: IssueReportStatus!
-    title: String!
-    tracker: Tracker!
-    type: IssueReportType!
-    updatedAt: DateTime!
-}
-
-type Mutation {
-    authLogin(data: LoginInput!): Auth!
-    authRefreshToken(token: JWT!): Token!
-    authSignup(data: SignupInput!): Auth!
-    channelCategoryCreate(data: ChannelCategoryCreateInput!): ChannelCategory!
-    channelCategoryDelete(id: String!): ID!
-    channelCategoryUpdate(data: ChannelCategoryUpdateInput!, id: String!): ChannelCategory!
-    channelCreate(data: ChannelCreateInput!): Channel!
-    channelDelete(id: String!): ID!
-    channelJoin(data: ChannelJoinToInput!): Channel!
-    channelLeave(data: ChannelLeaveInput!): ID!
-    channelUpdate(data: ChannelUpdateInput!, id: String!): Channel!
-    issueReportCreate(data: IssueReportCreateInput!): IssueReport!
-    issueReportDelete(id: String!): ID!
-    issueReportUpdate(data: IssueReportUpdateInput!, id: String!): IssueReport!
-    trackerAddMember(data: TrackerAddMemberInput!): Tracker!
-    trackerCreate(data: TrackerCreateInput!): Tracker!
-    trackerDelete(id: String!): ID!
-    trackerRemoveMember(data: TrackerRemoveMemberInput!): Tracker!
-    trackerUpdate(data: TrackerUpdateInput!, id: String!): Tracker!
-    trackerUpdateMemberRole(data: TrackerAddMemberInput!): Tracker!
-    userChangePassword(data: ChangePasswordInput!): User!
-    userUpdate(data: UpdateUserInput!): User!
-}
-
-type Query {
-    channel(id: String!): Channel!
-    issueReport(id: String!): IssueReport!
-    tracker(id: String!): Tracker!
-    userChannelsMemberOf: [UserOnChannel!]!
-    userChannelsOwn: [Channel!]!
-    userCurrent: User!
-}
-
-type Token {
-    "JWT access token"
-    accessToken: JWT!
-    "JWT refresh token"
-    refreshToken: JWT!
-}
-
-type Tracker {
-    category: ChannelCategory!
-    channel: Channel!
-    "Identifies the date and time when the object was created."
-    createdAt: DateTime!
-    description: String!
-    id: ID!
-    members: [TrackerMember!]!
-    reports: [IssueReport!]!
-    title: String!
-    "Identifies the date and time when the object was last updated."
-    updatedAt: DateTime!
-}
-
-type TrackerMember {
-    "Identifies the date and time when the object was created."
-    createdAt: DateTime!
-    id: ID!
-    role: TrackerMemberRole!
-    "Identifies the date and time when the object was last updated."
-    updatedAt: DateTime!
-    user: User!
-}
-
-type User {
-    "Identifies the date and time when the object was created."
-    createdAt: DateTime!
-    email: String!
-    firstname: String
-    id: ID!
-    lastname: String
-    role: Role!
-    "Identifies the date and time when the object was last updated."
-    updatedAt: DateTime!
-}
-
-type UserOnChannel {
-    channel: Channel!
-    "Identifies the date and time when the object was created."
-    createdAt: DateTime!
-    id: ID!
-    "Identifies the date and time when the object was last updated."
-    updatedAt: DateTime!
-    user: User!
-}
-
-"Issue report priority"
-enum IssueReportPriority {
-    CRITICAL
-    HIGH
-    LOW
-    NORMAL
-}
-
-"Issue report status"
-enum IssueReportStatus {
-    CLOSED
-    DISCUSSION
-    FULFILMENT
-    READY
-    TO_APPROVE
-}
-
-"Issue report type"
-enum IssueReportType {
-    FUNCTIONALITY
-    REPORTING
-    UI
-    VULNERABILITY
-}
-
-"User role"
-enum Role {
-    ADMIN
-    USER
-}
-
-"Tracker member role"
-enum TrackerMemberRole {
-    DEV
-    GUEST
-    QA
-}
-
-"A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format."
-scalar DateTime
-
-"A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction."
-scalar JWT
-
-input ChangePasswordInput {
-    newPassword: String!
-    oldPassword: String!
 }
 
 input ChannelCategoryCreateInput {
@@ -215,6 +78,48 @@ input ChannelUpdateInput {
     title: String!
 }
 
+type Comment {
+    author: TrackerMember!
+    content: String!
+
+    """Identifies the date and time when the object was created."""
+    createdAt: DateTime!
+    id: ID!
+    report: IssueReport!
+
+    """Identifies the date and time when the object was last updated."""
+    updatedAt: DateTime!
+}
+
+input CommentCreateInput {
+    content: String!
+    issueReportId: String!
+}
+
+input CommentUpdateInput {
+    content: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type IssueReport {
+    author: TrackerMember!
+    comments: [Comment!]!
+    createdAt: DateTime!
+    description: String!
+    id: String!
+    priority: IssueReportPriority!
+    responsiblePerson: TrackerMember!
+    status: IssueReportStatus!
+    title: String!
+    tracker: Tracker!
+    type: IssueReportType!
+    updatedAt: DateTime!
+}
+
 input IssueReportCreateInput {
     description: String!
     priority: IssueReportPriority!
@@ -223,6 +128,31 @@ input IssueReportCreateInput {
     title: String!
     trackerId: String!
     type: IssueReportType!
+}
+
+"""Issue report priority"""
+enum IssueReportPriority {
+    CRITICAL
+    HIGH
+    LOW
+    NORMAL
+}
+
+"""Issue report status"""
+enum IssueReportStatus {
+    CLOSED
+    DISCUSSION
+    FULFILMENT
+    READY
+    TO_APPROVE
+}
+
+"""Issue report type"""
+enum IssueReportType {
+    FUNCTIONALITY
+    REPORTING
+    UI
+    VULNERABILITY
 }
 
 input IssueReportUpdateInput {
@@ -234,9 +164,58 @@ input IssueReportUpdateInput {
     type: IssueReportType
 }
 
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
 input LoginInput {
     email: String!
     password: String!
+}
+
+type Mutation {
+    authLogin(data: LoginInput!): Auth!
+    authRefreshToken(token: JWT!): Token!
+    authSignup(data: SignupInput!): Auth!
+    channelCategoryCreate(data: ChannelCategoryCreateInput!): ChannelCategory!
+    channelCategoryDelete(id: String!): ID!
+    channelCategoryUpdate(data: ChannelCategoryUpdateInput!, id: String!): ChannelCategory!
+    channelCreate(data: ChannelCreateInput!): Channel!
+    channelDelete(id: String!): ID!
+    channelJoin(data: ChannelJoinToInput!): Channel!
+    channelLeave(data: ChannelLeaveInput!): ID!
+    channelUpdate(data: ChannelUpdateInput!, id: String!): Channel!
+    commentCreate(data: CommentCreateInput!): Comment!
+    commentDelete(id: String!): ID!
+    commentUpdate(data: CommentUpdateInput!, id: String!): Comment!
+    issueReportCreate(data: IssueReportCreateInput!): IssueReport!
+    issueReportDelete(id: String!): ID!
+    issueReportUpdate(data: IssueReportUpdateInput!, id: String!): IssueReport!
+    trackerAddMember(data: TrackerAddMemberInput!): Tracker!
+    trackerCreate(data: TrackerCreateInput!): Tracker!
+    trackerDelete(id: String!): ID!
+    trackerRemoveMember(data: TrackerRemoveMemberInput!): Tracker!
+    trackerUpdate(data: TrackerUpdateInput!, id: String!): Tracker!
+    trackerUpdateMemberRole(data: TrackerAddMemberInput!): Tracker!
+    userChangePassword(data: ChangePasswordInput!): User!
+    userUpdate(data: UpdateUserInput!): User!
+}
+
+type Query {
+    channel(id: String!): Channel!
+    comment(id: String!): Comment!
+    issueReport(id: String!): IssueReport!
+    tracker(id: String!): Tracker!
+    userChannelsMemberOf: [UserOnChannel!]!
+    userChannelsOwn: [Channel!]!
+    userCurrent: User!
+}
+
+"""User role"""
+enum Role {
+    ADMIN
+    USER
 }
 
 input SignupInput {
@@ -244,6 +223,30 @@ input SignupInput {
     firstname: String
     lastname: String
     password: String!
+}
+
+type Token {
+    """JWT access token"""
+    accessToken: JWT!
+
+    """JWT refresh token"""
+    refreshToken: JWT!
+}
+
+type Tracker {
+    category: ChannelCategory!
+    channel: Channel!
+
+    """Identifies the date and time when the object was created."""
+    createdAt: DateTime!
+    description: String!
+    id: ID!
+    members: [TrackerMember!]!
+    reports: [IssueReport!]!
+    title: String!
+
+    """Identifies the date and time when the object was last updated."""
+    updatedAt: DateTime!
 }
 
 input TrackerAddMemberInput {
@@ -257,6 +260,24 @@ input TrackerCreateInput {
     channelId: String!
     description: String
     title: String!
+}
+
+type TrackerMember {
+    """Identifies the date and time when the object was created."""
+    createdAt: DateTime!
+    id: ID!
+    role: TrackerMemberRole!
+
+    """Identifies the date and time when the object was last updated."""
+    updatedAt: DateTime!
+    user: User!
+}
+
+"""Tracker member role"""
+enum TrackerMemberRole {
+    DEV
+    GUEST
+    QA
 }
 
 input TrackerRemoveMemberInput {
@@ -273,4 +294,29 @@ input TrackerUpdateInput {
 input UpdateUserInput {
     firstname: String
     lastname: String
+}
+
+type User {
+    """Identifies the date and time when the object was created."""
+    createdAt: DateTime!
+    email: String!
+    firstname: String
+    id: ID!
+    lastname: String
+    role: Role!
+
+    """Identifies the date and time when the object was last updated."""
+    updatedAt: DateTime!
+}
+
+type UserOnChannel {
+    channel: Channel!
+
+    """Identifies the date and time when the object was created."""
+    createdAt: DateTime!
+    id: ID!
+
+    """Identifies the date and time when the object was last updated."""
+    updatedAt: DateTime!
+    user: User!
 }

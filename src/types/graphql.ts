@@ -137,6 +137,69 @@ export type T_GQL_authSignupVariables = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: channelCategoryCreate
+// ====================================================
+
+export type T_GQL_channelCategoryCreate_channelCategoryCreate = {
+  __typename: "ChannelCategory";
+  id: string;
+}
+
+export type T_GQL_channelCategoryCreate = {
+  channelCategoryCreate: T_GQL_channelCategoryCreate_channelCategoryCreate;
+}
+
+export type T_GQL_channelCategoryCreateVariables = {
+  title: string;
+  channelId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: channelCategoryDelete
+// ====================================================
+
+export type T_GQL_channelCategoryDelete = {
+  channelCategoryDelete: string;
+}
+
+export type T_GQL_channelCategoryDeleteVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: channelCategoryUpdate
+// ====================================================
+
+export type T_GQL_channelCategoryUpdate_channelCategoryUpdate = {
+  __typename: "ChannelCategory";
+  id: string;
+}
+
+export type T_GQL_channelCategoryUpdate = {
+  channelCategoryUpdate: T_GQL_channelCategoryUpdate_channelCategoryUpdate;
+}
+
+export type T_GQL_channelCategoryUpdateVariables = {
+  id: string;
+  title: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: channel
 // ====================================================
 
@@ -233,30 +296,15 @@ export type T_GQL_channelCreateVariables = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: channelCategoryCreate
+// GraphQL mutation operation: channelDelete
 // ====================================================
 
-export type T_GQL_channelCategoryCreate_channelCategoryCreate = {
-  __typename: "ChannelCategory";
+export type T_GQL_channelDelete = {
+  channelDelete: string;
+}
+
+export type T_GQL_channelDeleteVariables = {
   id: string;
-  /**
-   * Identifies the date and time when the object was created.
-   */
-  createdAt: any;
-  /**
-   * Identifies the date and time when the object was last updated.
-   */
-  updatedAt: any;
-  title: string;
-}
-
-export type T_GQL_channelCategoryCreate = {
-  channelCategoryCreate: T_GQL_channelCategoryCreate_channelCategoryCreate;
-}
-
-export type T_GQL_channelCategoryCreateVariables = {
-  title: string;
-  channelId: string;
 }
 
 /* tslint:disable */
@@ -296,6 +344,23 @@ export type T_GQL_channelJoin = {
 
 export type T_GQL_channelJoinVariables = {
   inviteLink: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: channelLeave
+// ====================================================
+
+export type T_GQL_channelLeave = {
+  channelLeave: string;
+}
+
+export type T_GQL_channelLeaveVariables = {
+  channelId: string;
 }
 
 /* tslint:disable */
@@ -348,15 +413,147 @@ export type T_GQL_userChannels = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: channelDelete
+// GraphQL mutation operation: channelUpdate
 // ====================================================
 
-export type T_GQL_channelDelete = {
-  channelDelete: string;
+export type T_GQL_channelUpdate_channelUpdate_author = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
 }
 
-export type T_GQL_channelDeleteVariables = {
+export type T_GQL_channelUpdate_channelUpdate = {
+  __typename: "Channel";
   id: string;
+  /**
+   * Identifies the date and time when the object was created.
+   */
+  createdAt: any;
+  /**
+   * Identifies the date and time when the object was last updated.
+   */
+  updatedAt: any;
+  title: string;
+  description: string;
+  author: T_GQL_channelUpdate_channelUpdate_author;
+}
+
+export type T_GQL_channelUpdate = {
+  channelUpdate: T_GQL_channelUpdate_channelUpdate;
+}
+
+export type T_GQL_channelUpdateVariables = {
+  id: string;
+  title: string;
+  description: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: comment
+// ====================================================
+
+export type T_GQL_comment_comment_author_user = {
+  __typename: "User";
+  role: ERole;
+  firstname: string | null;
+  lastname: string | null;
+}
+
+export type T_GQL_comment_comment_author = {
+  __typename: "TrackerMember";
+  id: string;
+  user: T_GQL_comment_comment_author_user;
+}
+
+export type T_GQL_comment_comment = {
+  __typename: "Comment";
+  id: string;
+  /**
+   * Identifies the date and time when the object was created.
+   */
+  createdAt: any;
+  /**
+   * Identifies the date and time when the object was last updated.
+   */
+  updatedAt: any;
+  content: string;
+  author: T_GQL_comment_comment_author;
+}
+
+export type T_GQL_comment = {
+  comment: T_GQL_comment_comment;
+}
+
+export type T_GQL_commentVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: commentCreate
+// ====================================================
+
+export type T_GQL_commentCreate_commentCreate = {
+  __typename: "Comment";
+  id: string;
+}
+
+export type T_GQL_commentCreate = {
+  commentCreate: T_GQL_commentCreate_commentCreate;
+}
+
+export type T_GQL_commentCreateVariables = {
+  issueReportId: string;
+  content: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: commentDelete
+// ====================================================
+
+export type T_GQL_commentDelete = {
+  commentDelete: string;
+}
+
+export type T_GQL_commentDeleteVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: commentUpdate
+// ====================================================
+
+export type T_GQL_commentUpdate_commentUpdate = {
+  __typename: "Comment";
+  id: string;
+}
+
+export type T_GQL_commentUpdate = {
+  commentUpdate: T_GQL_commentUpdate_commentUpdate;
+}
+
+export type T_GQL_commentUpdateVariables = {
+  id: string;
+  content: string;
 }
 
 /* tslint:disable */
@@ -473,6 +670,23 @@ export type T_GQL_issueReportCreateVariables = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: issueReportDelete
+// ====================================================
+
+export type T_GQL_issueReportDelete = {
+  issueReportDelete: string;
+}
+
+export type T_GQL_issueReportDeleteVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: issueReportUpdate
 // ====================================================
 
@@ -493,6 +707,79 @@ export type T_GQL_issueReportUpdateVariables = {
   description: string;
   status: EIssueReportStatus;
   type: EIssueReportType;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: userChangePassword
+// ====================================================
+
+export type T_GQL_userChangePassword_userChangePassword = {
+  __typename: "User";
+  id: string;
+}
+
+export type T_GQL_userChangePassword = {
+  userChangePassword: T_GQL_userChangePassword_userChangePassword;
+}
+
+export type T_GQL_userChangePasswordVariables = {
+  newPassword: string;
+  oldPassword: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: userUpdate
+// ====================================================
+
+export type T_GQL_userUpdate_userUpdate = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  email: string;
+  role: ERole;
+}
+
+export type T_GQL_userUpdate = {
+  userUpdate: T_GQL_userUpdate_userUpdate;
+}
+
+export type T_GQL_userUpdateVariables = {
+  firstname: string;
+  lastname: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerRemoveMember
+// ====================================================
+
+export type T_GQL_trackerRemoveMember_trackerRemoveMember = {
+  __typename: "Tracker";
+  id: string;
+}
+
+export type T_GQL_trackerRemoveMember = {
+  trackerRemoveMember: T_GQL_trackerRemoveMember_trackerRemoveMember;
+}
+
+export type T_GQL_trackerRemoveMemberVariables = {
+  trackerId: string;
+  userId: string;
 }
 
 /* tslint:disable */
@@ -628,6 +915,73 @@ export type T_GQL_trackerCreateVariables = {
   title: string;
   description?: string | null;
   channelCategoryId?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerDelete
+// ====================================================
+
+export type T_GQL_trackerDelete = {
+  trackerDelete: string;
+}
+
+export type T_GQL_trackerDeleteVariables = {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerUpdate
+// ====================================================
+
+export type T_GQL_trackerUpdate_trackerUpdate = {
+  __typename: "Tracker";
+  id: string;
+  title: string;
+}
+
+export type T_GQL_trackerUpdate = {
+  trackerUpdate: T_GQL_trackerUpdate_trackerUpdate;
+}
+
+export type T_GQL_trackerUpdateVariables = {
+  id: string;
+  title: string;
+  description?: string | null;
+  channelCategoryId?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: trackerUpdateMemberRole
+// ====================================================
+
+export type T_GQL_trackerUpdateMemberRole_trackerUpdateMemberRole = {
+  __typename: "Tracker";
+  id: string;
+}
+
+export type T_GQL_trackerUpdateMemberRole = {
+  trackerUpdateMemberRole: T_GQL_trackerUpdateMemberRole_trackerUpdateMemberRole;
+}
+
+export type T_GQL_trackerUpdateMemberRoleVariables = {
+  trackerId: string;
+  userId: string;
+  role: ETrackerMemberRole;
 }
 
 /* tslint:disable */
