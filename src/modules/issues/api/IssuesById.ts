@@ -11,6 +11,19 @@ export const ISSUE_REPORT_BY_ID_QUERY = gql`
             description
             createdAt
             updatedAt
+            comments {
+                id
+                createdAt
+                content
+                author {
+                    id
+                    role
+                    user {
+                        firstname
+                        lastname
+                    }
+                }
+            }
             responsiblePerson {
                 id
                 role
@@ -34,6 +47,7 @@ export const ISSUE_REPORT_BY_ID_QUERY = gql`
                 title
                 members {
                     id
+                    role
                     user {
                         id
                         firstname

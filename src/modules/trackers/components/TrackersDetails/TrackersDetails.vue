@@ -133,6 +133,7 @@ const {getFilteredIssues} = useFilteredIssues({
     <TrackersDetailsIssues
         :key="`${id}-${reports.length}`"
         :reports="getFilteredIssues"
+        :members="members"
     />
 
     <IssuesCreateForm

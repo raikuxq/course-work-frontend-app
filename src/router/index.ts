@@ -5,7 +5,7 @@ import {authGuard} from "@/router/middlewares/auth";
 import PageTrackerDetails from "@/modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue";
 import PageProfile from "@/modules/profile/pages/PageProfile/PageProfile.vue";
 import PageHome from "@/modules/home/pages/PageHome.vue";
-import PagesIssuesDetails from "@/modules/issues/pages/PageIssuesDetails/PagesIssuesDetails.vue";
+import PageIssuesDetails from "@/modules/issues/pages/PageIssuesDetails/PageIssuesDetails.vue";
 
 export enum ELayoutType {
     MAIN = 'MAIN',
@@ -85,7 +85,7 @@ const router = createRouter({
                         {
                             path: ROUTES_PATHS[ERouteName.ISSUE],
                             name: ERouteName.ISSUE,
-                            component: PagesIssuesDetails,
+                            component: PageIssuesDetails,
                             meta: {
                                 requiredAuth: true
                             }

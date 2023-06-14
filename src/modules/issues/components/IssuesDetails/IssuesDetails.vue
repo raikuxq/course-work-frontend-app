@@ -2,10 +2,11 @@
 import {NButton, NDivider, NPageHeader, NSpace, NText} from 'naive-ui'
 import type {T_GQL_issueReport_issueReport} from "@/types/graphql";
 import {ref, toRefs} from "vue";
-import IssuesCreateForm from "@/modules/issues/components/IssuesCreateForm/IssuesCreateForm.vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import {ERouteName} from "@/router";
+import CommentCard from "@/modules/comments/components/CommentCard/CommentCard.vue";
+import IssuesUpdateForm from "@/modules/issues/components/IssuesUpdateForm/IssuesUpdateForm.vue";
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
 
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 
 const {
   description,
+  comments,
   title,
 } = toRefs(props)
 
@@ -52,18 +54,33 @@ const isModalUpdateIssueOpen = ref<boolean>(false)
     </div>
   </div>
   <div>
+    <n-page-header :title="$t('bug.description')"/>
+
+    <n-space>
+      <n-text strong>
+        {{ description }}
+      </n-text>
+    </n-space>
+
     <n-divider/>
 
-    <n-text strong >
-      {{ description }}
-    </n-text>
+    <n-page-header :title="`${$t('bug.comments')} (${comments.length})`"/>
+
+    <n-space vertical>
+
+    </n-space>
+
+    <n-space vertical size="medium">
+      <template v-for="commentItem in comments" :key="commentItem.id">
+        <CommentCard v-bind="commentItem"/>
+      </template>
+    </n-space>
 
     <n-divider/>
 
-    <IssuesCreateForm
+    <IssuesUpdateForm
         :is-modal-open="isModalUpdateIssueOpen"
-        :tracker-id="id"
-        :members="[]"
+        :issue-report-data="props"
         @close-modal="isModalUpdateIssueOpen = false"
         @update-data="emit('updateData')"
     />

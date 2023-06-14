@@ -6,24 +6,29 @@ import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, NSelect, useMessage} from "naive-ui";
 import {REPORTS_CREATE_MUTATION} from "@/modules/issues/api/IssuesCreate";
 import {priorityOptions, statusOptions, typeOptions} from "@/app/options";
-import type {T_GQL_tracker_tracker_members_user} from "@/types/graphql";
+import type {T_GQL_issueReport_issueReport, T_GQL_tracker_tracker_members_user} from "@/types/graphql";
 import {EIssueReportPriority, EIssueReportStatus, EIssueReportType} from "@/types/graphql";
+import {REPORTS_UPDATE_MUTATION} from "@/modules/issues/api/IssuesUpdate";
 
-
-type TIssueCreateFormPropsMember = {
-  id: string;
-  user: Omit<T_GQL_tracker_tracker_members_user, '__typename'>
-  role: string;
-}
-
-type TIssueCreateFormProps = {
+type TIssueUpdateFormProps = {
   isModalOpen: boolean;
-  trackerId: string;
-  members: TIssueCreateFormPropsMember[];
+  issueReportData: T_GQL_issueReport_issueReport;
 }
 
-const props = defineProps<TIssueCreateFormProps>()
-const {isModalOpen, members, trackerId} = toRefs(props)
+const props = defineProps<TIssueUpdateFormProps>()
+const {isModalOpen, issueReportData} = toRefs(props)
+
+const {
+  priority: currentPriority,
+  status: currentStatus,
+  title: currentTitle,
+  description: currentDescription,
+  responsiblePerson: currentResponsiblePerson,
+  type: currentType,
+  tracker
+} = toRefs(issueReportData.value)
+
+const {members} = toRefs(tracker.value)
 
 const emit = defineEmits<{
   (e: 'updateData'): void,
@@ -36,7 +41,7 @@ const message = useMessage()
 const {t} = useI18n()
 
 
-const {mutate: createIssueReport, loading, error} = useMutation(REPORTS_CREATE_MUTATION);
+const {mutate: updateIssueReport, loading, error} = useMutation(REPORTS_UPDATE_MUTATION);
 
 
 const typeOptionsSelect = computed(() => typeOptions.map((item) => ({...item, label: t(item.label)})))
@@ -58,12 +63,12 @@ const responsiblePersonOptionsSelect = computed(() => {
 })
 
 
-const title = ref('')
-const description = ref('')
-const status = ref(EIssueReportStatus.FULFILMENT)
-const type = ref(EIssueReportType.FUNCTIONALITY)
-const priority = ref(EIssueReportPriority.NORMAL)
-const responsiblePerson = ref(null)
+const title = ref(currentTitle.value || '')
+const description = ref(currentDescription.value || '')
+const status = ref(currentStatus.value || EIssueReportStatus.FULFILMENT)
+const type = ref(currentType.value || EIssueReportType.FUNCTIONALITY)
+const priority = ref(currentPriority.value || EIssueReportPriority.NORMAL)
+const responsiblePerson = ref(currentResponsiblePerson.value.id || null)
 
 
 /**
@@ -73,8 +78,8 @@ const submit = async (event) => {
   event.preventDefault();
 
   try {
-    const {data} = await createIssueReport({
-      trackerId: trackerId.value,
+    const {data} = await updateIssueReport({
+      issueReportId: issueReportData.value.id,
       responsiblePersonId: responsiblePerson.value,
       priority: priority.value,
       status: status.value,
@@ -84,7 +89,7 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('bug.notify.created'))
+      message.success(t('bug.notify.updated'))
       emit('updateData')
       emit('closeModal')
     }
@@ -92,7 +97,7 @@ const submit = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('bug.notify.not_created')}: ${error.message}`);
+      message.error(`${t('bug.notify.not_updated')}: ${error.message}`);
     }
   }
 }
@@ -103,13 +108,14 @@ const submit = async (event) => {
     <n-modal
         :show="isModalOpen"
         :mask-closable="true"
-        preset="dialog"
         :show-icon="false"
-        :title="$t('bug.form.create')"
+        :title="$t('bug.form.update')"
+        preset="dialog"
         transform-origin="center"
         @close="emit('closeModal')"
     >
-      <n-divider />
+      <n-divider/>
+
       <n-form @submit="submit">
         <n-form-item-row
             :label="$t('bug.form.field_title.label')"
@@ -178,7 +184,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('bug.form.submit') }}
+          {{ $t('bug.form.update_short') }}
         </n-button>
 
         <n-gradient-text v-if="error" type="error">

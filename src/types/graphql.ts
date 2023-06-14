@@ -603,6 +603,7 @@ export type T_GQL_issueReport_issueReport_tracker_members_user = {
 export type T_GQL_issueReport_issueReport_tracker_members = {
   __typename: "TrackerMember";
   id: string;
+  role: ETrackerMemberRole;
   user: T_GQL_issueReport_issueReport_tracker_members_user;
 }
 
@@ -626,6 +627,7 @@ export type T_GQL_issueReport_issueReport = {
   responsiblePerson: T_GQL_issueReport_issueReport_responsiblePerson;
   author: T_GQL_issueReport_issueReport_author;
   tracker: T_GQL_issueReport_issueReport_tracker;
+  comments: T_GQL_comment_comment[];
 }
 
 export type T_GQL_issueReport = {

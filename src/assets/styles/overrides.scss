@@ -21,13 +21,14 @@
   .n-page-header-wrapper[data-dark] {
     position: fixed;
     top: 0;
+    left: $app-sidebar;
     background-color: $color-dark-bg-primary;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: calc(100% - #{$app-sidebar});
     margin-bottom: $app-offset;
-    margin-left: calc(-1 * #{$app-offset});
+    margin-left: calc(0 * #{$app-offset});
     padding: $app-offset $app-offset;
     min-height: $app-header;
     border: 1px solid $color-dark-bg-fields;

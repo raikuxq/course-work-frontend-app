@@ -6,11 +6,14 @@ export default {
     created_at: 'Создан',
     updated_at: 'Изменен',
     person: 'Ответственный',
+    comments: 'Комментарии',
+    description: 'Описание',
     status: 'Статус',
     priority: 'Приоритет',
     title: 'Заголовок',
     user_actions: 'Действия',
     resolutions: 'Разрешения',
+    goto: 'Перейти',
     type: 'Тип',
     locales: 'Языки',
     browsers: 'Браузеры',
@@ -37,7 +40,7 @@ export default {
     priority_type: {
         normal: 'Нормальный',
         critical: 'Критический',
-        minor: 'Слабый',
+        minor: 'Низкий',
         major: 'Высокий'
     },
     type_type: {
@@ -62,14 +65,17 @@ export default {
         returned: 'Возвращен'
     },
     actions: {
-        create: 'Создать баг-репорт',
-        delete: 'Удалить баг-репорт',
-        edit: 'Изменить баг-репорт'
+        create: 'Создать',
+        delete: 'Удалить',
+        edit: 'Изменить'
     },
     notify: {
         created: 'Баг-репорт успешно создан',
+        not_created: 'Ошибка создания баг-репорта',
         updated: 'Баг-репорт успешно обновлен',
-        deleted: 'Баг-репорт успешно удален'
+        not_updated: 'Ошибка обновления баг-репорта',
+        deleted: 'Баг-репорт успешно удален',
+        not_deleted: 'Ошибка удаления баг-репорта'
     },
     form: {
         success: 'Баг-репорт создан успешно',
@@ -77,7 +83,9 @@ export default {
         title: 'Создание баг-репорта',
         submit: 'Подтвердить',
         create: 'Создать баг-репорт',
+        create_short: 'Создать',
         update: 'Обновить баг-репорт',
+        update_short: 'Обновить',
         field_title: {
             label: 'Заголовок',
             placeholder: ''
