@@ -30,10 +30,6 @@ const {
   members
 } = toRefs(props)
 
-const currentUserAsMember = computed(() => {
-  return members.value.find(membersItem => membersItem.user.id === authStore.user?.id)
-})
-
 const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => {
   return [
     {
@@ -76,19 +72,14 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
       sorter: 'default',
     },
     {
-      title: t('bug.updated_at'),
-      key: 'updatedAt',
-      sorter: 'default',
-    },
-    {
       title: t('bug.user_actions'),
       key: 'actions',
       render(row: T_GQL_tracker_tracker_reports) {
-        const allowedToRemove = currentUserAsMember.value.role === ETrackerMemberRole.QA
 
         const actionsList = [
           h(NButton, {
-            type: 'primary',
+            type: 'tertiary',
+            secondary: true,
             block: true,
             strong: true,
             onClick: () => router.push({
@@ -102,61 +93,7 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
           }, {
             default: () => t('bug.goto'),
           }),
-
-          h(NTooltip, {
-            placement: 'bottom',
-            trigger: 'hover'
-          }, {
-            trigger: () => h(NButton, {
-              type: 'warning',
-              block: true,
-              secondary: true,
-              strong: true,
-              onClick: () => router.push({
-                name: ERouteName.ISSUE,
-                params: {
-                  channelId: route.params.channelId,
-                  trackerId: route.params.trackerId,
-                  issueId: row.id
-                }
-              })
-            }, {
-              default: () => h(NIcon, {size: 18}, {
-                default: () => h(IconSharp, {}, {})
-              })
-            }),
-            default: () => t('bug.actions.edit')
-          })
         ]
-
-        if (allowedToRemove) {
-          actionsList.push(
-              h(NTooltip, {
-                placement: 'bottom',
-                trigger: 'hover'
-              }, {
-                trigger: () => h(NButton, {
-                  type: 'error',
-                  block: true,
-                  secondary: true,
-                  strong: true,
-                  onClick: () => router.push({
-                    name: ERouteName.ISSUE,
-                    params: {
-                      channelId: route.params.channelId,
-                      trackerId: route.params.channelId,
-                      issueId: row.id
-                    }
-                  })
-                }, {
-                  default: () => h(NIcon, {size: 18}, {
-                    default: () => h(IconTrashBin, {}, {})
-                  })
-                }),
-                default: () => t('bug.actions.delete')
-              })
-          )
-        }
 
         return h(
             NSpace,
@@ -173,15 +110,15 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
 const data = computed(() => {
   return reports.value.map((reportsItem: T_GQL_tracker_tracker_reports, index) => ({
     idx: `${index + 1}`,
-    title: reportsItem.title.slice(0, 30),
-    author: `${reportsItem.author.user.firstname} ${reportsItem.author.user.lastname}`,
+    title: reportsItem.title.slice(0, 35),
+    author: `${reportsItem.author.user.lastname} ${reportsItem.author.user.firstname?.charAt(0)}.`,
     createdAt: new Date(reportsItem.createdAt).toLocaleDateString(),
     updatedAt: new Date(reportsItem.updatedAt).toLocaleDateString(),
     id: reportsItem.id,
     priority: t(labelsPriority[reportsItem.priority]),
     status: t(labelsStatus[reportsItem.status]),
     type: t(labelsType[reportsItem.type]),
-    responsiblePerson: `${reportsItem.responsiblePerson.user.firstname} ${reportsItem.responsiblePerson.user.lastname} (${t(labelsRole[reportsItem.responsiblePerson.role])})`
+    responsiblePerson: `${reportsItem.responsiblePerson.user.lastname} ${reportsItem.responsiblePerson.user.firstname?.charAt(0)}. (${t(labelsRole[reportsItem.responsiblePerson.role])})`
   }))
 })
 

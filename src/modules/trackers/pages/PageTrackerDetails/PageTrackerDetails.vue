@@ -59,7 +59,10 @@ watch(() => loading, (value, oldValue) => {
       <template v-else>
         <div :class="s.PageTrackerDetails__content">
           <router-view v-slot="{ Component }">
-            <component :is="Component"/>
+            <component
+                :is="Component"
+                @update-data="refetch({id: route.params.trackerId})"
+            />
           </router-view>
         </div>
       </template>

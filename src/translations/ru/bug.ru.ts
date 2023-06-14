@@ -65,9 +65,9 @@ export default {
         returned: 'Возвращен'
     },
     actions: {
-        create: 'Создать',
-        delete: 'Удалить',
-        edit: 'Изменить'
+        create: 'Создать баг-репорт',
+        delete: 'Удалить баг-репорт',
+        update: 'Изменить баг-репорт'
     },
     notify: {
         created: 'Баг-репорт успешно создан',

@@ -60,7 +60,10 @@ export default {
     confirm: 'Подтвердить данное действие?',
     actions: {
         submit: 'Отправить',
+        confirm: 'Подвердить',
+        delete: 'Удалить',
         back: 'Назад',
+        cancel: 'Отмена',
         clear: 'Очистить'
     },
     locales: {

@@ -9,12 +9,21 @@ import s from './PageIssuesDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'
 import {ISSUE_REPORT_BY_ID_QUERY} from "@/modules/issues/api/IssuesById";
 
+const emit = defineEmits<{
+  (e: 'updateData'): void
+}>()
+
 const route = useRoute()
 const loadingBar = useLoadingBar()
 
 const {result, loading, refetch} = useQuery<T_GQL_issueReport>(ISSUE_REPORT_BY_ID_QUERY, {
   id: route.params.issueId
 });
+
+const onUpdateData = () => {
+  refetch({ id: route.params.issueId })
+  emit('updateData')
+}
 
 watch(() => route.params.issueId, (newIssuesId, oldIssuesId) => {
   if (oldIssuesId !== newIssuesId) {
@@ -44,7 +53,7 @@ watch(() => loading, (value, oldValue) => {
       <div :class="s.PageIssuesDetails__content">
         <IssuesDetails
             v-bind="result.issueReport"
-            @update-data="refetch({ id: route.params.issueId })"
+            @update-data="onUpdateData"
         />
       </div>
 

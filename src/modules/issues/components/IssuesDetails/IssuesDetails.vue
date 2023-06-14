@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import {NButton, NDivider, NPageHeader, NSpace, NText} from 'naive-ui'
+import {NButton, NDivider, NPageHeader, NSpace, NText, NIcon, useDialog, useMessage} from 'naive-ui'
 import type {T_GQL_issueReport_issueReport} from "@/types/graphql";
-import {ref, toRefs} from "vue";
+import {ref, toRefs, computed} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import {ERouteName} from "@/router";
 import CommentCard from "@/modules/comments/components/CommentCard/CommentCard.vue";
 import IssuesUpdateForm from "@/modules/issues/components/IssuesUpdateForm/IssuesUpdateForm.vue";
 import s from './IssuesDetails.module.scss'
+import {useAuthStore} from "@/modules/auth/store/authStore";
+import {ETrackerMemberRole} from "@/types/graphql";
+import {useMutation} from "@vue/apollo-composable";
+import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
+import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
 
@@ -18,16 +23,68 @@ const emit = defineEmits<{
 }>()
 
 const {
+  id,
   description,
   comments,
   title,
+  tracker
 } = toRefs(props)
 
 const {t} = useI18n()
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
+const dialog = useDialog()
+const message = useMessage()
+
+
+const {members} = toRefs(tracker.value)
+
+
+const {mutate: deleteIssueReport} = useMutation(REPORTS_DELETE_MUTATION);
+
+const currentUserAsMember = computed(() => {
+  return members.value.find(membersItem => membersItem.user.id === authStore.user?.id)
+})
+
+const isAllowedToRemove = computed(() => currentUserAsMember.value.role === ETrackerMemberRole.QA)
 
 const isModalUpdateIssueOpen = ref<boolean>(false)
+
+const onDeleteBtnClick = () => {
+  dialog.error({
+    transformOrigin: 'center',
+    showIcon: false,
+    title: t('bug.actions.delete'),
+    content: t('app.confirm'),
+    positiveText: t('app.actions.delete'),
+    negativeText: t('app.actions.cancel'),
+    onPositiveClick: async () => {
+      try {
+        await deleteIssueReport({
+          id: id.value
+        })
+
+        emit('updateData')
+        message.success(t('bug.notify.deleted'))
+
+        await router.push({
+          name: ERouteName.TRACKER,
+          params: {
+            channelId: route.params.channelId,
+            trackerId: route.params.trackerId
+          }
+        })
+      } catch (error) {
+        const alertMessage = error?.extensions?.message ?? error?.message;
+
+        if (alertMessage) {
+          message.error(`${t('bug.notify.not_deleted')}: ${error.message}`);
+        }
+      }
+    },
+  })
+}
 </script>
 
 <template>
@@ -43,12 +100,36 @@ const isModalUpdateIssueOpen = ref<boolean>(false)
             <n-button
                 type="primary"
                 block
+                secondary
                 strong
                 :bordered="false"
                 @click="isModalUpdateIssueOpen = true"
             >
-              {{ $t('bug.form.update') }}
+              {{ $t('bug.actions.update') }}
+              <template #icon>
+                <n-icon>
+                  <icon-sharp/>
+                </n-icon>
+              </template>
             </n-button>
+
+            <template v-if="isAllowedToRemove">
+              <n-button
+                  type="error"
+                  block
+                  secondary
+                  strong
+                  :bordered="false"
+                  @click="onDeleteBtnClick"
+              >
+                {{ $t('bug.actions.delete') }}
+                <template #icon>
+                  <n-icon>
+                    <icon-trash-bin/>
+                  </n-icon>
+                </template>
+              </n-button>
+            </template>
           </n-space>
         </template>
       </n-page-header>
