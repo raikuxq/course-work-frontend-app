@@ -1,6 +1,7 @@
 export default {
     list: {
-        title: 'Список разделов'
+        title: 'Список разделов',
+        main: 'Основной'
     },
     labels: {
         info: 'Информация',

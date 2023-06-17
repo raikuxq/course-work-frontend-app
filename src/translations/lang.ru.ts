@@ -8,6 +8,7 @@ import project from './ru/project.ru'
 import comments from './ru/comments.ru'
 import channels from './ru/channel.ru'
 import validations from './ru/validations.ru'
+import categories from './ru/categories.ru'
 
 export const langRu = {
     app,
@@ -19,5 +20,6 @@ export const langRu = {
     bug,
     comments,
     channels,
+    categories,
     validations
 }

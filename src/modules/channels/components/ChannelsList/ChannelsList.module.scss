@@ -17,6 +17,12 @@
   background: transparent;
 }
 
+.channelsList__containerDesc {
+  position: relative;
+  --n-title-text-color: var(--color-brand-primary) !important;
+  --n-th-font-weight: 600 !important;
+}
+
 .channelsList__containerListItem {
 }
 

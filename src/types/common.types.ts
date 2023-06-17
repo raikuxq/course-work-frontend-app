@@ -1,5 +1,10 @@
 export enum EStoreSubmodules {
-    AUTH = 'auth'
+    AUTH = 'auth',
+    CHANNELS = 'channels'
+}
+
+export enum EEventBusEmits {
+    CHANNELS_LIST_REFETCH = 'CHANNELS_LIST_REFETCH'
 }
 
 export type TSelectItemType<T> = {
