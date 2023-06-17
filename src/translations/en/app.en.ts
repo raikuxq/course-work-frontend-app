@@ -24,7 +24,7 @@ export default {
         },
         email: {
             label: 'Email',
-            placeholder: 'mail@mail.com'
+            placeholder: "mail{'@'}mail.com"
         },
         password: {
             label: 'Password',
