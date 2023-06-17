@@ -17,9 +17,20 @@ export default {
         show: 'Сортировать'
     },
     form: {
-        create: 'Создание трекера',
-        delete: 'Удаление трекера',
-        update: 'Изменение трекера'
+        create: 'Создать трекер',
+        create_short: 'Создать',
+        update: 'Обновить трекер',
+        update_short: 'Обновить',
+        field: {
+            title: {
+                label: 'Заголовок',
+                placeholder: ''
+            },
+            desc: {
+                label: 'Описание',
+                placeholder: ''
+            },
+        }
     },
     actions: {
         create: 'Создать трекер',
@@ -29,6 +40,9 @@ export default {
     notify: {
         created: 'Трекер успешно создан',
         updated: 'Трекер успешно обновлен',
-        deleted: 'Трекер успешно удален'
+        deleted: 'Трекер успешно удален',
+        not_created: 'Ошибка создания трекера',
+        not_updated: 'Ошибка обновления трекера',
+        not_deleted: 'Ошибка удаления трекера'
     }
 }
