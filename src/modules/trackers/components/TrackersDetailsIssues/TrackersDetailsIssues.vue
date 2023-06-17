@@ -71,39 +71,6 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
       key: 'createdAt',
       sorter: 'default',
     },
-    {
-      title: t('bug.user_actions'),
-      key: 'actions',
-      render(row: T_GQL_tracker_tracker_reports) {
-
-        const actionsList = [
-          h(NButton, {
-            type: 'tertiary',
-            secondary: true,
-            block: true,
-            strong: true,
-            onClick: () => router.push({
-              name: ERouteName.ISSUE,
-              params: {
-                channelId: route.params.channelId,
-                trackerId: route.params.trackerId,
-                issueId: row.id
-              }
-            })
-          }, {
-            default: () => t('bug.goto'),
-          }),
-        ]
-
-        return h(
-            NSpace,
-            {},
-            {
-              default: () => actionsList
-            }
-        )
-      }
-    }
   ]
 })
 
@@ -137,6 +104,17 @@ const rowClassName = (row: T_GQL_tracker_tracker_reports) => {
       return ''
   }
 }
+
+const redirectToRow = (id: string) => {
+  router.push({
+    name: ERouteName.ISSUE,
+    params: {
+      channelId: route.params.channelId,
+      trackerId: route.params.trackerId,
+      issueId: id
+    }
+  })
+}
 </script>
 
 <template>
@@ -146,6 +124,7 @@ const rowClassName = (row: T_GQL_tracker_tracker_reports) => {
         :data="data"
         :bordered="false"
         :row-class-name="rowClassName"
+        :row-props="(row) => ({ onClick: () => redirectToRow(row.id) })"
     />
   </div>
 </template>

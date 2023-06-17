@@ -31,10 +31,10 @@ a {
     text-decoration: none;
     &:hover {
         text-decoration: underline;
-        color: $color-brand-secondary;
+        color: $color-brand-primary;
     }
     &.router-link-active {
-        color: $color-brand-secondary;
+        color: $color-brand-primary;
         cursor: default;
         text-decoration: none !important;
     }

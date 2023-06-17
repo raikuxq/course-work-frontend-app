@@ -16,11 +16,24 @@
     font-weight: 600;
     font-size: $fz-main-lg;
     line-height: 1.6;
+    color: $color-brand-primary;
+  }
+
+  .n-descriptions-header {
+    font-size: $fz-main-lg;
+    font-weight: 600 !important;
+    color: $color-brand-primary;
   }
 
   .n-descriptions-table-header {
     margin-bottom: 4px;
     font-size: $fz-main;
+    font-weight: 500 !important;
+    color: $color-text-secondary;
+  }
+
+  .n-descriptions-table-content {
+    color: $color-text-primary;
     font-weight: 500 !important;
   }
 
@@ -34,11 +47,11 @@
     flex-direction: column;
     justify-content: center;
     width: calc(100% - #{$app-sidebar});
-    margin-bottom: $app-offset;
     margin-left: calc(0 * #{$app-offset});
     padding: $app-offset $app-offset;
-    min-height: $app-header;
+    min-height: calc(#{$app-header} + 1px);
     border: 1px solid $color-dark-bg-fields;
+    border-left: none;
   }
 
   .n-page-header-wrapper[data-dark] .n-page-header {
@@ -57,4 +70,49 @@
     font-weight: 700;
   }
 
+  .n-data-table .n-data-table-table {
+    background-color: $color-dark-bg-body;
+    border-top: 1px solid $color-dark-bg-fields;
+  }
+
+  .n-data-table-thead {
+    background-color: $color-dark-bg-body-dark;
+  }
+
+  .n-data-table .n-data-table-th {
+    background-color: $color-dark-bg-body-dark;
+    border-color: $color-dark-bg-fields;
+    color: $color-white;
+    padding: $app-offset 12px;
+    @media (max-width: $lg) {
+      font-size: $fz-main-small;
+      padding: 12px 8px;
+    }
+  }
+
+  .n-data-table .n-data-table-tr {
+    &:hover .n-data-table-td {
+      background-color: $color-dark-bg-secondary;
+      cursor: pointer;
+    }
+  }
+
+  .n-data-table .n-data-table-td {
+    background-color: $color-dark-bg-body;
+    border-color: $color-dark-bg-fields;
+    padding: $app-offset 12px;
+    @media (max-width: $lg) {
+      font-size: $fz-main-small;
+      padding: 12px 8px;
+    }
+  }
+
+  .n-text {
+    border: none;
+    color: $color-text-primary;
+  }
+
+  .n-divider__line {
+    background-color: $color-dark-bg-fields;
+  }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {NButton, NDivider, NPageHeader, NSelect, NSpace, NText} from 'naive-ui'
+import {NButton, NDivider, NPageHeader, NSelect, NSpace, darkTheme, NConfigProvider} from 'naive-ui'
 import type {T_GQL_tracker_tracker} from "@/types/graphql";
-import {ref, toRefs, watch} from "vue";
+import {ref, toRefs} from "vue";
 import TrackersDetailsIssues from "@/modules/trackers/components/TrackersDetailsIssues/TrackersDetailsIssues.vue";
 import IssuesCreateForm from "@/modules/issues/components/IssuesCreateForm/IssuesCreateForm.vue";
 import {useI18n} from "vue-i18n";
@@ -93,42 +93,49 @@ const {getFilteredIssues} = useFilteredIssues({
       </template>
     </n-page-header>
 
-    <n-divider/>
+    <n-config-provider :theme="darkTheme">
+      <n-divider/>
 
-    <n-space :class="s.TrackerDetails__filters">
-      <n-select
-          v-model:value="filters.status"
-          clearable
-          style="width: 100%"
-          :consistent-menu-width="false"
-          :placeholder="$t('bug.form.status.placeholder')"
-          :options="statusOptionsSelect"
-      />
+      <n-space :class="s.TrackerDetails__filters" justify="space-between">
+        <n-select
+            v-model:value="filters.status"
+            clearable
+            :theme="darkTheme"
+            :consistent-menu-width="false"
+            :placeholder="$t('bug.form.status.placeholder')"
+            :options="statusOptionsSelect"
+        />
 
-      <n-select
-          v-model:value="filters.priority"
-          clearable
-          :placeholder="$t('bug.form.priority.placeholder')"
-          :options="priorityOptionsSelect"
-      />
+        <n-select
+            v-model:value="filters.priority"
+            clearable
+            :theme="darkTheme"
+            :placeholder="$t('bug.form.priority.placeholder')"
+            :options="priorityOptionsSelect"
+        />
 
-      <n-select
-          v-model:value="filters.type"
-          clearable
-          :placeholder="$t('bug.form.type.placeholder')"
-          :options="typeOptionsSelect"
-      />
+        <n-select
+            v-model:value="filters.type"
+            clearable
+            :theme="darkTheme"
+            :placeholder="$t('bug.form.type.placeholder')"
+            :options="typeOptionsSelect"
+        />
 
-      <n-select
-          v-model:value="filters.responsible"
-          clearable
-          :consistent-menu-width="false"
-          :placeholder="$t('bug.form.responsible.placeholder')"
-          :options="responsiblePersonOptionsSelect"
-      />
-    </n-space>
+        <n-select
+            v-model:value="filters.responsible"
+            clearable
+            :theme="darkTheme"
+            :consistent-menu-width="false"
+            :placeholder="$t('bug.form.responsible.placeholder')"
+            :options="responsiblePersonOptionsSelect"
+        />
+      </n-space>
 
-    <n-divider/>
+      <n-divider/>
+    </n-config-provider>
+
+
 
     <TrackersDetailsIssues
         :key="`${id}-${reports.length}`"

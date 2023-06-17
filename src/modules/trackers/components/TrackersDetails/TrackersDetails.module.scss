@@ -2,7 +2,8 @@
 @import "@/assets/styles/app/variables";
 
 .TrackerDetails__filters {
+  flex-wrap: nowrap;
   & > * {
-    width: 24.5%;
+    width: 24%;
   }
 }

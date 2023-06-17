@@ -33,7 +33,8 @@
   height: 100vh;
   transition: $transition_time $transition_effect;
   padding-left: calc(#{$app-sidebar} + #{$app-offset});
-  padding-top: calc(#{$app-header} + 20px);
+  padding-top: calc(#{$app-header} + #{$app-offset} + 1px);
+  background-color: $color-dark-bg-body-dark;
 }
 
 .LayoutMain__main {

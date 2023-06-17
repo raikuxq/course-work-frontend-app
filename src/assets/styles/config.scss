@@ -1,8 +1,9 @@
 body {
-  --color-state-success: #69AA73;
-  --color-state-warning: #febc5a;
-  --color-state-error: #EA5756;
+  --color-state-success: #1fc970;
+  --color-state-warning: #eeb12c;
+  --color-state-error: #ef3a39;
 
+  //--color-brand-primary: #18a058;
   --color-brand-primary: #18a058;
   --color-brand-secondary: #1fc970;
 
@@ -18,10 +19,11 @@ body {
   --color-dark-bg-light: #414345;
   --color-dark-bg-body: #202020;
   --color-dark-bg-fields: #3d3d3f;
+  --color-dark-bg-body-dark: #181818;
 
 
-  --color-text-primary: #444444;
-  --color-text-secondary: #747D88;
+  --color-text-primary: #efefef;
+  --color-text-secondary: #757575;
   --color-dark-text-primary: #efefef;
   --color-dark-text-secondary: #757575;
 }
