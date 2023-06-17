@@ -71,9 +71,11 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
       </n-descriptions-item>
     </n-descriptions>
 
-<!--    <n-button type="primary" block strong :bordered="true">-->
-<!--      {{ $t('tracker.manage_members') }}-->
-<!--    </n-button>-->
+    <n-divider />
+
+    <n-button type="primary" block strong :bordered="true">
+      {{ $t('tracker.manage_members') }}
+    </n-button>
   </n-space>
 
 

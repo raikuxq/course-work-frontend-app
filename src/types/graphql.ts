@@ -831,6 +831,18 @@ export type T_GQL_tracker_tracker_members = {
   user: T_GQL_tracker_tracker_members_user;
 }
 
+export type T_GQL_tracker_tracker_channel = {
+  __typename: "Channel";
+  id: string;
+  title: string;
+}
+
+export type T_GQL_tracker_tracker_channelCategory = {
+  __typename: "ChannelCategory";
+  id: string;
+  title: string;
+}
+
 export type T_GQL_tracker_tracker_reports_responsiblePerson_user = {
   __typename: "User";
   id: string;
@@ -883,6 +895,8 @@ export type T_GQL_tracker_tracker = {
    */
   createdAt: any;
   reports: T_GQL_tracker_tracker_reports[];
+  channel: T_GQL_tracker_tracker_channel;
+  category: T_GQL_tracker_tracker_channelCategory;
 }
 
 export type T_GQL_tracker = {

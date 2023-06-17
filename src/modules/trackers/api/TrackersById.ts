@@ -44,6 +44,14 @@ export const TRACKERS_BY_ID_QUERY = gql`
                     }
                 }
             }
+            channel {
+                id
+                title
+            }
+            category {
+                id
+                title
+            }
         }
     }
 `;

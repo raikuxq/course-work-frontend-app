@@ -11,8 +11,9 @@ import {useIssueReportSelectOptions} from "@/modules/trackers/hooks/useIssueRepo
 import s from './TrackersDetails.module.scss'
 import {useRoute, useRouter} from "vue-router";
 import {ERouteName} from "@/router";
+import TrackersUpdateForm from "@/modules/trackers/components/TrackersUpdateForm/TrackersUpdateForm.vue";
 
-export type TTrackersDetailsProps = Omit<T_GQL_tracker_tracker, '__typename'>
+export type TTrackersDetailsProps = T_GQL_tracker_tracker
 
 const props = defineProps<TTrackersDetailsProps>()
 
@@ -22,10 +23,11 @@ const emit = defineEmits<{
 
 const {
   members,
-  description,
   id,
   reports,
   title,
+  category,
+  channel
 } = toRefs(props)
 
 const {t} = useI18n()
@@ -33,6 +35,7 @@ const router = useRouter()
 const route = useRoute()
 
 const isModalCreateIssueOpen = ref<boolean>(false)
+const isModalUpdateTrackerOpen = ref<boolean>(false)
 
 const filters = ref<TUserFilteredIssuesConfigProps>({
   type: null,
@@ -66,8 +69,15 @@ const {getFilteredIssues} = useFilteredIssues({
       >
         <template #extra>
           <n-space>
-            <n-button type="primary" block strong :bordered="true">
-              {{ $t('tracker.manage_members') }}
+            <n-button
+                type="primary"
+                secondary
+                block
+                strong
+                :bordered="true"
+                @click="isModalUpdateTrackerOpen = true"
+            >
+              {{ $t('tracker.actions.update') }}
             </n-button>
           </n-space>
         </template>
@@ -148,6 +158,13 @@ const {getFilteredIssues} = useFilteredIssues({
         :tracker-id="id"
         :members="members"
         @close-modal="isModalCreateIssueOpen = false"
+        @update-data="emit('updateData')"
+    />
+
+    <TrackersUpdateForm
+        :is-modal-open="isModalUpdateTrackerOpen"
+        :tracker-data="props"
+        @close-modal="isModalUpdateTrackerOpen = false"
         @update-data="emit('updateData')"
     />
   </div>

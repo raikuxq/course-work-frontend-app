@@ -45,12 +45,7 @@ watch(() => loading, (value, oldValue) => {
 
         <div :class="s.PageTrackerDetails__content">
           <TrackersDetails
-              :title="result.tracker.title"
-              :created-at="result.tracker.createdAt"
-              :description="result.tracker.description"
-              :id="result.tracker.id"
-              :members="result.tracker.members"
-              :reports="result.tracker.reports"
+              v-bind="result.tracker"
               @update-data="refetch({ id: route.params.trackerId })"
           />
         </div>
