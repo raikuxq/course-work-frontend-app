@@ -20,6 +20,7 @@ import {useRoute, useRouter} from "vue-router";
 import {useMutation} from "@vue/apollo-composable";
 import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
 import {CHANNEL_DELETE_MUTATION} from "@/modules/channels/api/ChannelsDelete";
+import {CHANNEL_LEAVE_MUTATION} from "@/modules/channels/api/ChannelsLeave";
 
 /**
  * Types
@@ -63,6 +64,7 @@ const {t} = useI18n()
  * Network
  */
 const {mutate: deleteChannel} = useMutation(CHANNEL_DELETE_MUTATION);
+const {mutate: leaveChannel} = useMutation(CHANNEL_LEAVE_MUTATION);
 
 
 /**
@@ -77,6 +79,9 @@ const isModalUpdateOpen = ref<boolean>(false)
 const isUserAuthor = computed(() => authStore.user?.id === author.value.id)
 
 
+/**
+ * Delete channel
+ */
 const onDeleteBtnClick = () => {
   dialog.error({
     transformOrigin: 'center',
@@ -94,18 +99,45 @@ const onDeleteBtnClick = () => {
         emit('updateData')
         message.success(t('channels.notify.deleted'))
 
-        await router.push({
-          name: ERouteName.TRACKER,
-          params: {
-            channelId: route.params.channelId,
-            trackerId: route.params.trackerId
-          }
-        })
+        await router.push({ name: ERouteName.HOME })
       } catch (error) {
         const alertMessage = error?.extensions?.message ?? error?.message;
 
         if (alertMessage) {
           message.error(`${t('channels.notify.not_deleted')}: ${error.message}`);
+        }
+      }
+    },
+  })
+}
+
+
+/**
+ * Leave channel
+ */
+const onLeaveBtnClick = () => {
+  dialog.error({
+    transformOrigin: 'center',
+    showIcon: false,
+    title: t('channels.actions.leave'),
+    content: t('app.confirm'),
+    positiveText: t('channels.form.leave_short'),
+    negativeText: t('app.actions.cancel'),
+    onPositiveClick: async () => {
+      try {
+        await leaveChannel({
+          channelId: id.value
+        })
+
+        emit('updateData')
+        message.success(t('channels.notify.left'))
+
+        await router.push({ name: ERouteName.HOME })
+      } catch (error) {
+        const alertMessage = error?.extensions?.message ?? error?.message;
+
+        if (alertMessage) {
+          message.error(`${t('channels.notify.not_left')}: ${error.message}`);
         }
       }
     },
@@ -149,7 +181,7 @@ const onDeleteBtnClick = () => {
               secondary
               strong
               :bordered="true"
-              @click="() => {console.log('leave')}"
+              @click="onLeaveBtnClick"
           >
             {{ $t('channels.actions.leave' )}}
           </n-button>

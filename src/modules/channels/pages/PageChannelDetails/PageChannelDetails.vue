@@ -9,14 +9,22 @@ import s from './PageChannelDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'
 import {ERouteName} from "@/router";
 import ChannelsDetailsNav from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.vue";
+import {useEventBus} from "@vueuse/core";
+import {EEventBusEmits} from "@/types/common.types";
 
 const route = useRoute()
 const loadingBar = useLoadingBar()
+const eventBus = useEventBus(EEventBusEmits.CHANNELS_LIST_REFETCH)
 
 
 const {result, loading, refetch} = useQuery<T_GQL_channel>(CHANNELS_BY_ID_QUERY, {
   id: route.params.channelId
 });
+
+const onUpdateData = () => {
+  refetch()
+  eventBus.emit()
+}
 
 watch(() => loading, (value, oldValue) => {
   if (!oldValue && value) {
@@ -50,7 +58,7 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
         <div :class="s.PageChannelDetails__content">
           <ChannelsDetailsNav
               v-bind="result.channel"
-              @update-data="refetch"
+              @update-data="onUpdateData"
           />
         </div>
 
