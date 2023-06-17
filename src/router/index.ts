@@ -41,7 +41,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.HOME],
             name: ERouteName.HOME,
-            component: PageHome,
+            component: () => import('../modules/home/pages/PageHome.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true,
@@ -50,7 +50,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.PROFILE],
             name: ERouteName.PROFILE,
-            component: PageProfile,
+            component: () => import('../modules/profile/pages/PageProfile/PageProfile.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true
@@ -59,7 +59,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.AUTH],
             name: ERouteName.AUTH,
-            component: PageAuth,
+            component: () => import('../modules/auth/pages/PageAuth/PageAuth.vue'),
             meta: {
                 layout: ELayoutType.AUTH,
                 requiresAuth: false,
@@ -68,7 +68,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.CHANNEL],
             name: ERouteName.CHANNEL,
-            component: PageChannelDetails,
+            component: () => import('../modules/channels/pages/PageChannelDetails/PageChannelDetails.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true,
@@ -77,7 +77,7 @@ const router = createRouter({
                 {
                     path: ROUTES_PATHS[ERouteName.TRACKER],
                     name: ERouteName.TRACKER,
-                    component: PageTrackerDetails,
+                    component: () => import('../modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue'),
                     meta: {
                         requiresAuth: true
                     },
@@ -85,7 +85,7 @@ const router = createRouter({
                         {
                             path: ROUTES_PATHS[ERouteName.ISSUE],
                             name: ERouteName.ISSUE,
-                            component: PageIssuesDetails,
+                            component: () => import('../modules/issues/pages/PageIssuesDetails/PageIssuesDetails.vue'),
                             meta: {
                                 requiredAuth: true
                             }
