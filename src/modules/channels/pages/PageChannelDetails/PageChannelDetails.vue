@@ -18,7 +18,6 @@ const {result, loading, refetch} = useQuery<T_GQL_channel>(CHANNELS_BY_ID_QUERY,
   id: route.params.channelId
 });
 
-
 watch(() => loading, (value, oldValue) => {
   if (!oldValue && value) {
     loadingBar.start()
@@ -50,9 +49,8 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
 
         <div :class="s.PageChannelDetails__content">
           <ChannelsDetailsNav
-              :id="result.channel.id"
-              :title="result.channel.title"
-              :categories="result.channel.categories"
+              v-bind="result.channel"
+              @update-data="refetch"
           />
         </div>
 
@@ -60,7 +58,7 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
 
       <div :class="s.PageChannelDetails__content" v-else>
         <router-view v-slot="{ Component }">
-          <component :is="Component"/>
+          <component :is="Component" />
         </router-view>
       </div>
 

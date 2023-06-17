@@ -1,14 +1,30 @@
 <script setup lang="ts">
 import s from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.module.scss";
 import {ERouteName} from "@/router";
-import {toRefs} from "vue";
-import {NButton, NDescriptions, NDescriptionsItem, NDropdown, NPageHeader, NSpace} from 'naive-ui'
+import {computed, ref, toRefs} from "vue";
+import {
+  NButton,
+  NDescriptions,
+  NDescriptionsItem,
+  NDropdown,
+  NPageHeader,
+  NSpace,
+  useDialog,
+  useMessage
+} from 'naive-ui'
 import {T_GQL_channel_channel} from "@/types/graphql";
+import ChannelsUpdateForm from "@/modules/channels/components/ChannelsUpdateForm/ChannelsUpdateForm.vue";
+import {useAuthStore} from "@/modules/auth/store/authStore";
+import {useI18n} from "vue-i18n";
+import {useRoute, useRouter} from "vue-router";
+import {useMutation} from "@vue/apollo-composable";
+import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
+import {CHANNEL_DELETE_MUTATION} from "@/modules/channels/api/ChannelsDelete";
 
 /**
  * Types
  */
-type TChannelsDetailsNavProps = Pick<T_GQL_channel_channel, 'title' | 'categories' | 'id'>
+type TChannelsDetailsNavProps = T_GQL_channel_channel
 
 
 /**
@@ -20,26 +36,122 @@ const {
   categories,
   title,
   id,
+  author
 } = toRefs(props)
 
 
+/**
+ * Emits
+ */
+const emit = defineEmits<{
+  (e: 'updateData'): void,
+}>()
+
+
+/**
+ * Hooks
+ */
+const route = useRoute()
+const router = useRouter()
+const dialog = useDialog()
+const message = useMessage()
+const authStore = useAuthStore()
+const {t} = useI18n()
+
+
+/**
+ * Network
+ */
+const {mutate: deleteChannel} = useMutation(CHANNEL_DELETE_MUTATION);
+
+
+/**
+ * State
+ */
+const isModalUpdateOpen = ref<boolean>(false)
+
+
+/**
+ * Computed
+ */
+const isUserAuthor = computed(() => authStore.user?.id === author.value.id)
+
+
+const onDeleteBtnClick = () => {
+  dialog.error({
+    transformOrigin: 'center',
+    showIcon: false,
+    title: t('channels.actions.delete'),
+    content: t('app.confirm'),
+    positiveText: t('app.actions.delete'),
+    negativeText: t('app.actions.cancel'),
+    onPositiveClick: async () => {
+      try {
+        await deleteChannel({
+          id: id.value
+        })
+
+        emit('updateData')
+        message.success(t('channels.notify.deleted'))
+
+        await router.push({
+          name: ERouteName.TRACKER,
+          params: {
+            channelId: route.params.channelId,
+            trackerId: route.params.trackerId
+          }
+        })
+      } catch (error) {
+        const alertMessage = error?.extensions?.message ?? error?.message;
+
+        if (alertMessage) {
+          message.error(`${t('channels.notify.not_deleted')}: ${error.message}`);
+        }
+      }
+    },
+  })
+}
+
 </script>
 
-<style scoped>
-
-</style>
 
 <template>
   <div>
     <n-page-header data-dark :title="`${title}: ${$t('channels.labels.categories')}`">
       <template #extra>
-        <n-space>
-          <n-button type="primary" block strong :bordered="false">
-            Создать раздел
+        <n-space v-if="isUserAuthor">
+          <n-button
+              type="primary"
+              secondary
+              block
+              strong
+              :bordered="true"
+              @click="isModalUpdateOpen = true"
+          >
+            {{ $t('channels.actions.update' )}}
           </n-button>
 
-          <n-button type="primary" secondary block strong :bordered="true">
-            {{ $t('tracker.actions.create' )}}
+          <n-button
+              type="error"
+              block
+              secondary
+              strong
+              :bordered="true"
+              @click="onDeleteBtnClick"
+          >
+            {{ $t('channels.actions.delete' )}}
+          </n-button>
+        </n-space>
+        <n-space v-else>
+          <n-button
+              type="error"
+              block
+              secondary
+              strong
+              :bordered="true"
+              @click="() => {console.log('leave')}"
+          >
+            {{ $t('channels.actions.leave' )}}
           </n-button>
         </n-space>
       </template>
@@ -73,4 +185,12 @@ const {
       </n-descriptions>
     </div>
   </div>
+
+
+  <ChannelsUpdateForm
+      :is-modal-open="isModalUpdateOpen"
+      :channel-data="props"
+      @close-modal="isModalUpdateOpen = false"
+      @update-data="emit('updateData')"
+  />
 </template>
