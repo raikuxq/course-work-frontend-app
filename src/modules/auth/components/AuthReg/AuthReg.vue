@@ -4,7 +4,7 @@ import {useAuthStore} from '../../store/authStore';
 import {useMutation} from '@vue/apollo-composable'
 import {AUTH_SIGNUP_MUTATION} from '../../api/AuthRegMutation';
 import {useRouter} from 'vue-router';
-import {NInput, NForm, NFormItemRow, NButton, NGradientText} from 'naive-ui'
+import {NInput, NForm, NFormItemRow, NButton, NGradientText, darkTheme, NConfigProvider} from 'naive-ui'
 import {ERouteName} from "@/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 import {useForm} from 'vee-validate';
@@ -108,63 +108,71 @@ const handleReg = async (event) => {
 
 <template>
   <n-form @submit="handleReg">
-    <n-form-item-row
-        :label="$t('app.auth.firstname.label')"
-        :feedback="firstNameError"
-        :show-feedback="firstNameError && meta[EAuthRegFields.FIRSTNAME]?.touched"
-    >
-      <n-input
-          :name="EAuthRegFields.FIRSTNAME"
-          type="text"
-          :placeholder="$t('app.auth.firstname.placeholder')"
-          v-model:value.trim="firstname"
-      />
-    </n-form-item-row>
-    <n-form-item-row
-        :label="$t('app.auth.lastname.label')"
-        :feedback="lastNameError"
-        :show-feedback="lastNameError && meta[EAuthRegFields.LASTNAME]?.touched"
-    >
-      <n-input
-          :name="EAuthRegFields.LASTNAME"
-          type="text"
-          :placeholder="$t('app.auth.lastname.placeholder')"
-          v-model:value.trim="lastname"
-      />
-    </n-form-item-row>
-    <n-form-item-row
-        :label="$t('app.auth.email.label')"
-        :feedback="emailError"
-    >
-      <n-input
-          :name="EAuthRegFields.EMAIL"
-          type="email"
-          :placeholder="$t('app.auth.email.placeholder')"
-          v-model:value.trim="email"
-      />
-    </n-form-item-row>
-    <n-form-item-row
-        :label="$t('app.auth.password.label')"
-        :feedback="passwordError"
-    >
-      <n-input
-          type="password"
-          :name="EAuthRegFields.PASSWORD"
-          :placeholder="$t('app.auth.password.placeholder')"
-          v-model:value.trim="password"
-      />
-    </n-form-item-row>
-    <n-form-item-row
-        :label="$t('app.auth.passwordConfirm.label')"
-        :feedback="passwordConfirmError"
-    >
-      <n-input
-          :name="EAuthRegFields.PASSWORD_CONFIRM"
-          type="password"
-          :placeholder="$t('app.auth.passwordConfirm.placeholder')"
-          v-model:value.trim="passwordConfirm"
-      />
-    </n-form-item-row>
+    <n-config-provider :theme="darkTheme">
+      <n-form-item-row
+          :label="$t('app.auth.firstname.label')"
+          :feedback="firstNameError"
+          :show-feedback="firstNameError && meta[EAuthRegFields.FIRSTNAME]?.touched"
+      >
+        <n-input
+            :name="EAuthRegFields.FIRSTNAME"
+            type="text"
+            :placeholder="$t('app.auth.firstname.placeholder')"
+            v-model:value.trim="firstname"
+        />
+      </n-form-item-row>
+    </n-config-provider>
+    <n-config-provider :theme="darkTheme">
+      <n-form-item-row
+          :label="$t('app.auth.lastname.label')"
+          :feedback="lastNameError"
+          :show-feedback="lastNameError && meta[EAuthRegFields.LASTNAME]?.touched"
+      >
+        <n-input
+            :name="EAuthRegFields.LASTNAME"
+            type="text"
+            :placeholder="$t('app.auth.lastname.placeholder')"
+            v-model:value.trim="lastname"
+        />
+      </n-form-item-row>
+    </n-config-provider>
+    <n-config-provider :theme="darkTheme">
+      <n-form-item-row
+          :label="$t('app.auth.email.label')"
+          :feedback="emailError"
+      >
+        <n-input
+            :name="EAuthRegFields.EMAIL"
+            type="email"
+            :placeholder="$t('app.auth.email.placeholder')"
+            v-model:value.trim="email"
+        />
+      </n-form-item-row>
+    </n-config-provider>
+    <n-config-provider :theme="darkTheme">
+      <n-form-item-row
+          :label="$t('app.auth.password.label')"
+          :feedback="passwordError"
+      >
+        <n-input
+            type="password"
+            :name="EAuthRegFields.PASSWORD"
+            :placeholder="$t('app.auth.password.placeholder')"
+            v-model:value.trim="password"
+        />
+      </n-form-item-row>
+      <n-form-item-row
+          :label="$t('app.auth.passwordConfirm.label')"
+          :feedback="passwordConfirmError"
+      >
+        <n-input
+            :name="EAuthRegFields.PASSWORD_CONFIRM"
+            type="password"
+            :placeholder="$t('app.auth.passwordConfirm.placeholder')"
+            v-model:value.trim="passwordConfirm"
+        />
+      </n-form-item-row>
+    </n-config-provider>
 
     <n-button
         type="primary"

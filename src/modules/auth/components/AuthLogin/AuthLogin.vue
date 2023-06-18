@@ -4,7 +4,7 @@ import {useAuthStore} from '../../store/authStore';
 import {useMutation} from '@vue/apollo-composable'
 import {AUTH_LOGIN_MUTATION} from '../../api/AuthLoginMutation';
 import {useRouter} from 'vue-router';
-import {NInput, NForm, NFormItemRow, NButton, NGradientText} from 'naive-ui'
+import {NInput, NForm, NFormItemRow, NButton, NGradientText, darkTheme, NConfigProvider} from 'naive-ui'
 import {ERouteName} from "@/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 import {useField} from 'vee-validate';
@@ -19,9 +19,9 @@ const {t} = useI18n()
 
 const email = ref('');
 const password = ref('');
-const { VALIDATION_EMAIL, VALIDATION_PASSWORD } = useValidation()
-const { errorMessage: emailError } = useField(email, VALIDATION_EMAIL)
-const { errorMessage: passwordError } = useField(password, VALIDATION_PASSWORD)
+const {VALIDATION_EMAIL, VALIDATION_PASSWORD} = useValidation()
+const {errorMessage: emailError} = useField(email, VALIDATION_EMAIL)
+const {errorMessage: passwordError} = useField(password, VALIDATION_PASSWORD)
 
 const {mutate: authLogin, loading, error} = useMutation(AUTH_LOGIN_MUTATION);
 
@@ -57,27 +57,32 @@ const handleLogin = async (event) => {
 
 <template>
   <n-form @submit="handleLogin">
-    <n-form-item-row
-        :label="$t('app.auth.email.label')"
-        :feedback="emailError || ''"
-    >
-      <n-input
-          type="email"
-          :placeholder="$t('app.auth.email.placeholder')"
-          v-model:value.trim="email"
-      />
-    </n-form-item-row>
+    <n-config-provider :theme="darkTheme">
 
-    <n-form-item-row
-        :label="$t('app.auth.password.label')"
-        :feedback="passwordError || ''"
-    >
-      <n-input
-          type="password"
-          :placeholder="$t('app.auth.password.placeholder')"
-          v-model:value.trim="password"
-      />
-    </n-form-item-row>
+      <n-form-item-row
+          :label="$t('app.auth.email.label')"
+          :feedback="emailError || ''"
+      >
+        <n-input
+            type="email"
+            :placeholder="$t('app.auth.email.placeholder')"
+            v-model:value.trim="email"
+        />
+      </n-form-item-row>
+    </n-config-provider>
+    <n-config-provider :theme="darkTheme">
+
+      <n-form-item-row
+          :label="$t('app.auth.password.label')"
+          :feedback="passwordError || ''"
+      >
+        <n-input
+            type="password"
+            :placeholder="$t('app.auth.password.placeholder')"
+            v-model:value.trim="password"
+        />
+      </n-form-item-row>
+    </n-config-provider>
 
     <n-button
         type="primary"

@@ -2,6 +2,18 @@
 @import "@/assets/styles/app/variables";
 
 #app {
+  .n-tabs .n-tabs-tab {
+    color: $color-text-secondary;
+    &.n-tabs-tab--active {
+      color: $color-brand-primary;
+    }
+    &:not(.n-tabs-tab--active){
+      &:hover {
+        color: $color-text-primary;
+      }
+    }
+  }
+
   .n-form-item-label__text,
   .n-tabs-tab__label {
     font-weight: 500;
