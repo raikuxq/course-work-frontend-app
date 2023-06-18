@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {NCard} from 'naive-ui'
+import {darkTheme, NCard, NConfigProvider} from 'naive-ui'
 import type {T_GQL_comment_comment} from "@/types/graphql";
 import {computed, toRefs} from "vue";
 
@@ -18,20 +18,22 @@ const createdAtToDisplay = computed(() => new Date(createdAt.value).toLocaleDate
 </script>
 
 <template>
-  <n-card
-      :key="id"
-      size="small"
-  >
-    <template #header v-if="author">
-      {{ author.user.firstname }} {{ author.user.lastname }}
-    </template>
+  <n-config-provider :theme="darkTheme">
+    <n-card
+        :key="id"
+        size="small"
+    >
+      <template #header v-if="author">
+        {{ author.user.firstname }} {{ author.user.lastname }}
+      </template>
 
-    <template #footer>
-      ({{ createdAtToDisplay }})
-    </template>
+      <template #footer>
+        ({{ createdAtToDisplay }})
+      </template>
 
-    <template #default>
-      {{ content }}
-    </template>
-  </n-card>
+      <template #default>
+        {{ content }}
+      </template>
+    </n-card>
+  </n-config-provider>
 </template>

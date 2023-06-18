@@ -200,7 +200,7 @@ const onDeleteBtnClick = () => {
                 :bordered="false"
                 @click="isModalCreateIssueOpen = true"
             >
-              {{ $t('bug.form.create') }}
+              {{ $t('bug.actions.create') }}
               <template #icon>
                 <n-icon>
                   <icon-add />

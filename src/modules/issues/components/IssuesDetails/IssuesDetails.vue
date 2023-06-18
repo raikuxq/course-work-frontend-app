@@ -13,6 +13,7 @@ import {ETrackerMemberRole} from "@/types/graphql";
 import {useMutation} from "@vue/apollo-composable";
 import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
 import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
+import {Add as IconAdd} from "@vicons/ionicons5";
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
 
@@ -30,6 +31,9 @@ const {
   tracker
 } = toRefs(props)
 
+const {members} = toRefs(tracker.value)
+
+
 const {t} = useI18n()
 const router = useRouter()
 const route = useRoute()
@@ -37,11 +41,8 @@ const authStore = useAuthStore()
 const dialog = useDialog()
 const message = useMessage()
 
-
-const {members} = toRefs(tracker.value)
-
-
 const {mutate: deleteIssueReport} = useMutation(REPORTS_DELETE_MUTATION);
+
 
 const currentUserAsMember = computed(() => {
   return members.value.find(membersItem => membersItem.user.id === authStore.user?.id)
@@ -50,6 +51,7 @@ const currentUserAsMember = computed(() => {
 const isAllowedToRemove = computed(() => currentUserAsMember.value.role === ETrackerMemberRole.QA)
 
 const isModalUpdateIssueOpen = ref<boolean>(false)
+const isModalCreateCommentOpen = ref<boolean>(false)
 
 const onDeleteBtnClick = () => {
   dialog.error({
@@ -146,19 +148,34 @@ const onDeleteBtnClick = () => {
 
     <n-divider/>
 
-    <n-page-header :title="`${$t('bug.comments')} (${comments.length})`"/>
+    <n-page-header :title="`${$t('bug.comments')} (${comments.length})`">
+      <template #extra>
+        <n-space>
+          <n-button
+              type="primary"
+              block
+              strong
+              :bordered="false"
+              @click="isModalCreateCommentOpen = true"
+          >
+            {{ $t('comments.actions.create') }}
+            <template #icon>
+              <n-icon>
+                <icon-add />
+              </n-icon>
+            </template>
+          </n-button>
+        </n-space>
+      </template>
+    </n-page-header>
 
-    <n-space vertical>
-
-    </n-space>
+    <n-divider/>
 
     <n-space vertical size="medium">
       <template v-for="commentItem in comments" :key="commentItem.id">
         <CommentCard v-bind="commentItem"/>
       </template>
     </n-space>
-
-    <n-divider/>
 
     <IssuesUpdateForm
         :is-modal-open="isModalUpdateIssueOpen"
