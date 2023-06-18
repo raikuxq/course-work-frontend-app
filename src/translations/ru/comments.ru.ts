@@ -5,6 +5,15 @@ export default {
         delete: 'Удалить комментарий',
         edit: 'Изменить комментарий'
     },
+    form: {
+        create: 'Опубликовать',
+        field: {
+            content: {
+                placeholder: '',
+                label: 'Комментарий'
+            }
+        }
+    },
     notify: {
         created: 'Комментарий успешно добавлен',
         updated: 'Комментарий успешно изменен',

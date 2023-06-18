@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {NButton, NDivider, NPageHeader, NSpace, NText, NIcon, useDialog, useMessage} from 'naive-ui'
-import type {T_GQL_issueReport_issueReport} from "@/types/graphql";
+import type {T_GQL_comment_comment, T_GQL_issueReport_issueReport} from "@/types/graphql";
 import {ref, toRefs, computed} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
@@ -14,6 +14,7 @@ import {useMutation} from "@vue/apollo-composable";
 import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
 import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 import {Add as IconAdd} from "@vicons/ionicons5";
+import CommentCreateForm from "@/modules/comments/components/CommentCreateForm/CommentCreateForm.vue";
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
 
@@ -52,6 +53,17 @@ const isAllowedToRemove = computed(() => currentUserAsMember.value.role === ETra
 
 const isModalUpdateIssueOpen = ref<boolean>(false)
 const isModalCreateCommentOpen = ref<boolean>(false)
+
+
+const sortedComments = computed(() => {
+  return [...comments.value].sort((commentA: T_GQL_comment_comment, commentB: T_GQL_comment_comment) => {
+    const dateA = new Date(commentA.createdAt).getTime()
+    const dateB = new Date(commentB.createdAt).getTime()
+
+    return dateB - dateA
+  })
+})
+
 
 const onDeleteBtnClick = () => {
   dialog.error({
@@ -161,7 +173,7 @@ const onDeleteBtnClick = () => {
             {{ $t('comments.actions.create') }}
             <template #icon>
               <n-icon>
-                <icon-add />
+                <icon-add/>
               </n-icon>
             </template>
           </n-button>
@@ -172,7 +184,7 @@ const onDeleteBtnClick = () => {
     <n-divider/>
 
     <n-space vertical size="medium">
-      <template v-for="commentItem in comments" :key="commentItem.id">
+      <template v-for="commentItem in sortedComments" :key="commentItem.id">
         <CommentCard v-bind="commentItem"/>
       </template>
     </n-space>
@@ -182,6 +194,13 @@ const onDeleteBtnClick = () => {
         :issue-report-data="props"
         @close-modal="isModalUpdateIssueOpen = false"
         @update-data="emit('updateData')"
+    />
+
+    <CommentCreateForm
+        :is-modal-open="isModalCreateCommentOpen"
+        :issue-report-id="id"
+        @update-data="emit('updateData')"
+        @close-modal="isModalCreateCommentOpen = false"
     />
   </div>
 </template>

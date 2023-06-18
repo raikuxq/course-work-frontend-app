@@ -14,6 +14,7 @@ export const ISSUE_REPORT_BY_ID_QUERY = gql`
             comments {
                 id
                 createdAt
+                updatedAt
                 content
                 author {
                     id
