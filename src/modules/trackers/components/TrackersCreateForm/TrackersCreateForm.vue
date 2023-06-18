@@ -3,14 +3,19 @@ import {useMutation} from "@vue/apollo-composable";
 import {ref, toRefs} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
-import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, useMessage} from "naive-ui";
+import {NButton, NDivider, NForm, NFormItemRow, NGradientText, NInput, NModal, useMessage} from "naive-ui";
 import {TRACKER_CREATE_MUTATION} from "@/modules/trackers/api/TrackersCreate";
 import {ERouteName} from "@/router";
 import type {
   T_GQL_tracker,
+  T_GQL_trackerAddMember,
+  T_GQL_trackerAddMemberVariables,
   T_GQL_trackerCreate,
   T_GQL_trackerCreateVariables
 } from "@/types/graphql";
+import {ETrackerMemberRole} from "@/types/graphql";
+import {TRACKER_ADD_MEMBER_MUTATION} from "@/modules/trackers/api/TrackersAddMember";
+import {useAuthStore} from "@/modules/auth/store/authStore";
 
 type TTrackersCreateFormProps = {
   isModalOpen: boolean;
@@ -19,6 +24,7 @@ type TTrackersCreateFormProps = {
 }
 
 const props = defineProps<TTrackersCreateFormProps>()
+// eslint-disable-next-line vue/no-dupe-keys
 const {isModalOpen, channelId, channelCategoryId} = toRefs(props)
 
 const emit = defineEmits<{
@@ -27,6 +33,7 @@ const emit = defineEmits<{
 }>()
 
 
+const authStore = useAuthStore()
 const route = useRoute()
 const router = useRouter()
 const message = useMessage()
@@ -34,6 +41,7 @@ const {t} = useI18n()
 
 
 const {mutate: createTrackers, loading: loadingChannel, error: errorChannel} = useMutation<T_GQL_tracker, T_GQL_trackerCreateVariables>(TRACKER_CREATE_MUTATION);
+const {mutate: addMember, loading: loadingAddMember, error: errorAddMember} = useMutation<T_GQL_trackerAddMember, T_GQL_trackerAddMemberVariables>(TRACKER_ADD_MEMBER_MUTATION);
 
 
 const title = ref('')
@@ -46,22 +54,29 @@ const submit = async (event) => {
   event.preventDefault();
 
   try {
-    const {data} = await createTrackers<T_GQL_trackerCreate>({
+    const {data} = await createTrackers({
       channelId: channelId.value,
       title: title.value,
-      description: description.value,
+      description: description.value || title.value || '',
       channelCategoryId: channelCategoryId.value,
     });
 
-    const dataResponse = data as T_GQL_trackerCreate
 
-    if (dataResponse) {
-      const trackerId = dataResponse.trackerCreate.id
+    if (data) {
+      const trackerId = data.trackerCreate.id
 
-      message.success(t('tracker.notify.created'))
-      await router.push({ name: ERouteName.TRACKER, params: { trackerId, channelId: route.params.channelId } })
-      emit('updateData')
-      emit('closeModal')
+      const {data: dataMember} = await addMember({
+        role: ETrackerMemberRole.QA,
+        trackerId,
+        userId: authStore.user!.id
+      })
+
+      if (data && dataMember) {
+        message.success(t('tracker.notify.created'))
+        await router.push({ name: ERouteName.TRACKER, params: { trackerId, channelId: route.params.channelId } })
+        emit('updateData')
+        emit('closeModal')
+      }
     }
   } catch (error) {
     const alertMessage = error?.extensions?.message ?? error?.message;

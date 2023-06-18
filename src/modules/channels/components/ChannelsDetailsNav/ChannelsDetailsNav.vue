@@ -4,9 +4,8 @@ import {ERouteName} from "@/router";
 import {computed, ref, toRefs} from "vue";
 import {
   NButton,
-  NDescriptions,
-  NDescriptionsItem,
   NIcon,
+  NDivider,
   NPageHeader,
   NSpace,
   useDialog,
@@ -21,6 +20,8 @@ import {useMutation} from "@vue/apollo-composable";
 import {CHANNEL_DELETE_MUTATION} from "@/modules/channels/api/ChannelsDelete";
 import {CHANNEL_LEAVE_MUTATION} from "@/modules/channels/api/ChannelsLeave";
 import {Add as IconAdd, CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
+import TrackersCreateForm from "@/modules/trackers/components/TrackersCreateForm/TrackersCreateForm.vue";
+import CategoriesCreateForm from "@/modules/categories/components/CategoriesCreateForm/CategoriesCreateForm.vue";
 
 /**
  * Types
@@ -71,6 +72,8 @@ const {mutate: leaveChannel} = useMutation(CHANNEL_LEAVE_MUTATION);
  * State
  */
 const isModalUpdateOpen = ref<boolean>(false)
+const isModalCreateTrackerOpen = ref<boolean>(false)
+const isModalCreateCategoryOpen = ref<boolean>(false)
 
 
 /**
@@ -99,7 +102,7 @@ const onDeleteBtnClick = () => {
         emit('updateData')
         message.success(t('channels.notify.deleted'))
 
-        await router.push({ name: ERouteName.HOME })
+        await router.push({name: ERouteName.HOME})
       } catch (error) {
         const alertMessage = error?.extensions?.message ?? error?.message;
 
@@ -132,7 +135,7 @@ const onLeaveBtnClick = () => {
         emit('updateData')
         message.success(t('channels.notify.left'))
 
-        await router.push({ name: ERouteName.HOME })
+        await router.push({name: ERouteName.HOME})
       } catch (error) {
         const alertMessage = error?.extensions?.message ?? error?.message;
 
@@ -152,38 +155,59 @@ const onLeaveBtnClick = () => {
     <n-page-header data-dark :title="`${title}: ${$t('channels.labels.categories')}`">
       <template #extra>
         <n-space v-if="isUserAuthor">
-          <n-button
-              type="primary"
-              secondary
-              block
-              strong
-              :bordered="true"
-              @click="isModalUpdateOpen = true"
-          >
-            {{ $t('channels.actions.update' )}}
-            <template #icon>
-              <n-icon>
-                <icon-sharp />
-              </n-icon>
-            </template>
-          </n-button>
+          <n-space>
+            <n-button
+                type="primary"
+                secondary
+                block
+                strong
+                :bordered="true"
+                @click="isModalCreateCategoryOpen = true"
+            >
+              {{ $t('categories.actions.create') }}
+              <template #icon>
+                <n-icon>
+                  <icon-add/>
+                </n-icon>
+              </template>
+            </n-button>
+          </n-space>
 
-          <n-button
-              type="error"
-              block
-              secondary
-              strong
-              :bordered="true"
-              @click="onDeleteBtnClick"
-          >
-            {{ $t('channels.actions.delete' )}}
-            <template #icon>
-              <n-icon>
-                <icon-trash-bin />
-              </n-icon>
-            </template>
-          </n-button>
+          <n-space>
+            <n-button
+                type="primary"
+                secondary
+                block
+                strong
+                :bordered="true"
+                @click="isModalUpdateOpen = true"
+            >
+              {{ $t('channels.actions.update') }}
+              <template #icon>
+                <n-icon>
+                  <icon-sharp/>
+                </n-icon>
+              </template>
+            </n-button>
+
+            <n-button
+                type="error"
+                block
+                secondary
+                strong
+                :bordered="true"
+                @click="onDeleteBtnClick"
+            >
+              {{ $t('channels.actions.delete') }}
+              <template #icon>
+                <n-icon>
+                  <icon-trash-bin/>
+                </n-icon>
+              </template>
+            </n-button>
+          </n-space>
         </n-space>
+
         <n-space v-else>
           <n-button
               type="error"
@@ -193,38 +217,76 @@ const onLeaveBtnClick = () => {
               :bordered="true"
               @click="onLeaveBtnClick"
           >
-            {{ $t('channels.actions.leave' )}}
+            {{ $t('channels.actions.leave') }}
           </n-button>
         </n-space>
       </template>
     </n-page-header>
 
-    <div :class="s.ChannelsDetailsNav__content">
-      <n-descriptions
-          v-if="categories && categories.length"
-          label-placement="top"
-          :column="1"
-          :class="s.ChannelsDetailsNav__descContainer"
+    <div
+        :class="s.ChannelsDetailsNav__content"
+        v-if="categories && categories.length"
+    >
+      <div
+          v-for="categoriesItem in categories"
+          :key="categoriesItem.id"
+          :data-key="categoriesItem.id"
+          :data-length="categoriesItem.title"
       >
-        <n-descriptions-item
-            v-for="categoriesItem in categories"
-            :key="categoriesItem.id"
-            :label="categoriesItem.title"
+        <n-page-header :title="categoriesItem.title">
+          <template #extra>
+            <n-space vertical>
+              <n-space>
+                <n-button
+                    v-if="isUserAuthor"
+                    type="primary"
+                    block
+                    strong
+                    :bordered="false"
+                    @click="isModalCreateTrackerOpen = true"
+                >
+                  {{ $t('tracker.actions.create') }}
+                  <template #icon>
+                    <n-icon>
+                      <icon-add/>
+                    </n-icon>
+                  </template>
+                </n-button>
+              </n-space>
+            </n-space>
+          </template>
+
+          <TrackersCreateForm
+              :is-modal-open="isModalCreateTrackerOpen"
+              :channel-id="id"
+              :channel-category-id="categoriesItem.id"
+              @close-modal="isModalCreateTrackerOpen = false"
+              @update-data="emit('updateData')"
+          />
+
+          <CategoriesCreateForm
+              :is-modal-open="isModalCreateCategoryOpen"
+              :channel-id="id"
+              @close-modal="isModalCreateCategoryOpen = false"
+              @update-data="emit('updateData')"
+          />
+
+          <n-divider/>
+        </n-page-header>
+
+        <div
+            v-for="trackersItem in categoriesItem.trackers"
+            :key="trackersItem.id"
+            :class="s.ChannelsDetailsNav__linkContainer"
         >
-          <div
-              v-for="trackersItem in categoriesItem.trackers"
-              :key="trackersItem.id"
-              :class="s.ChannelsDetailsNav__linkContainer"
+          <RouterLink
+              :class="s.ChannelsDetailsNav__linkItem"
+              :to="{ name: ERouteName.TRACKER, params: { channelId: id, trackerId: trackersItem.id } }"
           >
-            <RouterLink
-                :class="s.ChannelsDetailsNav__linkItem"
-                :to="{ name: ERouteName.TRACKER, params: { channelId: id, trackerId: trackersItem.id } }"
-            >
-              <span>{{ trackersItem.title }}</span>
-            </RouterLink>
-          </div>
-        </n-descriptions-item>
-      </n-descriptions>
+            <span>{{ trackersItem.title }}</span>
+          </RouterLink>
+        </div>
+      </div>
     </div>
   </div>
 

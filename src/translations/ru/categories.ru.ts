@@ -16,6 +16,15 @@ export default {
     links: {
         task: 'Задача',
     },
+    form: {
+        create: 'Создать',
+        field: {
+            title: {
+                label: 'Заголовок',
+                placeholder: ''
+            },
+        }
+    },
     placeholders: {
         name: '',
         developers: 'Выберите разработчиков',
