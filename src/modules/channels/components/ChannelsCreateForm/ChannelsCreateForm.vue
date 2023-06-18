@@ -6,7 +6,12 @@ import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, NSelect, useMessage} from "naive-ui";
 import {CHANNEL_CREATE_MUTATION} from "@/modules/channels/api/ChannelsCreate";
 import {ERouteName} from "@/router";
-import type {T_GQL_channel, T_GQL_channelCreate, T_GQL_channelCreate_channelCreate} from "@/types/graphql";
+import type {
+  T_GQL_channel, T_GQL_channelCategoryCreate, T_GQL_channelCategoryCreateVariables,
+  T_GQL_channelCreate,
+  T_GQL_channelCreate_channelCreate,
+  T_GQL_channelCreateVariables
+} from "@/types/graphql";
 import {CATEGORY_CREATE_MUTATION} from "@/modules/categories/api/CategoriesCreate";
 
 type TChannelsCreateFormProps = {
@@ -27,8 +32,8 @@ const message = useMessage()
 const {t} = useI18n()
 
 
-const {mutate: createChannels, loading: loadingChannel, error: errorChannel} = useMutation(CHANNEL_CREATE_MUTATION);
-const {mutate: createChannelsCategory, loading: loadingCategory, error: errorCategory} = useMutation(CATEGORY_CREATE_MUTATION);
+const {mutate: createChannels, loading: loadingChannel, error: errorChannel} = useMutation<T_GQL_channelCreate, T_GQL_channelCreateVariables>(CHANNEL_CREATE_MUTATION);
+const {mutate: createChannelsCategory, loading: loadingCategory, error: errorCategory} = useMutation<T_GQL_channelCategoryCreate, T_GQL_channelCategoryCreateVariables>(CATEGORY_CREATE_MUTATION);
 
 
 const title = ref('')
@@ -41,15 +46,13 @@ const submit = async (event) => {
   event.preventDefault();
 
   try {
-    const {data} = await createChannels<T_GQL_channelCreate>({
+    const {data} = await createChannels({
       title: title.value,
       description: description.value,
     });
 
-    const dataResponse = data as T_GQL_channelCreate
-
-    if (dataResponse) {
-      const channelId = dataResponse.channelCreate.id
+    if (data) {
+      const channelId = data.channelCreate.id
 
       await createChannelsCategory({
         title: t('categories.list.main'),
@@ -67,6 +70,9 @@ const submit = async (event) => {
     if (alertMessage) {
       message.error(`${t('channels.notify.not_created')}: ${error.message}`);
     }
+  } finally {
+    title.value = ''
+    description.value = ''
   }
 }
 </script>

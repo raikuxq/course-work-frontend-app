@@ -8,6 +8,10 @@ import {
   NDivider,
   NPageHeader,
   NSpace,
+  NList,
+  NListItem,
+  darkTheme,
+  NConfigProvider,
   useDialog,
   useMessage
 } from 'naive-ui'
@@ -240,6 +244,7 @@ const onLeaveBtnClick = () => {
                 <n-button
                     v-if="isUserAuthor"
                     type="primary"
+                    secondary
                     block
                     strong
                     :bordered="false"
@@ -257,6 +262,7 @@ const onLeaveBtnClick = () => {
           </template>
 
           <TrackersCreateForm
+              :key="id"
               :is-modal-open="isModalCreateTrackerOpen"
               :channel-id="id"
               :channel-category-id="categoriesItem.id"
@@ -265,6 +271,7 @@ const onLeaveBtnClick = () => {
           />
 
           <CategoriesCreateForm
+              :key="id"
               :is-modal-open="isModalCreateCategoryOpen"
               :channel-id="id"
               @close-modal="isModalCreateCategoryOpen = false"
@@ -274,24 +281,35 @@ const onLeaveBtnClick = () => {
           <n-divider/>
         </n-page-header>
 
-        <div
-            v-for="trackersItem in categoriesItem.trackers"
-            :key="trackersItem.id"
-            :class="s.ChannelsDetailsNav__linkContainer"
-        >
-          <RouterLink
-              :class="s.ChannelsDetailsNav__linkItem"
-              :to="{ name: ERouteName.TRACKER, params: { channelId: id, trackerId: trackersItem.id } }"
-          >
-            <span>{{ trackersItem.title }}</span>
-          </RouterLink>
-        </div>
+        <n-config-provider :theme="darkTheme">
+          <template v-if="categoriesItem.trackers?.length">
+            <n-list
+                bordered
+                show-divider
+                clickable
+                hoverable
+                size="large"
+            >
+              <n-list-item
+                  v-for="trackersItem in categoriesItem.trackers"
+                  :key="trackersItem.id"
+                  @click="router.push({ name: ERouteName.TRACKER, params: { channelId: id, trackerId: trackersItem.id } })"
+              >
+                {{ trackersItem.title }}
+              </n-list-item>
+            </n-list>
+
+            <n-divider/>
+          </template>
+
+        </n-config-provider>
       </div>
     </div>
   </div>
 
 
   <ChannelsUpdateForm
+      :key="props.id"
       :is-modal-open="isModalUpdateOpen"
       :channel-data="props"
       @close-modal="isModalUpdateOpen = false"

@@ -137,4 +137,14 @@
     font-weight: 500;
     font-size: $fz-main-small;
   }
+
+  .n-list.n-list--bordered {
+    background-color: $color-dark-bg-secondary;
+  }
+
+  .n-list.n-list--bordered .n-list-item {
+    padding: $app-offset $app-offset;
+    font-size: $fz-main;
+    font-weight: 500;
+  }
 }

@@ -263,6 +263,7 @@ const onDeleteBtnClick = () => {
     />
 
     <IssuesCreateForm
+        :key="id"
         :is-modal-open="isModalCreateIssueOpen"
         :tracker-id="id"
         :members="members"
@@ -271,6 +272,7 @@ const onDeleteBtnClick = () => {
     />
 
     <TrackersUpdateForm
+        :key="id"
         :is-modal-open="isModalUpdateTrackerOpen"
         :tracker-data="props"
         @close-modal="isModalUpdateTrackerOpen = false"

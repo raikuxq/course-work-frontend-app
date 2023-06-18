@@ -190,6 +190,7 @@ const onDeleteBtnClick = () => {
     </n-space>
 
     <IssuesUpdateForm
+        :key="id"
         :is-modal-open="isModalUpdateIssueOpen"
         :issue-report-data="props"
         @close-modal="isModalUpdateIssueOpen = false"
@@ -197,6 +198,7 @@ const onDeleteBtnClick = () => {
     />
 
     <CommentCreateForm
+        :key="id"
         :is-modal-open="isModalCreateCommentOpen"
         :issue-report-id="id"
         @update-data="emit('updateData')"
