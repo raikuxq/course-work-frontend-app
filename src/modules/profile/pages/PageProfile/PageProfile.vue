@@ -21,7 +21,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
 
 <template>
   <div :class="s.PageProfile">
-    <n-page-header data-dark :title="'Настройки профиля'">
+    <n-page-header data-dark :title="$t('app.userSettings')">
       <template #extra>
         <n-space>
           <n-button
@@ -39,7 +39,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
 
     <div v-if="userData" :class="s.PageProfile__static">
 
-      <n-descriptions label-placement="top" :column="1" title="Информация о пользователе">
+      <n-descriptions label-placement="top" :column="1" :title="$t('app.userInfo')">
         <n-descriptions-item
             :label="$t('app.auth.id')"
         >

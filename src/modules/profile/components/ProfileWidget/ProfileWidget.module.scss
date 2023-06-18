@@ -50,7 +50,13 @@
 }
 
 .ProfileWidget__actionsIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: $fz-main;
   color: $color-brand-primary;
+  cursor: pointer;
 }
 
 .ProfileWidget__avatarIcon {

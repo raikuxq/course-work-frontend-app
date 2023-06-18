@@ -8,6 +8,7 @@ import {useLogout} from "@/common/hooks/useLogout";
 import {RouterLink} from "vue-router";
 import {LogOutOutline as IconLogOut} from "@vicons/ionicons5";
 import s from './ProfileWidget.module.scss'
+import WidgetLocale from "@/common/components/widget/WidgetLocale/WidgetLocale.vue";
 
 const authStore = useAuthStore()
 const {logout} = useLogout()
@@ -49,6 +50,8 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
     </RouterLink>
 
     <div :class="s.ProfileWidget__actions">
+
+      <WidgetLocale />
 
       <n-tooltip placement="bottom" trigger="hover">
         <template #trigger>

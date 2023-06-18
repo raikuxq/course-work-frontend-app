@@ -6,6 +6,8 @@ export default {
     },
     undo: 'Отмена',
     at: 'в',
+    userInfo: 'Информация о пользователе',
+    userSettings: 'Настройки профиля',
     settings: 'Настройки',
     home: 'Главная',
     refresh: 'Обновить',
