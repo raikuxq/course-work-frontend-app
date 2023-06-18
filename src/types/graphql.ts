@@ -1031,7 +1031,7 @@ export enum EIssueReportStatus {
   CLOSED = "CLOSED",
   DISCUSSION = "DISCUSSION",
   FULFILMENT = "FULFILMENT",
-  READY = "READY",
+  NEW = "NEW",
   TO_APPROVE = "TO_APPROVE",
 }
 
@@ -1041,7 +1041,7 @@ export enum EIssueReportStatus {
 export enum EIssueReportType {
   FUNCTIONALITY = "FUNCTIONALITY",
   REPORTING = "REPORTING",
-  UI = "UI",
+  OTHER = "OTHER",
   VULNERABILITY = "VULNERABILITY",
 }
 

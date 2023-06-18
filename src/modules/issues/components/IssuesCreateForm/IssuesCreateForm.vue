@@ -60,7 +60,7 @@ const responsiblePersonOptionsSelect = computed(() => {
 
 const title = ref('')
 const description = ref('')
-const status = ref(EIssueReportStatus.READY)
+const status = ref(EIssueReportStatus.NEW)
 const type = ref(EIssueReportType.FUNCTIONALITY)
 const priority = ref(EIssueReportPriority.NORMAL)
 const responsiblePerson = ref(null)
