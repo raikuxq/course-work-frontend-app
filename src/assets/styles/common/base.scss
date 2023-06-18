@@ -25,6 +25,11 @@ html, body {
     font-family: $font_main;
 }
 
+body {
+    /** min viewport width */
+    min-width: 1368px;
+}
+
 a {
     display: inline-flex;
     color: $color-text-secondary;
