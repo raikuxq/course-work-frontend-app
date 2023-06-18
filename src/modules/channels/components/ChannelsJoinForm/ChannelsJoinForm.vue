@@ -61,6 +61,8 @@ const submit = async (event) => {
     if (alertMessage) {
       message.error(`${t('channels.notify.not_joined')}: ${error.message}`);
     }
+  } finally {
+    inviteLink.value = ''
   }
 }
 </script>

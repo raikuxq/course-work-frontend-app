@@ -84,6 +84,9 @@ const submit = async (event) => {
     if (alertMessage) {
       message.error(`${t('tracker.notify.not_created')}: ${error.message}`);
     }
+  } finally {
+    title.value = ''
+    description.value = ''
   }
 }
 </script>

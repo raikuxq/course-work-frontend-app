@@ -55,6 +55,8 @@ const submit = async (event) => {
     if (alertMessage) {
       message.error(`${t('categories.notify.not_created')}: ${error.message}`);
     }
+  } finally {
+    title.value = ''
   }
 }
 </script>

@@ -94,6 +94,13 @@ const submit = async (event) => {
     if (alertMessage) {
       message.error(`${t('bug.notify.not_created')}: ${error.message}`);
     }
+  } finally {
+    title.value = ''
+    description.value = ''
+    status.value = EIssueReportStatus.NEW
+    type.value = EIssueReportType.FUNCTIONALITY
+    priority.value = EIssueReportPriority.NORMAL
+    responsiblePerson.value = null
   }
 }
 </script>
