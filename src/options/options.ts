@@ -18,7 +18,7 @@ export const statusOptions: TSelectItemType<EIssueReportStatus>[] = [
     {label: 'bug.status_type.closed', value: EIssueReportStatus.CLOSED},
     {label: 'bug.status_type.to_be_discussed', value: EIssueReportStatus.DISCUSSION},
     {label: 'bug.status_type.fulfilment', value: EIssueReportStatus.FULFILMENT},
-    {label: 'bug.status_type.verified', value: EIssueReportStatus.READY},
+    {label: 'bug.status_type.new', value: EIssueReportStatus.READY},
     {label: 'bug.status_type.to_verify', value: EIssueReportStatus.TO_APPROVE},
 ];
 

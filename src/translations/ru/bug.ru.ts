@@ -44,10 +44,10 @@ export default {
         major: 'Высокий'
     },
     type_type: {
-        func: 'Функциональность',
-        report: 'Отчетность',
-        ui: 'Интерфейс',
-        vulnerability: 'Уязвимость'
+        func: 'Реализация',
+        report: 'Отчет',
+        ui: 'Другое',
+        vulnerability: 'Ошибка'
     },
     role_type: {
         qa: 'Проверяющий',
@@ -55,7 +55,7 @@ export default {
         dev: 'Исполнитель'
     },
     status_type: {
-        fulfilment: 'Выполнение',
+        fulfilment: 'В работе',
         new: 'Новый',
         to_verify: 'На проверку',
         cant_reproduce: 'Не воспроизводится',
