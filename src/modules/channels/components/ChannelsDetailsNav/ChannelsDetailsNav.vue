@@ -6,7 +6,7 @@ import {
   NButton,
   NDescriptions,
   NDescriptionsItem,
-  NDropdown,
+  NIcon,
   NPageHeader,
   NSpace,
   useDialog,
@@ -18,9 +18,9 @@ import {useAuthStore} from "@/modules/auth/store/authStore";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import {useMutation} from "@vue/apollo-composable";
-import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
 import {CHANNEL_DELETE_MUTATION} from "@/modules/channels/api/ChannelsDelete";
 import {CHANNEL_LEAVE_MUTATION} from "@/modules/channels/api/ChannelsLeave";
+import {Add as IconAdd, CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 
 /**
  * Types
@@ -161,6 +161,11 @@ const onLeaveBtnClick = () => {
               @click="isModalUpdateOpen = true"
           >
             {{ $t('channels.actions.update' )}}
+            <template #icon>
+              <n-icon>
+                <icon-sharp />
+              </n-icon>
+            </template>
           </n-button>
 
           <n-button
@@ -172,6 +177,11 @@ const onLeaveBtnClick = () => {
               @click="onDeleteBtnClick"
           >
             {{ $t('channels.actions.delete' )}}
+            <template #icon>
+              <n-icon>
+                <icon-trash-bin />
+              </n-icon>
+            </template>
           </n-button>
         </n-space>
         <n-space v-else>

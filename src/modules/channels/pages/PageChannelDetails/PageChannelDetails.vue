@@ -66,7 +66,10 @@ watch(() => route.params.channelId, async (newChannelId, oldChannelId) => {
 
       <div :class="s.PageChannelDetails__content" v-else>
         <router-view v-slot="{ Component }">
-          <component :is="Component" />
+          <component
+              :is="Component"
+              @update-data="onUpdateData"
+          />
         </router-view>
       </div>
 

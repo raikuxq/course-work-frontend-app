@@ -831,10 +831,15 @@ export type T_GQL_tracker_tracker_members = {
   user: T_GQL_tracker_tracker_members_user;
 }
 
+export type T_GQL_tracker_tracker_channel_user = {
+  id: string;
+}
+
 export type T_GQL_tracker_tracker_channel = {
   __typename: "Channel";
   id: string;
   title: string;
+  author: T_GQL_tracker_tracker_channel_user;
 }
 
 export type T_GQL_tracker_tracker_channelCategory = {

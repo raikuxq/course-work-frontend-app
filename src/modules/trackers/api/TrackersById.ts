@@ -47,6 +47,9 @@ export const TRACKERS_BY_ID_QUERY = gql`
             channel {
                 id
                 title
+                author {
+                    id
+                }
             }
             category {
                 id

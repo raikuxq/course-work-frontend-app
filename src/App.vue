@@ -21,7 +21,7 @@ const layoutComponent = computed(() => {
       return TheLayoutMain
     }
     default: {
-      return TheLayoutMain
+      return TheLayoutAuth
     }
   }
 })

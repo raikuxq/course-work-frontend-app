@@ -80,34 +80,5 @@ const {
       </n-descriptions-item>
     </n-descriptions>
 
-    <n-divider :class="s.ChannelsDetails__divider"/>
-
-    <n-descriptions
-        v-if="categories && categories.length"
-        label-placement="top"
-        :column="1"
-        :class="s.ChannelsDetails__descContainer"
-        :title="$t('channels.labels.categories')"
-    >
-      <n-descriptions-item
-          v-for="categoriesItem in categories"
-          :key="categoriesItem.id"
-          :label="categoriesItem.title"
-      >
-        <div
-            v-for="trackersItem in categoriesItem.trackers"
-            :key="trackersItem.id"
-            :class="s.ChannelsDetails__linkContainer"
-        >
-          <RouterLink
-              :class="s.ChannelsDetails__linkItem"
-              :to="{ name: ERouteName.TRACKER, params: { channelId: id, trackerId: trackersItem.id } }"
-          >
-            <span>{{ trackersItem.title }}</span>
-          </RouterLink>
-        </div>
-      </n-descriptions-item>
-    </n-descriptions>
-
   </div>
 </template>

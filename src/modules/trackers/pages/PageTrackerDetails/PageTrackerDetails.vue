@@ -10,12 +10,24 @@ import {useLoadingBar} from 'naive-ui'
 import TrackersDetailsInfo from "@/modules/trackers/components/TrackersDetailsInfo/TrackersDetailsInfo.vue";
 import {ERouteName} from "@/router";
 
+/**
+ * Emits
+ */
+const emit = defineEmits<{
+  (e: 'updateData'): void
+}>()
+
 const route = useRoute()
 const loadingBar = useLoadingBar()
 
 const {result, loading, refetch} = useQuery<T_GQL_tracker>(TRACKERS_BY_ID_QUERY, {
   id: route.params.trackerId
 });
+
+const onUpdateData = () => {
+  refetch({id: route.params.trackerId})
+  emit('updateData')
+}
 
 watch(() => route.params.trackerId, (newTrackerId, oldTrackerId) => {
   if (oldTrackerId !== newTrackerId) {
@@ -56,7 +68,7 @@ watch(() => loading, (value, oldValue) => {
           <router-view v-slot="{ Component }">
             <component
                 :is="Component"
-                @update-data="refetch({id: route.params.trackerId})"
+                @update-data="onUpdateData"
             />
           </router-view>
         </div>
