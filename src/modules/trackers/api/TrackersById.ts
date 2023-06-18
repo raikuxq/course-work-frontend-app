@@ -50,6 +50,12 @@ export const TRACKERS_BY_ID_QUERY = gql`
                 author {
                     id
                 }
+                members {
+                    id
+                    firstname
+                    lastname
+                    role
+                }
             }
             category {
                 id

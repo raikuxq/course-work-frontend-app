@@ -52,7 +52,10 @@ watch(() => loading, (value, oldValue) => {
     <template v-if="result">
       <template v-if="route.name === ERouteName.TRACKER">
         <div :class="s.PageTrackerDetails__sidebar">
-          <TrackersDetailsInfo v-bind="result.tracker"/>
+          <TrackersDetailsInfo
+              v-bind="result.tracker"
+              @update-data="refetch({ id: route.params.trackerId })"
+          />
         </div>
 
         <div :class="s.PageTrackerDetails__content">

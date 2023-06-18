@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type {T_GQL_tracker_tracker} from "@/types/graphql";
-import {computed, toRefs} from "vue";
-import {NButton, NDescriptions, NDescriptionsItem, NDivider} from 'naive-ui'
+import {computed, ref, toRefs} from "vue";
+import {NButton, NDescriptions, NDescriptionsItem, NDivider, NIcon, NSpace} from 'naive-ui'
 import s from './TrackersDetailsInfo.module.scss'
 import {labelsRole} from '@/options/options';
+import {Add as IconAdd} from "@vicons/ionicons5";
+import TrackersAddMember from "@/modules/trackers/components/TrackersAddMember/TrackersAddMember.vue";
 
 type TTrackersDetailsInfoProps = T_GQL_tracker_tracker
 
@@ -13,9 +15,20 @@ const {
   members,
   title,
   description,
-  createdAt
+  createdAt,
+  channel
 } = toRefs(props)
 
+const emit = defineEmits<{
+  (e: 'updateData'): void,
+}>()
+
+
+const isModalAddMemberOpen = ref<boolean>(false)
+const isModalManageOpen = ref<boolean>(false)
+
+
+const channelMembers = computed(() => channel.value.members)
 const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateString())
 
 </script>
@@ -71,12 +84,43 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
       </n-descriptions-item>
     </n-descriptions>
 
-    <n-divider />
+    <n-divider/>
 
-    <n-button type="primary" block strong :bordered="true">
-      {{ $t('tracker.manage_members') }}
-    </n-button>
+    <n-space vertical>
+      <n-button
+          type="primary"
+          block
+          strong
+          :bordered="true"
+          @click="isModalAddMemberOpen = true"
+      >
+        {{ $t('tracker.form.add_member') }}
+        <template #icon>
+          <n-icon>
+            <icon-add/>
+          </n-icon>
+        </template>
+      </n-button>
+
+      <n-button
+          secondary
+          type="primary"
+          block
+          strong
+          :bordered="true"
+          @click="isModalManageOpen = true"
+      >
+        {{ $t('tracker.form.manage_members') }}
+      </n-button>
+    </n-space>
+
+    <TrackersAddMember
+        :is-modal-open="isModalAddMemberOpen"
+        :tracker-id="id"
+        :channel-members="channelMembers"
+        :tracker-members="members"
+        @close-modal="isModalAddMemberOpen = false"
+        @update-data="emit('updateData')"
+    />
   </n-space>
-
-
 </template>
