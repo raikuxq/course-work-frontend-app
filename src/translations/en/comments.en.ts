@@ -1,14 +1,22 @@
 export default {
     title: 'Comments',
-    published: 'Published',
     actions: {
-        create: 'Add comment',
+        create: 'Leave a comment',
         delete: 'Delete comment',
         edit: 'Edit comment'
     },
+    form: {
+        create: 'Post',
+        field: {
+            content: {
+                placeholder: '',
+                label: 'Comment'
+            }
+        }
+    },
     notify: {
-        created: 'Comment has been added successfully',
-        updated: 'Comment has been updated successfully',
-        deleted: 'Comment has been deleted successfully'
+        created: 'Comment added successfully',
+        updated: 'Comment updated successfully',
+        deleted: 'Comment deleted successfully'
     }
 }

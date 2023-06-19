@@ -9,12 +9,6 @@ export default {
         created_at: 'Дата создания',
         members: 'Участники'
     },
-    current: {
-        title: 'Текущие трекеры'
-    },
-    sort: {
-        show: 'Сортировать'
-    },
     form: {
         create: 'Создать трекер',
         create_short: 'Создать',

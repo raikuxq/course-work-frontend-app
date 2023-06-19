@@ -6,11 +6,9 @@ export default {
     labels: {
         info: 'Информация',
         name: 'Название раздела',
-        task: 'Задача',
         author: 'Автор',
         members: 'Участники',
         categories: 'Разделы',
-        inviteLink: 'Код приглашения',
         description: 'Описание'
     },
     links: {
@@ -24,12 +22,6 @@ export default {
                 placeholder: ''
             },
         }
-    },
-    placeholders: {
-        name: '',
-        developers: 'Выберите разработчиков',
-        locales: 'Выбрать языки',
-        find: 'Искать раздел по названию'
     },
     actions: {
         create: 'Создать раздел',

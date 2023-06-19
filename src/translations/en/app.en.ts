@@ -6,13 +6,15 @@ export default {
     },
     undo: 'Undo',
     at: 'at',
+    userInfo: 'User information',
+    userSettings: 'Profile settings',
     settings: 'Settings',
     home: 'Home',
     refresh: 'Refresh',
     all: 'All',
-    loading: 'Loading...',
     goto: 'Go to',
     show: 'Show',
+    loading: 'Loading...',
     auth: {
         firstname: {
             label: 'First Name',
@@ -23,60 +25,51 @@ export default {
             placeholder: 'Doe'
         },
         email: {
-            label: 'Email',
-            placeholder: "mail{'@'}mail.com"
+            label: 'E-mail',
+            placeholder: 'email@example.com'
         },
         password: {
             label: 'Password',
             placeholder: '********'
         },
         passwordConfirm: {
-            label: 'Confirm password',
+            label: 'Confirm Password',
             placeholder: '********'
         },
         oldPassword: {
-            label: 'Old password',
+            label: 'Old Password',
             placeholder: '********'
         },
         newPassword: {
-            label: 'New password',
+            label: 'New Password',
             placeholder: '********'
         },
+        id: 'ID',
         signIn: 'Sign In',
-        signInError: 'Error signing in, please check your credentials.',
+        signInError: 'Sign in error, please check your credentials.',
         signUp: 'Sign Up',
-        signUpError: 'Error registering, please check your data.',
+        signUpError: 'Sign up error, please check your credentials.',
         logout: 'Logout',
-        changePassword: 'Change password',
-        changePasswordTitle: 'Change password',
-        changePasswordError: 'Password change error, please check that the old password is correct.',
-        changePasswordSuccess: 'Password has been changed successfully.'
+        changePassword: 'Change Password',
+        changePasswordTitle: 'Change Password',
+        changePasswordError: 'Password change error, please check your old password.',
+        changePasswordSuccess: 'Password successfully changed',
+        updateUser: 'Update Profile',
+        updateUserTitle: 'Update Profile',
+        updateUserError: 'Profile update error, please check your entered data.',
+        updateUserSuccess: 'Profile successfully updated'
     },
-    confirm: 'Do you want to confirm this?',
+    confirm: 'Confirm this action?',
     actions: {
         submit: 'Submit',
+        confirm: 'Confirm',
+        delete: 'Delete',
         back: 'Back',
+        cancel: 'Cancel',
         clear: 'Clear'
     },
     locales: {
         'ru': 'Russian',
         'en': 'English',
     },
-    language: {
-        change: 'Change to Russian'
-    },
-    changer: {
-        language: {
-            en: 'English',
-            ru: 'Russian',
-            label: 'Change language',
-            placeholder: 'Choose language'
-        },
-        theme: {
-            dark: 'Dark',
-            light: 'Light',
-            label: 'Change theme',
-            placeholder: 'Choose theme'
-        }
-    }
 }

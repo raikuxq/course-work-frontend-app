@@ -12,11 +12,8 @@ export default {
     priority: 'Приоритет',
     title: 'Заголовок',
     user_actions: 'Действия',
-    resolutions: 'Разрешения',
     goto: 'Перейти',
     type: 'Тип',
-    locales: 'Языки',
-    browsers: 'Браузеры',
     menu: 'См. полностью',
     show_panel: 'Открыть полностью',
     author: 'Автор',
@@ -26,15 +23,6 @@ export default {
         complete: 'На проверку',
         verify: 'Подтвердить',
         discuss: 'Обсудить',
-        return: 'Вернуть исполнителю',
-        reproduce: 'Не воспроизводится',
-        resolutions: {
-            mobile: 'Мобильные',
-            tablet: 'Планшетные',
-            laptop: 'Лэптопы',
-            desktop: 'Настольные',
-            all: 'Все'
-        },
         notify: 'Статус успешно изменен'
     },
     priority_type: {
@@ -111,7 +99,4 @@ export default {
             placeholder: 'Выбрать тип'
         }
     },
-    history: {
-        title: 'История изменений'
-    }
 }

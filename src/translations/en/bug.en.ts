@@ -1,62 +1,79 @@
 export default {
-    bug: 'Bug report',
+    bug: 'Bug Report',
+    list: 'Bug Reports List',
     id: 'ID',
-    position: '№',
-    created_at: 'Created at',
-    person: 'Responsible',
+    position: '#',
+    created_at: 'Created',
+    updated_at: 'Updated',
+    person: 'Person',
+    comments: 'Comments',
+    description: 'Description',
     status: 'Status',
     priority: 'Priority',
     title: 'Title',
     user_actions: 'Actions',
-    resolutions: 'Devices',
-    locales: 'Locales',
-    browsers: 'Browsers',
-    menu: 'Menu',
-    show_panel: 'Show full',
+    goto: 'Go to',
+    type: 'Type',
+    menu: 'See All',
+    show_panel: 'Show Full',
     author: 'Author',
     tooltip: {
-        close: 'Close bug',
+        close: 'Close',
         reopen: 'Reopen',
-        complete: 'Send to verify',
-        verify: 'Set as verified',
+        complete: 'Complete',
+        verify: 'Verify',
         discuss: 'Discuss',
-        return: 'Return bug',
-        reproduce: 'Cannot reproduce',
-        resolutions: {
-            mobile: 'Mobiles',
-            tablet: 'Tablets',
-            laptop: 'Laptops',
-            desktop: 'Desktops',
-            all: 'All'
-        },
-        notify: 'Status has been updated successfully'
+        notify: 'Status changed successfully'
     },
     priority_type: {
         normal: 'Normal',
         critical: 'Critical',
-        minor: 'Minor',
-        major: 'Major'
+        minor: 'Low',
+        major: 'High'
+    },
+    type_type: {
+        func: 'Functionality',
+        report: 'Report',
+        ui: 'UI',
+        vulnerability: 'Bug'
+    },
+    role_type: {
+        qa: 'QA Tester',
+        guest: 'Guest',
+        dev: 'Developer'
     },
     status_type: {
+        fulfilment: 'In Progress',
         new: 'New',
-        to_verify: 'To verify',
-        cant_reproduce: 'Can\'t reproduce',
+        to_verify: 'To Verify',
+        cant_reproduce: 'Cannot Reproduce',
         closed: 'Closed',
-        to_be_discussed: 'Discussed',
-        verified: 'Sent to verify',
+        to_be_discussed: 'To Be Discussed',
+        verified: 'Verified',
         returned: 'Returned'
     },
     actions: {
-        create: 'Create bug-report',
-        delete: 'Delete bug-report',
-        edit: 'Update bug-report'
+        create: 'Create Bug Report',
+        delete: 'Delete Bug Report',
+        update: 'Update Bug Report'
     },
     notify: {
-        created: 'Bug-report has been successfully created',
-        updated: 'Bug-report has been successfully updated',
-        deleted: 'Bug-report has been successfully deleted'
+        created: 'Bug Report created successfully',
+        not_created: 'Error creating Bug Report',
+        updated: 'Bug Report updated successfully',
+        not_updated: 'Error updating Bug Report',
+        deleted: 'Bug Report deleted successfully',
+        not_deleted: 'Error deleting Bug Report'
     },
     form: {
+        success: 'Bug Report created successfully',
+        error: 'Error creating Bug Report',
+        title: 'Bug Report Creation',
+        submit: 'Submit',
+        create: 'Create Bug Report',
+        create_short: 'Create',
+        update: 'Update Bug Report',
+        update_short: 'Update',
         field_title: {
             label: 'Title',
             placeholder: ''
@@ -67,30 +84,19 @@ export default {
         },
         priority: {
             label: 'Priority',
-            placeholder: 'Choose priority'
+            placeholder: 'Select priority'
         },
         status: {
             label: 'Status',
-            placeholder: 'Choose status'
+            placeholder: 'Select status'
         },
         responsible: {
             label: 'Responsible',
-            placeholder: 'Choose person'
+            placeholder: 'Select responsible'
         },
-        locales: {
-            label: 'Languages',
-            placeholder: 'Choose languages'
-        },
-        browsers: {
-            label: 'Browsers',
-            placeholder: 'Choose browsers'
-        },
-        resolutions: {
-            label: 'Resolutions',
-            placeholder: 'Choose resolutions'
+        type: {
+            label: 'Type',
+            placeholder: 'Select type'
         }
     },
-    history: {
-        title: 'Changes history'
-    }
 }

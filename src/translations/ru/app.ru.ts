@@ -62,7 +62,7 @@ export default {
     confirm: 'Подтвердить данное действие?',
     actions: {
         submit: 'Отправить',
-        confirm: 'Подвердить',
+        confirm: 'Подтвердить',
         delete: 'Удалить',
         back: 'Назад',
         cancel: 'Отмена',
@@ -72,21 +72,4 @@ export default {
         'ru': 'Русский',
         'en': 'Английский',
     },
-    language: {
-        change: 'Изменить на English'
-    },
-    changer: {
-        language: {
-            en: 'Английский',
-            ru: 'Русский',
-            label: 'Изменить язык',
-            placeholder: 'Выберите язык'
-        },
-        theme: {
-            dark: 'Темная',
-            light: 'Светлая',
-            label: 'Изменить тему',
-            placeholder: 'Выберите тему'
-        }
-    }
 }

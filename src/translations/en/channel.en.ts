@@ -1,33 +1,36 @@
 export default {
     list: {
-        title: 'Channel List'
+        title: 'Section List',
+        main: 'Main'
     },
     labels: {
-        name: 'Channel Name',
-        task: 'Task',
+        info: 'Information',
+        name: 'Section Name',
         author: 'Author',
         members: 'Members',
-        categories: 'Categories',
-        inviteLink: 'Invite Code',
+        categories: 'Sections',
         description: 'Description'
     },
     links: {
         task: 'Task',
     },
-    placeholders: {
-        name: '',
-        developers: 'Select developers',
-        locales: 'Select languages',
-        find: 'Search channel by name'
+    form: {
+        create: 'Create',
+        field: {
+            title: {
+                label: 'Title',
+                placeholder: ''
+            },
+        }
     },
     actions: {
-        create: 'Create Channel',
-        delete: 'Delete Channel',
-        edit: 'Edit Channel'
+        create: 'Create Section',
+        delete: 'Delete Section',
+        edit: 'Edit Section'
     },
     notify: {
-        created: 'Channel created successfully',
-        updated: 'Channel updated successfully',
-        deleted: 'Channel deleted successfully'
+        created: 'Section created successfully',
+        updated: 'Section updated successfully',
+        deleted: 'Section deleted successfully'
     }
 }
