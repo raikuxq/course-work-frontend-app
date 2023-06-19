@@ -36,8 +36,8 @@ const {t} = useI18n()
 
 const {
   mutate: addMember,
-  loading: loadingComment,
-  error: errorComment
+  loading: loadingMember,
+  error: errorMember
 } = useMutation<T_GQL_trackerAddMember_trackerAddMember, T_GQL_trackerAddMemberVariables>(TRACKER_ADD_MEMBER_MUTATION);
 
 
@@ -132,7 +132,7 @@ const submit = async (event) => {
 
         <n-button
             type="primary"
-            :loading="loadingComment"
+            :loading="loadingMember"
             block
             strong
             attr-type="submit"
@@ -140,8 +140,8 @@ const submit = async (event) => {
           {{ $t('tracker.form.add_member_short') }}
         </n-button>
 
-        <n-gradient-text v-if="errorComment" type="error">
-          {{ errorComment }}
+        <n-gradient-text v-if="errorMember" type="error">
+          {{ errorMember }}
         </n-gradient-text>
       </n-form>
     </n-modal>
