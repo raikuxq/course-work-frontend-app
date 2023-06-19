@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {NButton, NDivider, NPageHeader, NSpace, NText, NIcon, useDialog, useMessage} from 'naive-ui'
+import {NButton, NDivider, NIcon, NPageHeader, NSpace, NText, useDialog, useMessage} from 'naive-ui'
 import type {T_GQL_comment_comment, T_GQL_issueReport_issueReport} from "@/types/graphql";
-import {ref, toRefs, computed} from "vue";
+import {ETrackerMemberRole} from "@/types/graphql";
+import {computed, ref, toRefs} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import {ERouteName} from "@/router";
@@ -9,11 +10,9 @@ import CommentCard from "@/modules/comments/components/CommentCard/CommentCard.v
 import IssuesUpdateForm from "@/modules/issues/components/IssuesUpdateForm/IssuesUpdateForm.vue";
 import s from './IssuesDetails.module.scss'
 import {useAuthStore} from "@/modules/auth/store/authStore";
-import {ETrackerMemberRole} from "@/types/graphql";
 import {useMutation} from "@vue/apollo-composable";
 import {REPORTS_DELETE_MUTATION} from "@/modules/issues/api/IssuesDelete";
-import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
-import {Add as IconAdd} from "@vicons/ionicons5";
+import {Add as IconAdd, CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 import CommentCreateForm from "@/modules/comments/components/CommentCreateForm/CommentCreateForm.vue";
 
 export type TIssuesDetailsProps = T_GQL_issueReport_issueReport
@@ -49,6 +48,7 @@ const currentUserAsMember = computed(() => {
   return members.value.find(membersItem => membersItem.user.id === authStore.user?.id)
 })
 
+const isAllowedToUpdate = computed(() => currentUserAsMember.value.role !== ETrackerMemberRole.GUEST)
 const isAllowedToRemove = computed(() => currentUserAsMember.value.role === ETrackerMemberRole.QA)
 
 const isModalUpdateIssueOpen = ref<boolean>(false)
@@ -111,21 +111,23 @@ const onDeleteBtnClick = () => {
       >
         <template #extra>
           <n-space>
-            <n-button
-                type="primary"
-                block
-                secondary
-                strong
-                :bordered="false"
-                @click="isModalUpdateIssueOpen = true"
-            >
-              {{ $t('bug.actions.update') }}
-              <template #icon>
-                <n-icon>
-                  <icon-sharp/>
-                </n-icon>
-              </template>
-            </n-button>
+            <template v-if="isAllowedToUpdate">
+              <n-button
+                  type="primary"
+                  block
+                  secondary
+                  strong
+                  :bordered="false"
+                  @click="isModalUpdateIssueOpen = true"
+              >
+                {{ $t('bug.actions.update') }}
+                <template #icon>
+                  <n-icon>
+                    <icon-sharp/>
+                  </n-icon>
+                </template>
+              </n-button>
+            </template>
 
             <template v-if="isAllowedToRemove">
               <n-button
