@@ -101,7 +101,6 @@ onBeforeUnmount(() => {
           >
             {{ item.title }}
           </RouterLink>
-          {{ item.title }}
         </n-list-item>
       </n-list>
     </div>
