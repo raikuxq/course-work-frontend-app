@@ -78,6 +78,7 @@ const {mutate: leaveChannel} = useMutation(CHANNEL_LEAVE_MUTATION);
 const isModalUpdateOpen = ref<boolean>(false)
 const isModalCreateTrackerOpen = ref<boolean>(false)
 const isModalCreateCategoryOpen = ref<boolean>(false)
+const activeCategoryId = ref<string | null>(null)
 
 
 /**
@@ -232,7 +233,7 @@ const onLeaveBtnClick = () => {
         v-if="categories && categories.length"
     >
       <div
-          v-for="categoriesItem in categories"
+          v-for="(categoriesItem, index) in categories"
           :key="categoriesItem.id"
           :data-key="categoriesItem.id"
           :data-length="categoriesItem.title"
@@ -248,7 +249,10 @@ const onLeaveBtnClick = () => {
                     block
                     strong
                     :bordered="false"
-                    @click="isModalCreateTrackerOpen = true"
+                    @click="() => {
+                      isModalCreateTrackerOpen = true;
+                      activeCategoryId = categoriesItem.id;
+                    }"
                 >
                   {{ $t('tracker.actions.create') }}
                   <template #icon>
@@ -262,12 +266,15 @@ const onLeaveBtnClick = () => {
           </template>
 
           <TrackersCreateForm
-              :key="id"
+              :key="`${categoriesItem.id}${index}`"
               :is-modal-open="isModalCreateTrackerOpen"
               :channel-id="id"
-              :channel-category-id="categoriesItem.id"
-              @close-modal="isModalCreateTrackerOpen = false"
+              :channel-category-id="activeCategoryId || ''"
               @update-data="emit('updateData')"
+              @close-modal="() => {
+                      isModalCreateTrackerOpen = false;
+                      activeCategoryId = categoriesItem.id;
+                    }"
           />
 
           <CategoriesCreateForm
