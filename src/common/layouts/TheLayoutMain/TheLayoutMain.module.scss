@@ -10,6 +10,9 @@
   overflow: auto;
   left: 0;
   transition: $transition_time $transition_effect;
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .LayoutMain__header {
@@ -35,6 +38,9 @@
   padding-left: calc(#{$app-sidebar} + #{$app-offset});
   padding-top: calc(#{$app-header} + #{$app-offset} + 1px);
   background-color: $color-dark-bg-body-dark;
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .LayoutMain__main {

@@ -6,6 +6,9 @@
   height: 100vh;
   background: $color-dark-bg-body;
   padding: 48px 16px;
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .LayoutAuth__logo {
