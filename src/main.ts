@@ -5,8 +5,8 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 // @ts-ignore
 import { createI18n } from 'vue-i18n'
-import { langEn } from '@/translations/lang.en'
-import { langRu } from "@/translations/lang.ru";
+import { langEn } from '@/app/translations/lang.en'
+import { langRu } from "@/app/translations/lang.ru";
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { client as apolloClient } from "@/app/apollo/apollo";
 import App from './App.vue'
