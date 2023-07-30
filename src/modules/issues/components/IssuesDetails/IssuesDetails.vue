@@ -69,7 +69,7 @@ const onDeleteBtnClick = () => {
   dialog.error({
     transformOrigin: 'center',
     showIcon: false,
-    title: t('bug.actions.delete'),
+    title: t('issues.actions.delete'),
     content: t('app.confirm'),
     positiveText: t('app.actions.delete'),
     negativeText: t('app.actions.cancel'),
@@ -80,7 +80,7 @@ const onDeleteBtnClick = () => {
         })
 
         emit('updateData')
-        message.success(t('bug.notify.deleted'))
+        message.success(t('issues.notify.deleted'))
 
         await router.push({
           name: ERouteName.TRACKER,
@@ -93,7 +93,7 @@ const onDeleteBtnClick = () => {
         const alertMessage = error?.extensions?.message ?? error?.message;
 
         if (alertMessage) {
-          message.error(`${t('bug.notify.not_deleted')}: ${error.message}`);
+          message.error(`${t('issues.notify.not_deleted')}: ${error.message}`);
         }
       }
     },
@@ -120,7 +120,7 @@ const onDeleteBtnClick = () => {
                   :bordered="false"
                   @click="isModalUpdateIssueOpen = true"
               >
-                {{ $t('bug.actions.update') }}
+                {{ $t('issues.actions.update') }}
                 <template #icon>
                   <n-icon>
                     <icon-sharp/>
@@ -138,7 +138,7 @@ const onDeleteBtnClick = () => {
                   :bordered="false"
                   @click="onDeleteBtnClick"
               >
-                {{ $t('bug.actions.delete') }}
+                {{ $t('issues.actions.delete') }}
                 <template #icon>
                   <n-icon>
                     <icon-trash-bin/>
@@ -152,7 +152,7 @@ const onDeleteBtnClick = () => {
     </div>
   </div>
   <div>
-    <n-page-header :title="$t('bug.description')"/>
+    <n-page-header :title="$t('issues.description')"/>
 
     <n-space>
       <n-text :class="s.IssuesDetails__description" strong>
@@ -162,7 +162,7 @@ const onDeleteBtnClick = () => {
 
     <n-divider/>
 
-    <n-page-header :title="`${$t('bug.comments')} (${comments.length})`">
+    <n-page-header :title="`${$t('issues.comments')} (${comments.length})`">
       <template #extra>
         <n-space>
           <n-button

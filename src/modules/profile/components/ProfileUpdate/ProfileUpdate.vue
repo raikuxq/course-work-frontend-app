@@ -52,13 +52,13 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('app.auth.updateUserSuccess'))
+      message.success(t('auth.updateUserSuccess'))
     }
   } catch (error) {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      alert(t('app.auth.updateUserError') + error.message);
+      alert(t('auth.updateUserError') + error.message);
     }
   }
 }
@@ -69,21 +69,21 @@ const submit = async (event) => {
     <n-config-provider :theme="darkTheme">
 
       <n-form-item-row
-          :label="$t('app.auth.firstname.label')"
+          :label="$t('auth.firstname.label')"
           :feedback="firstNameError || ''"
       >
         <n-input
             type="text"
-            :placeholder="$t('app.auth.firstname.placeholder')"
+            :placeholder="$t('auth.firstname.placeholder')"
             v-model:value.trim="firstName"
         />
 
       </n-form-item-row>
 
-      <n-form-item-row :label="$t('app.auth.lastname.label')">
+      <n-form-item-row :label="$t('auth.lastname.label')">
         <n-input
             type="text"
-            :placeholder="$t('app.auth.lastname.placeholder')"
+            :placeholder="$t('auth.lastname.placeholder')"
             v-model:value.trim="lastName"
         />
 
@@ -100,7 +100,7 @@ const submit = async (event) => {
         strong
         attr-type="submit"
     >
-      {{ $t('app.auth.updateUser') }}
+      {{ $t('auth.updateUser') }}
     </n-button>
 
     <n-gradient-text v-if="error" type="error">

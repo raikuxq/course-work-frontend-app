@@ -37,37 +37,37 @@ const columns = computed((): DataTableColumns<T_GQL_tracker_tracker_reports> => 
       key: 'idx'
     },
     {
-      title: t('bug.title'),
+      title: t('issues.title'),
       key: 'title',
       sorter: 'default'
     },
     {
-      title: t('bug.status'),
+      title: t('issues.status'),
       key: 'status',
       sorter: 'default'
     },
     {
-      title: t('bug.priority'),
+      title: t('issues.priority'),
       key: 'priority',
       sorter: 'default',
     },
     {
-      title: t('bug.type'),
+      title: t('issues.type'),
       key: 'type',
       sorter: 'default',
     },
     {
-      title: t('bug.person'),
+      title: t('issues.person'),
       key: 'responsiblePerson',
       sorter: 'default',
     },
     {
-      title: t('bug.author'),
+      title: t('issues.author'),
       key: 'author',
       sorter: 'default'
     },
     {
-      title: t('bug.created_at'),
+      title: t('issues.created_at'),
       key: 'createdAt',
       sorter: 'default',
     },
@@ -131,8 +131,8 @@ const redirectToRow = (id: string) => {
 
 
 <style scoped lang="scss">
-@import "@/assets/styles/app/mixins";
-@import "@/assets/styles/app/variables";
+@import "@/app/assets/styles/app/mixins";
+@import "@/app/assets/styles/app/variables";
 
 .n-data-table-container {
   width: calc(100% + 32px);

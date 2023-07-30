@@ -61,7 +61,7 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('tracker.notify.updated'))
+      message.success(t('trackers.notify.updated'))
       emit('updateData')
       emit('closeModal')
     }
@@ -69,7 +69,7 @@ const submit = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('tracker.notify.not_updated')}: ${error.message}`);
+      message.error(`${t('trackers.notify.not_updated')}: ${error.message}`);
     }
   }
 }
@@ -82,28 +82,28 @@ const submit = async (event) => {
         :mask-closable="true"
         preset="dialog"
         :show-icon="false"
-        :title="$t('tracker.form.update')"
+        :title="$t('trackers.form.update')"
         transform-origin="center"
         @close="emit('closeModal')"
     >
       <n-divider/>
       <n-form @submit="submit">
         <n-form-item-row
-            :label="$t('tracker.form.field.title.label')"
+            :label="$t('trackers.form.field.title.label')"
         >
           <n-input
               type="text"
-              :placeholder="$t('tracker.form.field.title.placeholder')"
+              :placeholder="$t('trackers.form.field.title.placeholder')"
               v-model:value.trim="title"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('tracker.form.field.desc.label')"
+            :label="$t('trackers.form.field.desc.label')"
         >
           <n-input
               type="textarea"
-              :placeholder="$t('tracker.form.field.desc.placeholder')"
+              :placeholder="$t('trackers.form.field.desc.placeholder')"
               v-model:value.trim="description"
           />
         </n-form-item-row>
@@ -115,7 +115,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('tracker.form.update') }}
+          {{ $t('trackers.form.update') }}
         </n-button>
 
         <n-gradient-text v-if="errorChannel" type="error">

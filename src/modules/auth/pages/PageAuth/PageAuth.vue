@@ -18,11 +18,11 @@ import s from "./PageAuth.module.scss"
                 pane-wrapper-style="margin: 0 -4px"
                 pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;"
             >
-              <n-tab-pane name="signin" :tab="$t('app.auth.signIn')">
+              <n-tab-pane name="signin" :tab="$t('auth.signIn')">
                 <br/>
                 <AuthLogin/>
               </n-tab-pane>
-              <n-tab-pane name="signup" :tab="$t('app.auth.signUp')">
+              <n-tab-pane name="signup" :tab="$t('auth.signUp')">
                 <br/>
                 <AuthReg/>
               </n-tab-pane>

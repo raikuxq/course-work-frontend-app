@@ -1,11 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import PageAuth from "@/modules/auth/pages/PageAuth/PageAuth.vue";
-import PageChannelDetails from "@/modules/channels/pages/PageChannelDetails/PageChannelDetails.vue";
 import {authGuard} from "@/router/middlewares/auth";
-import PageTrackerDetails from "@/modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue";
-import PageProfile from "@/modules/profile/pages/PageProfile/PageProfile.vue";
-import PageHome from "@/modules/home/pages/PageHome.vue";
-import PageIssuesDetails from "@/modules/issues/pages/PageIssuesDetails/PageIssuesDetails.vue";
 
 export enum ELayoutType {
     MAIN = 'MAIN',

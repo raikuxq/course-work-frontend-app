@@ -49,14 +49,14 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('app.auth.changePasswordSuccess'))
+      message.success(t('auth.changePasswordSuccess'))
       emit('closeModal')
     }
   } catch (error) {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      alert(t('app.auth.changePasswordError') + error.message);
+      alert(t('auth.changePasswordError') + error.message);
     }
   }
 }
@@ -68,15 +68,15 @@ const submit = async (event) => {
         :show="isModalOpen"
         :mask-closable="true"
         preset="dialog"
-        :title="$t('app.auth.changePasswordTitle')"
+        :title="$t('auth.changePasswordTitle')"
         transform-origin="center"
         @close="emit('closeModal')"
     >
       <n-form @submit="submit">
-        <n-form-item-row :label="$t('app.auth.oldPassword.label')">
+        <n-form-item-row :label="$t('auth.oldPassword.label')">
           <n-input
               type="password"
-              :placeholder="$t('app.auth.oldPassword.placeholder')"
+              :placeholder="$t('auth.oldPassword.placeholder')"
               v-model:value.trim="oldPassword"
           />
 
@@ -85,10 +85,10 @@ const submit = async (event) => {
           </n-gradient-text>
         </n-form-item-row>
 
-        <n-form-item-row :label="$t('app.auth.newPassword.label')">
+        <n-form-item-row :label="$t('auth.newPassword.label')">
           <n-input
               type="password"
-              :placeholder="$t('app.auth.newPassword.placeholder')"
+              :placeholder="$t('auth.newPassword.placeholder')"
               v-model:value.trim="newPassword"
           />
 
@@ -104,7 +104,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('app.auth.changePassword') }}
+          {{ $t('auth.changePassword') }}
         </n-button>
 
         <n-gradient-text v-if="error" type="error">

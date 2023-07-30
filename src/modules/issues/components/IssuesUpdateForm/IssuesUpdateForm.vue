@@ -89,7 +89,7 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('bug.notify.updated'))
+      message.success(t('issues.notify.updated'))
       emit('updateData')
       emit('closeModal')
     }
@@ -97,7 +97,7 @@ const submit = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('bug.notify.not_updated')}: ${error.message}`);
+      message.error(`${t('issues.notify.not_updated')}: ${error.message}`);
     }
   }
 }
@@ -109,7 +109,7 @@ const submit = async (event) => {
         :show="isModalOpen"
         :mask-closable="true"
         :show-icon="false"
-        :title="$t('bug.form.update')"
+        :title="$t('issues.form.update')"
         preset="dialog"
         transform-origin="center"
         @close="emit('closeModal')"
@@ -118,61 +118,61 @@ const submit = async (event) => {
 
       <n-form @submit="submit">
         <n-form-item-row
-            :label="$t('bug.form.field_title.label')"
+            :label="$t('issues.form.field_title.label')"
         >
           <n-input
               type="text"
-              :placeholder="$t('bug.form.field_title.placeholder')"
+              :placeholder="$t('issues.form.field_title.placeholder')"
               v-model:value.trim="title"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('bug.form.priority.label')"
+            :label="$t('issues.form.priority.label')"
         >
           <n-select
               v-model:value="priority"
-              :placeholder="$t('bug.form.priority.placeholder')"
+              :placeholder="$t('issues.form.priority.placeholder')"
               :options="priorityOptionsSelect"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('bug.form.type.label')"
+            :label="$t('issues.form.type.label')"
         >
           <n-select
               v-model:value="type"
-              :placeholder="$t('bug.form.type.placeholder')"
+              :placeholder="$t('issues.form.type.placeholder')"
               :options="typeOptionsSelect"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('bug.form.status.label')"
+            :label="$t('issues.form.status.label')"
         >
           <n-select
               v-model:value="status"
-              :placeholder="$t('bug.form.status.placeholder')"
+              :placeholder="$t('issues.form.status.placeholder')"
               :options="statusOptionsSelect"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('bug.form.responsible.label')"
+            :label="$t('issues.form.responsible.label')"
         >
           <n-select
               v-model:value="responsiblePerson"
-              :placeholder="$t('bug.form.responsible.placeholder')"
+              :placeholder="$t('issues.form.responsible.placeholder')"
               :options="responsiblePersonOptionsSelect"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('bug.form.desc.label')"
+            :label="$t('issues.form.desc.label')"
         >
           <n-input
               type="textarea"
-              :placeholder="$t('bug.form.desc.placeholder')"
+              :placeholder="$t('issues.form.desc.placeholder')"
               v-model:value.trim="description"
           />
         </n-form-item-row>
@@ -184,7 +184,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('bug.form.update_short') }}
+          {{ $t('issues.form.update_short') }}
         </n-button>
 
         <n-gradient-text v-if="error" type="error">

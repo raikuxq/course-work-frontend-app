@@ -43,11 +43,11 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
       :class="s.TrackersDetailsInfo__descContainer"
       label-placement="top"
       :column="1"
-      :title="$t('tracker.labels.info')"
+      :title="$t('trackers.labels.info')"
   >
     <n-descriptions-item
         :class="s.TrackersDetailsInfo__descItem"
-        :label="$t('tracker.labels.title_name')"
+        :label="$t('trackers.labels.title_name')"
         v-if="title"
     >
       {{ title }}
@@ -55,7 +55,7 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
 
     <n-descriptions-item
         :class="s.TrackersDetailsInfo__descItem"
-        :label="$t('tracker.labels.created_at')"
+        :label="$t('trackers.labels.created_at')"
         v-if="createdAt"
     >
       {{ dateToDisplay }}
@@ -63,7 +63,7 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
 
     <n-descriptions-item
         :class="s.TrackersDetailsInfo__descItem"
-        :label="$t('tracker.labels.description')"
+        :label="$t('trackers.labels.description')"
         v-if="description"
     >
       {{ description }}
@@ -78,7 +78,7 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
         label-placement="top"
         :column="1"
         :class="s.TrackersDetailsInfo__descContainer"
-        :title="$t('tracker.labels.members')"
+        :title="$t('trackers.labels.members')"
     >
       <n-descriptions-item
           v-for="member in members"
@@ -101,7 +101,7 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
             :bordered="true"
             @click="isModalAddMemberOpen = true"
         >
-          {{ $t('tracker.form.add_member') }}
+          {{ $t('trackers.form.add_member') }}
           <template #icon>
             <n-icon>
               <icon-add/>
@@ -117,7 +117,7 @@ const dateToDisplay = computed(() => new Date(createdAt.value).toLocaleDateStrin
             :bordered="true"
             @click="isModalManageOpen = true"
         >
-          {{ $t('tracker.form.manage_members') }}
+          {{ $t('trackers.form.manage_members') }}
         </n-button>
       </n-space>
 

@@ -254,7 +254,7 @@ const onLeaveBtnClick = () => {
                       activeCategoryId = categoriesItem.id;
                     }"
                 >
-                  {{ $t('tracker.actions.create') }}
+                  {{ $t('trackers.actions.create') }}
                   <template #icon>
                     <n-icon>
                       <icon-add/>

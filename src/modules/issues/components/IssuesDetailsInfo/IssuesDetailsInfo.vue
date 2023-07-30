@@ -34,11 +34,11 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
       :class="s.IssuesDetailsInfo__descContainer"
       label-placement="top"
       :column="1"
-      :title="$t('tracker.labels.info')"
+      :title="$t('trackers.labels.info')"
   >
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.created_at')"
+        :label="$t('issues.created_at')"
         v-if="createdAt"
     >
       {{ createdAtToDisplay }}
@@ -46,7 +46,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.updated_at')"
+        :label="$t('issues.updated_at')"
         v-if="updatedAt"
     >
       {{ updatedAtToDisplay }}
@@ -54,7 +54,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.status')"
+        :label="$t('issues.status')"
         v-if="status"
     >
       {{ $t(labelsStatus[status]) }}
@@ -62,7 +62,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.priority')"
+        :label="$t('issues.priority')"
         v-if="priority"
     >
       {{ $t(labelsPriority[priority]) }}
@@ -70,7 +70,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.type')"
+        :label="$t('issues.type')"
         v-if="type"
     >
       {{ $t(labelsType[type]) }}
@@ -78,7 +78,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.person')"
+        :label="$t('issues.person')"
         v-if="responsiblePerson"
     >
       {{
@@ -88,7 +88,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('bug.author')"
+        :label="$t('issues.author')"
         v-if="author"
     >
       {{
@@ -98,7 +98,7 @@ const updatedAtToDisplay = computed(() => dateToDisplay(updatedAt.value))
 
     <n-descriptions-item
         :class="s.IssuesDetailsInfo__descItem"
-        :label="$t('tracker.title')"
+        :label="$t('trackers.title')"
         v-if="tracker"
     >
       {{ tracker.title }}

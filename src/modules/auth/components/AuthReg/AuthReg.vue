@@ -100,7 +100,7 @@ const handleReg = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      alert(t('app.auth.signUpError') + error.message);
+      alert(t('auth.signUpError') + error.message);
     }
   }
 };
@@ -110,65 +110,65 @@ const handleReg = async (event) => {
   <n-form @submit="handleReg">
     <n-config-provider :theme="darkTheme">
       <n-form-item-row
-          :label="$t('app.auth.firstname.label')"
+          :label="$t('auth.firstname.label')"
           :feedback="firstNameError"
           :show-feedback="firstNameError && meta[EAuthRegFields.FIRSTNAME]?.touched"
       >
         <n-input
             :name="EAuthRegFields.FIRSTNAME"
             type="text"
-            :placeholder="$t('app.auth.firstname.placeholder')"
+            :placeholder="$t('auth.firstname.placeholder')"
             v-model:value.trim="firstname"
         />
       </n-form-item-row>
     </n-config-provider>
     <n-config-provider :theme="darkTheme">
       <n-form-item-row
-          :label="$t('app.auth.lastname.label')"
+          :label="$t('auth.lastname.label')"
           :feedback="lastNameError"
           :show-feedback="lastNameError && meta[EAuthRegFields.LASTNAME]?.touched"
       >
         <n-input
             :name="EAuthRegFields.LASTNAME"
             type="text"
-            :placeholder="$t('app.auth.lastname.placeholder')"
+            :placeholder="$t('auth.lastname.placeholder')"
             v-model:value.trim="lastname"
         />
       </n-form-item-row>
     </n-config-provider>
     <n-config-provider :theme="darkTheme">
       <n-form-item-row
-          :label="$t('app.auth.email.label')"
+          :label="$t('auth.email.label')"
           :feedback="emailError"
       >
         <n-input
             :name="EAuthRegFields.EMAIL"
             type="email"
-            :placeholder="$t('app.auth.email.placeholder')"
+            :placeholder="$t('auth.email.placeholder')"
             v-model:value.trim="email"
         />
       </n-form-item-row>
     </n-config-provider>
     <n-config-provider :theme="darkTheme">
       <n-form-item-row
-          :label="$t('app.auth.password.label')"
+          :label="$t('auth.password.label')"
           :feedback="passwordError"
       >
         <n-input
             type="password"
             :name="EAuthRegFields.PASSWORD"
-            :placeholder="$t('app.auth.password.placeholder')"
+            :placeholder="$t('auth.password.placeholder')"
             v-model:value.trim="password"
         />
       </n-form-item-row>
       <n-form-item-row
-          :label="$t('app.auth.passwordConfirm.label')"
+          :label="$t('auth.passwordConfirm.label')"
           :feedback="passwordConfirmError"
       >
         <n-input
             :name="EAuthRegFields.PASSWORD_CONFIRM"
             type="password"
-            :placeholder="$t('app.auth.passwordConfirm.placeholder')"
+            :placeholder="$t('auth.passwordConfirm.placeholder')"
             v-model:value.trim="passwordConfirm"
         />
       </n-form-item-row>
@@ -181,7 +181,7 @@ const handleReg = async (event) => {
         :loading="loading"
         attr-type="submit"
     >
-      {{ $t('app.auth.signUp') }}
+      {{ $t('auth.signUp') }}
     </n-button>
 
     <n-gradient-text v-if="error" type="error">

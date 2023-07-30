@@ -72,7 +72,7 @@ const submit = async (event) => {
       })
 
       if (data && dataMember) {
-        message.success(t('tracker.notify.created'))
+        message.success(t('trackers.notify.created'))
         await router.push({ name: ERouteName.TRACKER, params: { trackerId, channelId: route.params.channelId } })
         emit('updateData')
         emit('closeModal')
@@ -82,7 +82,7 @@ const submit = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('tracker.notify.not_created')}: ${error.message}`);
+      message.error(`${t('trackers.notify.not_created')}: ${error.message}`);
     }
   } finally {
     title.value = ''
@@ -98,28 +98,28 @@ const submit = async (event) => {
         :mask-closable="true"
         preset="dialog"
         :show-icon="false"
-        :title="$t('tracker.form.create')"
+        :title="$t('trackers.form.create')"
         transform-origin="center"
         @close="emit('closeModal')"
     >
       <n-divider />
       <n-form @submit="submit">
         <n-form-item-row
-            :label="$t('tracker.form.field.title.label')"
+            :label="$t('trackers.form.field.title.label')"
         >
           <n-input
               type="text"
-              :placeholder="$t('tracker.form.field.title.placeholder')"
+              :placeholder="$t('trackers.form.field.title.placeholder')"
               v-model:value.trim="title"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('tracker.form.field.desc.label')"
+            :label="$t('trackers.form.field.desc.label')"
         >
           <n-input
               type="textarea"
-              :placeholder="$t('tracker.form.field.desc.placeholder')"
+              :placeholder="$t('trackers.form.field.desc.placeholder')"
               v-model:value.trim="description"
           />
         </n-form-item-row>
@@ -131,7 +131,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('tracker.form.create') }}
+          {{ $t('trackers.form.create') }}
         </n-button>
 
         <n-gradient-text v-if="errorChannel" type="error">

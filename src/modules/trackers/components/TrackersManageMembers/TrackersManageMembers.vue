@@ -84,7 +84,7 @@ const updateUserRole = async (memberId: string, role: ETrackerMemberRole) => {
     });
 
     if (data) {
-      message.success(t('tracker.notify.updated_member'))
+      message.success(t('trackers.notify.updated_member'))
       emit('updateData')
       emit('closeModal')
     }
@@ -92,7 +92,7 @@ const updateUserRole = async (memberId: string, role: ETrackerMemberRole) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('tracker.notify.not_updated_member')}: ${error.message}`);
+      message.error(`${t('trackers.notify.not_updated_member')}: ${error.message}`);
     }
   }
 }
@@ -108,7 +108,7 @@ const onDeleteBtnClick = (memberId: string) => {
     dialog.error({
       transformOrigin: 'center',
       showIcon: false,
-      title: t('tracker.form.delete_member'),
+      title: t('trackers.form.delete_member'),
       content: t('app.confirm'),
       positiveText: t('app.actions.delete'),
       negativeText: t('app.actions.cancel'),
@@ -120,12 +120,12 @@ const onDeleteBtnClick = (memberId: string) => {
           })
 
           emit('updateData')
-          message.success(t('tracker.notify.deleted_member'))
+          message.success(t('trackers.notify.deleted_member'))
         } catch (error) {
           const alertMessage = error?.extensions?.message ?? error?.message;
 
           if (alertMessage) {
-            message.error(`${t('tracker.notify.not_deleted_member')}: ${error.message}`);
+            message.error(`${t('trackers.notify.not_deleted_member')}: ${error.message}`);
           }
         }
       },
@@ -143,7 +143,7 @@ const onDeleteBtnClick = (memberId: string) => {
         :mask-closable="true"
         preset="dialog"
         :show-icon="false"
-        :title="$t('tracker.form.manage_members')"
+        :title="$t('trackers.form.manage_members')"
         transform-origin="center"
         @close="emit('closeModal')"
     >
@@ -163,7 +163,7 @@ const onDeleteBtnClick = (memberId: string) => {
               <n-space>
                 <n-select
                     v-model:value="table[member.id]"
-                    :placeholder="$t('tracker.form.field.role.placeholder')"
+                    :placeholder="$t('trackers.form.field.role.placeholder')"
                     :options="roleSelectOptions"
                     @update:value="(role) => updateUserRole(member.id, role)"
                 />

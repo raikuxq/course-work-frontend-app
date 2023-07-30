@@ -116,7 +116,7 @@ const onDeleteBtnClick = () => {
   dialog.error({
     transformOrigin: 'center',
     showIcon: false,
-    title: t('tracker.actions.delete'),
+    title: t('trackers.actions.delete'),
     content: t('app.confirm'),
     positiveText: t('app.actions.delete'),
     negativeText: t('app.actions.cancel'),
@@ -127,14 +127,14 @@ const onDeleteBtnClick = () => {
         })
 
         emit('updateData')
-        message.success(t('tracker.notify.deleted'))
+        message.success(t('trackers.notify.deleted'))
 
         await router.push({ name: ERouteName.CHANNEL, params: { channelId: route.params.channelId }})
       } catch (error) {
         const alertMessage = error?.extensions?.message ?? error?.message;
 
         if (alertMessage) {
-          message.error(`${t('tracker.notify.not_deleted')}: ${error.message}`);
+          message.error(`${t('trackers.notify.not_deleted')}: ${error.message}`);
         }
       }
     },
@@ -160,7 +160,7 @@ const onDeleteBtnClick = () => {
                 :bordered="true"
                 @click="isModalUpdateTrackerOpen = true"
             >
-              {{ $t('tracker.actions.update') }}
+              {{ $t('trackers.actions.update') }}
               <template #icon>
                 <n-icon>
                   <icon-sharp />
@@ -176,7 +176,7 @@ const onDeleteBtnClick = () => {
                 :bordered="true"
                 @click="onDeleteBtnClick"
             >
-              {{ $t('tracker.actions.delete') }}
+              {{ $t('trackers.actions.delete') }}
               <template #icon>
                 <n-icon>
                   <icon-trash-bin />
@@ -189,7 +189,7 @@ const onDeleteBtnClick = () => {
     </div>
   </div>
   <div>
-    <n-page-header :title="$t('bug.list')">
+    <n-page-header :title="$t('issues.list')">
       <template #extra>
         <n-space vertical>
           <n-space>
@@ -200,7 +200,7 @@ const onDeleteBtnClick = () => {
                 :bordered="false"
                 @click="isModalCreateIssueOpen = true"
             >
-              {{ $t('bug.actions.create') }}
+              {{ $t('issues.actions.create') }}
               <template #icon>
                 <n-icon>
                   <icon-add />
@@ -221,7 +221,7 @@ const onDeleteBtnClick = () => {
             clearable
             :theme="darkTheme"
             :consistent-menu-width="false"
-            :placeholder="$t('bug.form.status.placeholder')"
+            :placeholder="$t('issues.form.status.placeholder')"
             :options="statusOptionsSelect"
         />
 
@@ -229,7 +229,7 @@ const onDeleteBtnClick = () => {
             v-model:value="filters.priority"
             clearable
             :theme="darkTheme"
-            :placeholder="$t('bug.form.priority.placeholder')"
+            :placeholder="$t('issues.form.priority.placeholder')"
             :options="priorityOptionsSelect"
         />
 
@@ -237,7 +237,7 @@ const onDeleteBtnClick = () => {
             v-model:value="filters.type"
             clearable
             :theme="darkTheme"
-            :placeholder="$t('bug.form.type.placeholder')"
+            :placeholder="$t('issues.form.type.placeholder')"
             :options="typeOptionsSelect"
         />
 
@@ -246,7 +246,7 @@ const onDeleteBtnClick = () => {
             clearable
             :theme="darkTheme"
             :consistent-menu-width="false"
-            :placeholder="$t('bug.form.responsible.placeholder')"
+            :placeholder="$t('issues.form.responsible.placeholder')"
             :options="responsiblePersonOptionsSelect"
         />
       </n-space>

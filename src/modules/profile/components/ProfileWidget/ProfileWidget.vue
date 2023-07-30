@@ -65,7 +65,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
             </n-icon>
           </RouterLink>
         </template>
-        <span>{{ $t('app.auth.logout') }}</span>
+        <span>{{ $t('auth.logout') }}</span>
       </n-tooltip>
 
 

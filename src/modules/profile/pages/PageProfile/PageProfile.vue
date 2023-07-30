@@ -21,7 +21,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
 
 <template>
   <div :class="s.PageProfile">
-    <n-page-header data-dark :title="$t('app.userSettings')">
+    <n-page-header data-dark :title="$t('profile.userSettings')">
       <template #extra>
         <n-space>
           <n-button
@@ -31,7 +31,7 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
               attr-type="button"
               @click="isModalChangePasswordOpen = true"
           >
-            {{ $t('app.auth.changePassword') }}
+            {{ $t('auth.changePassword') }}
           </n-button>
         </n-space>
       </template>
@@ -39,15 +39,15 @@ const userData = computed<TUseAuthStoreStateUser | null>(() => {
 
     <div v-if="userData" :class="s.PageProfile__static">
 
-      <n-descriptions label-placement="top" :column="1" :title="$t('app.userInfo')">
+      <n-descriptions label-placement="top" :column="1" :title="$t('profile.userInfo')">
         <n-descriptions-item
-            :label="$t('app.auth.id')"
+            :label="$t('auth.id')"
         >
           {{ userData.id }}
         </n-descriptions-item>
 
         <n-descriptions-item
-            :label="$t('app.auth.email.label')"
+            :label="$t('auth.email.label')"
         >
           {{ userData.email }}
         </n-descriptions-item>

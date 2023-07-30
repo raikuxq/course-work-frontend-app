@@ -4,9 +4,7 @@ import {computed} from "vue";
 import {ELayoutType} from "@/router";
 import TheLayoutAuth from "@/common/layouts/TheLayoutAuth/TheLayoutAuth.vue";
 import TheLayoutMain from "@/common/layouts/TheLayoutMain/TheLayoutMain.vue";
-import { NConfigProvider, GlobalThemeOverrides, NMessageProvider, NLoadingBarProvider, NDialogProvider } from 'naive-ui'
-
-const themeOverrides: GlobalThemeOverrides = {}
+import { NConfigProvider, NMessageProvider, NLoadingBarProvider, NDialogProvider } from 'naive-ui'
 
 const currentRoute = useRoute()
 
@@ -28,7 +26,7 @@ const layoutComponent = computed(() => {
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <n-config-provider>
     <n-message-provider>
       <n-dialog-provider>
         <n-loading-bar-provider>

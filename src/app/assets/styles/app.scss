@@ -1,5 +1,5 @@
-@import "./normalize";
-@import "./config";
+@import "normalize";
+@import "config";
 
 @import "app/mixins";
 @import "app/variables";
@@ -9,4 +9,4 @@
 @import "common/animations";
 @import "common/headings";
 
-@import "./overrides";
+@import "lib/overrides";

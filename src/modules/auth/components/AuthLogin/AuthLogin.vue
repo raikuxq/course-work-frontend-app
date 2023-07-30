@@ -49,7 +49,7 @@ const handleLogin = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      alert(t('app.auth.singInError') + error.message);
+      alert(t('auth.singInError') + error.message);
     }
   }
 };
@@ -60,12 +60,12 @@ const handleLogin = async (event) => {
     <n-config-provider :theme="darkTheme">
 
       <n-form-item-row
-          :label="$t('app.auth.email.label')"
+          :label="$t('auth.email.label')"
           :feedback="emailError || ''"
       >
         <n-input
             type="email"
-            :placeholder="$t('app.auth.email.placeholder')"
+            :placeholder="$t('auth.email.placeholder')"
             v-model:value.trim="email"
         />
       </n-form-item-row>
@@ -73,12 +73,12 @@ const handleLogin = async (event) => {
     <n-config-provider :theme="darkTheme">
 
       <n-form-item-row
-          :label="$t('app.auth.password.label')"
+          :label="$t('auth.password.label')"
           :feedback="passwordError || ''"
       >
         <n-input
             type="password"
-            :placeholder="$t('app.auth.password.placeholder')"
+            :placeholder="$t('auth.password.placeholder')"
             v-model:value.trim="password"
         />
       </n-form-item-row>
@@ -91,7 +91,7 @@ const handleLogin = async (event) => {
         strong
         attr-type="submit"
     >
-      {{ $t('app.auth.signIn') }}
+      {{ $t('auth.signIn') }}
     </n-button>
 
     <n-gradient-text v-if="error" type="error">

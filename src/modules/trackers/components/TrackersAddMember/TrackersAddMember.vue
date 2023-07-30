@@ -80,7 +80,7 @@ const submit = async (event) => {
     });
 
     if (data) {
-      message.success(t('tracker.notify.added_member'))
+      message.success(t('trackers.notify.added_member'))
       emit('updateData')
       emit('closeModal')
     }
@@ -88,7 +88,7 @@ const submit = async (event) => {
     const alertMessage = error?.extensions?.message ?? error?.message;
 
     if (alertMessage) {
-      message.error(`${t('tracker.notify.not_added_member')}: ${error.message}`);
+      message.error(`${t('trackers.notify.not_added_member')}: ${error.message}`);
     }
   } finally {
     role.value = null
@@ -104,28 +104,28 @@ const submit = async (event) => {
         :mask-closable="true"
         preset="dialog"
         :show-icon="false"
-        :title="$t('tracker.form.add_member')"
+        :title="$t('trackers.form.add_member')"
         transform-origin="center"
         @close="emit('closeModal')"
     >
       <n-divider/>
       <n-form @submit="submit">
         <n-form-item-row
-            :label="$t('tracker.form.field.user.label')"
+            :label="$t('trackers.form.field.user.label')"
         >
           <n-select
               v-model:value="user"
-              :placeholder="$t('tracker.form.field.user.placeholder')"
+              :placeholder="$t('trackers.form.field.user.placeholder')"
               :options="userSelectOptions"
           />
         </n-form-item-row>
 
         <n-form-item-row
-            :label="$t('tracker.form.field.role.label')"
+            :label="$t('trackers.form.field.role.label')"
         >
           <n-select
               v-model:value="role"
-              :placeholder="$t('tracker.form.field.role.placeholder')"
+              :placeholder="$t('trackers.form.field.role.placeholder')"
               :options="roleSelectOptions"
           />
         </n-form-item-row>
@@ -137,7 +137,7 @@ const submit = async (event) => {
             strong
             attr-type="submit"
         >
-          {{ $t('tracker.form.add_member_short') }}
+          {{ $t('trackers.form.add_member_short') }}
         </n-button>
 
         <n-gradient-text v-if="errorMember" type="error">
