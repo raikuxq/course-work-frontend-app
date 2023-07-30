@@ -8,7 +8,7 @@ import type {
   T_GQL_tracker, T_GQL_tracker_tracker,
   T_GQL_trackerUpdate,
   T_GQL_trackerUpdateVariables
-} from "@/types/graphql";
+} from "@/shared/types/graphql";
 
 type TTrackersUpdateFormProps = {
   isModalOpen: boolean;

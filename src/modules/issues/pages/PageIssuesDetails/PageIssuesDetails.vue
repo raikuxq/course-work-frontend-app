@@ -3,7 +3,7 @@ import IssuesDetails from "@/modules/issues/components/IssuesDetails/IssuesDetai
 import IssuesDetailsInfo from "@/modules/issues/components/IssuesDetailsInfo/IssuesDetailsInfo.vue";
 import {useQuery} from "@vue/apollo-composable";
 import {useRoute} from "vue-router";
-import type {T_GQL_issueReport} from "@/types/graphql";
+import type {T_GQL_issueReport} from "@/shared/types/graphql";
 import {watch} from "vue";
 import s from './PageIssuesDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'

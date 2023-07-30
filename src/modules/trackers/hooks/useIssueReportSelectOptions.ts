@@ -1,6 +1,6 @@
 import {priorityOptions, statusOptions, typeOptions} from "@/options/options";
 import {toRefs, computed} from "vue";
-import type {T_GQL_tracker_tracker} from "@/types/graphql";
+import type {T_GQL_tracker_tracker} from "@/shared/types/graphql";
 // @ts-ignore
 import {useI18n} from "vue-i18n";
 

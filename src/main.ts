@@ -10,7 +10,7 @@ import { langRu } from "@/translations/lang.ru";
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { client as apolloClient } from "@/options/apollo";
 import App from './App.vue'
-import router from './router'
+import router from '@/app/router'
 import {useFetchUserCurrent} from "@/shared/hooks/useFetchUserCurrent";
 
 

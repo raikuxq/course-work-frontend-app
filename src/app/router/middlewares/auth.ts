@@ -1,5 +1,5 @@
 import {useAuthStore} from "@/modules/auth/store/authStore";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import type {NavigationGuardWithThis, RouteLocationNormalized} from "vue-router";
 
 export const authGuard: NavigationGuardWithThis<undefined> = (to: RouteLocationNormalized) => {

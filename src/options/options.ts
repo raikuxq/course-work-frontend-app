@@ -1,5 +1,5 @@
-import {EIssueReportPriority, EIssueReportStatus, EIssueReportType, ERole, ETrackerMemberRole} from "@/types/graphql";
-import type {TLabelMap, TSelectItemType} from "@/types/common.types";
+import {EIssueReportPriority, EIssueReportStatus, EIssueReportType, ERole, ETrackerMemberRole} from "@/shared/types/graphql";
+import type {TLabelMap, TSelectItemType} from "@/shared/types/common.types";
 
 export const roleOptions: TSelectItemType<ETrackerMemberRole>[] = [
     {label: 'issues.role_type.dev', value: ETrackerMemberRole.DEV},

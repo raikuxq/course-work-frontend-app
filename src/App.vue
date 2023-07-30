@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {useRoute} from 'vue-router'
 import {computed} from "vue";
-import {ELayoutType} from "@/router";
-import TheLayoutAuth from "@/shared/layouts/TheLayoutAuth/TheLayoutAuth.vue";
-import TheLayoutMain from "@/shared/layouts/TheLayoutMain/TheLayoutMain.vue";
+import {ELayoutType} from "@/app/router";
+import TheLayoutAuth from "@/app/layouts/TheLayoutAuth/TheLayoutAuth.vue";
+import TheLayoutMain from "@/app/layouts/TheLayoutMain/TheLayoutMain.vue";
 import { NConfigProvider, NMessageProvider, NLoadingBarProvider, NDialogProvider } from 'naive-ui'
 
 const currentRoute = useRoute()

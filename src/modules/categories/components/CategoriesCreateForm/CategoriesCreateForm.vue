@@ -6,7 +6,7 @@ import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, u
 import type {
   T_GQL_channelCategoryCreate_channelCategoryCreate,
   T_GQL_channelCategoryCreateVariables
-} from "@/types/graphql";
+} from "@/shared/types/graphql";
 import {CATEGORY_CREATE_MUTATION} from "@/modules/categories/api/CategoriesCreate";
 
 type TCategoriesCreateFormProps = {

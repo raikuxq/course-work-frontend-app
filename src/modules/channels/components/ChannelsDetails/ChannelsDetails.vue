@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type {T_GQL_channel_channel} from "@/types/graphql";
+import type {T_GQL_channel_channel} from "@/shared/types/graphql";
 import {toRefs} from "vue";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {NDescriptions, NDescriptionsItem, NDivider} from 'naive-ui'
 import s from './ChannelsDetails.module.scss'
 

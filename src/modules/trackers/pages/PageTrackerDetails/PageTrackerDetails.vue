@@ -2,13 +2,13 @@
 import TrackersDetails from "@/modules/trackers/components/TrackersDetails/TrackersDetails.vue";
 import {useQuery} from "@vue/apollo-composable";
 import {useRoute} from "vue-router";
-import type {T_GQL_tracker} from "@/types/graphql";
+import type {T_GQL_tracker} from "@/shared/types/graphql";
 import {watch} from "vue";
 import {TRACKERS_BY_ID_QUERY} from "@/modules/trackers/api/TrackersById";
 import s from './PageTrackerDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'
 import TrackersDetailsInfo from "@/modules/trackers/components/TrackersDetailsInfo/TrackersDetailsInfo.vue";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 
 /**
  * Emits

@@ -5,7 +5,7 @@ import {useMutation} from '@vue/apollo-composable'
 import {AUTH_LOGIN_MUTATION} from '../../api/AuthLoginMutation';
 import {useRouter} from 'vue-router';
 import {NInput, NForm, NFormItemRow, NButton, NGradientText, darkTheme, NConfigProvider} from 'naive-ui'
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 import {useField} from 'vee-validate';
 import {useValidation} from "@/shared/hooks/useValidation";

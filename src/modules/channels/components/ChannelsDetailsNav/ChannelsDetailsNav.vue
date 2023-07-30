@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import s from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.module.scss";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {computed, ref, toRefs} from "vue";
 import {
   NButton,
@@ -15,7 +15,7 @@ import {
   useDialog,
   useMessage
 } from 'naive-ui'
-import {T_GQL_channel_channel} from "@/types/graphql";
+import {T_GQL_channel_channel} from "@/shared/types/graphql";
 import ChannelsUpdateForm from "@/modules/channels/components/ChannelsUpdateForm/ChannelsUpdateForm.vue";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {useI18n} from "vue-i18n";

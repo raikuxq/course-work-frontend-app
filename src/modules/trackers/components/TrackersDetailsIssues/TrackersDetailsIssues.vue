@@ -4,14 +4,14 @@ import {
   ETrackerMemberRole,
   T_GQL_tracker_tracker,
   T_GQL_tracker_tracker_reports
-} from "@/types/graphql";
+} from "@/shared/types/graphql";
 import {computed, h, toRefs} from "vue";
 import {DataTableColumns, NButton, NDataTable, NIcon, NSpace, NTooltip} from 'naive-ui'
 import {labelsPriority, labelsRole, labelsStatus, labelsType} from '@/options/options'
 import {useI18n} from "vue-i18n";
 import {CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
 import {useAuthStore} from "@/modules/auth/store/authStore";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {useRoute, useRouter} from "vue-router";
 
 

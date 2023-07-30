@@ -3,14 +3,14 @@ import ChannelsDetails from "@/modules/channels/components/ChannelsDetails/Chann
 import {useQuery} from "@vue/apollo-composable";
 import {CHANNELS_BY_ID_QUERY} from "@/modules/channels/api/ChannelsById";
 import {useRoute} from "vue-router";
-import type {T_GQL_channel} from "@/types/graphql";
+import type {T_GQL_channel} from "@/shared/types/graphql";
 import {watch} from "vue";
 import s from './PageChannelDetails.module.scss'
 import {useLoadingBar} from 'naive-ui'
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import ChannelsDetailsNav from "@/modules/channels/components/ChannelsDetailsNav/ChannelsDetailsNav.vue";
 import {useEventBus} from "@vueuse/core";
-import {EEventBusEmits} from "@/types/common.types";
+import {EEventBusEmits} from "@/shared/types/common.types";
 
 const route = useRoute()
 const loadingBar = useLoadingBar()

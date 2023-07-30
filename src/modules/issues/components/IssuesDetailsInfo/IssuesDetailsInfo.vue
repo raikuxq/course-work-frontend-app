@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {T_GQL_issueReport_issueReport} from "@/types/graphql";
+import type {T_GQL_issueReport_issueReport} from "@/shared/types/graphql";
 import {computed, toRefs} from "vue";
 import {NDescriptions, NDescriptionsItem, NDivider} from 'naive-ui'
 import s from './IssuesDetailsInfo.module.scss'

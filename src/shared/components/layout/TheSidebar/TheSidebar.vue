@@ -5,13 +5,13 @@ import {NButton, NSpace, NIcon} from 'naive-ui'
 import TheBrandLogo from "@/shared/components/layout/TheBrandLogo/TheBrandLogo.vue";
 import {RouterLink} from "vue-router";
 import ProfileWidget from "@/modules/profile/components/ProfileWidget/ProfileWidget.vue";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {LinkSharp as IconLinkSharp, Add as IconAdd} from "@vicons/ionicons5";
 import ChannelsCreateForm from "@/modules/channels/components/ChannelsCreateForm/ChannelsCreateForm.vue";
 import {ref} from "vue";
 import ChannelsJoinForm from "@/modules/channels/components/ChannelsJoinForm/ChannelsJoinForm.vue";
 import {useEventBus} from "@vueuse/core";
-import {EEventBusEmits} from "@/types/common.types";
+import {EEventBusEmits} from "@/shared/types/common.types";
 
 
 const eventBus = useEventBus(EEventBusEmits.CHANNELS_LIST_REFETCH)

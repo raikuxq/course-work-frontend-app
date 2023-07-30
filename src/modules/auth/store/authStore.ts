@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import type {T_GQL_userCurrent_userCurrent} from "@/types/graphql";
-import {EStoreSubmodules} from "@/types/common.types";
+import type {T_GQL_userCurrent_userCurrent} from "@/shared/types/graphql";
+import {EStoreSubmodules} from "@/shared/types/common.types";
 
 export type TUseAuthStoreStateUser = Omit<T_GQL_userCurrent_userCurrent, '__typename'>
 

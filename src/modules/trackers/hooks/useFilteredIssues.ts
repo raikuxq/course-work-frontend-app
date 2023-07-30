@@ -1,7 +1,7 @@
-import type {T_GQL_tracker_tracker_members, T_GQL_tracker_tracker_reports} from "@/types/graphql";
+import type {T_GQL_tracker_tracker_members, T_GQL_tracker_tracker_reports} from "@/shared/types/graphql";
 import {computed, toRefs, watch} from "vue";
 import type {Ref} from "vue";
-import {EIssueReportPriority, EIssueReportStatus, EIssueReportType} from "@/types/graphql";
+import {EIssueReportPriority, EIssueReportStatus, EIssueReportType} from "@/shared/types/graphql";
 
 export type TUserFilteredIssuesConfigProps = {
     status: EIssueReportStatus | null;

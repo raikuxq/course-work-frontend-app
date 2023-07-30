@@ -1,6 +1,6 @@
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {useRouter} from "vue-router";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 
 export const useLogout = () => {

@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import {authGuard} from "@/router/middlewares/auth";
+import {authGuard} from "@/app/router/middlewares/auth";
 
 export enum ELayoutType {
     MAIN = 'MAIN',
@@ -35,7 +35,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.HOME],
             name: ERouteName.HOME,
-            component: () => import('../modules/home/pages/PageHome.vue'),
+            component: () => import('@/modules/home/pages/PageHome.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true,
@@ -44,7 +44,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.PROFILE],
             name: ERouteName.PROFILE,
-            component: () => import('../modules/profile/pages/PageProfile/PageProfile.vue'),
+            component: () => import('@/modules/profile/pages/PageProfile/PageProfile.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true
@@ -53,7 +53,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.AUTH],
             name: ERouteName.AUTH,
-            component: () => import('../modules/auth/pages/PageAuth/PageAuth.vue'),
+            component: () => import('@/modules/auth/pages/PageAuth/PageAuth.vue'),
             meta: {
                 layout: ELayoutType.AUTH,
                 requiresAuth: false,
@@ -62,7 +62,7 @@ const router = createRouter({
         {
             path: ROUTES_PATHS[ERouteName.CHANNEL],
             name: ERouteName.CHANNEL,
-            component: () => import('../modules/channels/pages/PageChannelDetails/PageChannelDetails.vue'),
+            component: () => import('@/modules/channels/pages/PageChannelDetails/PageChannelDetails.vue'),
             meta: {
                 layout: ELayoutType.MAIN,
                 requiresAuth: true,
@@ -71,7 +71,7 @@ const router = createRouter({
                 {
                     path: ROUTES_PATHS[ERouteName.TRACKER],
                     name: ERouteName.TRACKER,
-                    component: () => import('../modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue'),
+                    component: () => import('@/modules/trackers/pages/PageTrackerDetails/PageTrackerDetails.vue'),
                     meta: {
                         requiresAuth: true
                     },
@@ -79,7 +79,7 @@ const router = createRouter({
                         {
                             path: ROUTES_PATHS[ERouteName.ISSUE],
                             name: ERouteName.ISSUE,
-                            component: () => import('../modules/issues/pages/PageIssuesDetails/PageIssuesDetails.vue'),
+                            component: () => import('@/modules/issues/pages/PageIssuesDetails/PageIssuesDetails.vue'),
                             meta: {
                                 requiredAuth: true
                             }

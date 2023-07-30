@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {T_GQL_tracker_tracker} from "@/types/graphql";
+import type {T_GQL_tracker_tracker} from "@/shared/types/graphql";
 import {computed, ref, toRefs} from "vue";
 import {NButton, NDescriptions, NDescriptionsItem, NDivider, NIcon, NSpace} from 'naive-ui'
 import s from './TrackersDetailsInfo.module.scss'

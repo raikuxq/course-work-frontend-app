@@ -5,13 +5,13 @@ import {useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, NSelect, useMessage} from "naive-ui";
 import {CHANNEL_CREATE_MUTATION} from "@/modules/channels/api/ChannelsCreate";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import type {
   T_GQL_channel, T_GQL_channelCategoryCreate, T_GQL_channelCategoryCreateVariables,
   T_GQL_channelCreate,
   T_GQL_channelCreate_channelCreate,
   T_GQL_channelCreateVariables
-} from "@/types/graphql";
+} from "@/shared/types/graphql";
 import {CATEGORY_CREATE_MUTATION} from "@/modules/categories/api/CategoriesCreate";
 
 type TChannelsCreateFormProps = {

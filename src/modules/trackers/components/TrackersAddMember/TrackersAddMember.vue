@@ -8,8 +8,8 @@ import type {
   T_GQL_tracker_tracker_members,
   T_GQL_trackerAddMember_trackerAddMember,
   T_GQL_trackerAddMemberVariables
-} from "@/types/graphql";
-import {ETrackerMemberRole} from "@/types/graphql";
+} from "@/shared/types/graphql";
+import {ETrackerMemberRole} from "@/shared/types/graphql";
 import {roleOptions} from "@/options/options";
 import {TRACKER_ADD_MEMBER_MUTATION} from "@/modules/trackers/api/TrackersAddMember";
 

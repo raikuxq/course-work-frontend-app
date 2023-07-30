@@ -4,8 +4,8 @@ import {ref, toRefs} from "vue";
 import {useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, useMessage} from "naive-ui";
-import {ERouteName} from "@/router";
-import type {T_GQL_channelJoin} from "@/types/graphql";
+import {ERouteName} from "@/app/router";
+import type {T_GQL_channelJoin} from "@/shared/types/graphql";
 import {CHANNEL_JOIN_TO_MUTATION} from "@/modules/channels/api/ChannelsJoinTo";
 
 type TChannelsJoinFormProps = {

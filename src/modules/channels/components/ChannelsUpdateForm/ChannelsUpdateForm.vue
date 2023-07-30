@@ -5,8 +5,8 @@ import {useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, useMessage} from "naive-ui";
 import {CHANNEL_UPDATE_MUTATION} from "@/modules/channels/api/ChannelsUpdate";
-import {ERouteName} from "@/router";
-import type {T_GQL_channel_channel, T_GQL_channelUpdate} from "@/types/graphql";
+import {ERouteName} from "@/app/router";
+import type {T_GQL_channel_channel, T_GQL_channelUpdate} from "@/shared/types/graphql";
 
 type TChannelsUpdateFormProps = {
   isModalOpen: boolean;

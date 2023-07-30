@@ -3,7 +3,7 @@ import {TUseAuthStoreStateUser, useAuthStore} from "@/modules/auth/store/authSto
 import {NAvatar, NIcon, NTooltip} from 'naive-ui'
 import {Person as IconPerson, SettingsSharp as IconSettings} from "@vicons/ionicons5";
 import {computed} from "vue";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {useLogout} from "@/shared/hooks/useLogout";
 import {RouterLink} from "vue-router";
 import {LogOutOutline as IconLogOut} from "@vicons/ionicons5";

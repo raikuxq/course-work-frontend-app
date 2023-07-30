@@ -10,8 +10,8 @@ import type {
   T_GQL_trackerRemoveMemberVariables,
   T_GQL_trackerUpdateMemberRole_trackerUpdateMemberRole,
   T_GQL_trackerUpdateMemberRoleVariables
-} from "@/types/graphql";
-import {ETrackerMemberRole} from "@/types/graphql";
+} from "@/shared/types/graphql";
+import {ETrackerMemberRole} from "@/shared/types/graphql";
 import {roleOptions} from "@/options/options";
 import {TRACKER_REMOVE_MEMBER_MUTATION} from "@/modules/trackers/api/TrackerRemoveMember";
 import {TRACKER_UPDATE_MEMBER_ROLE_MUTATION} from "@/modules/trackers/api/TrackerUpdateMemberRole";

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {darkTheme, NCard, NConfigProvider} from 'naive-ui'
-import type {T_GQL_comment_comment} from "@/types/graphql";
+import type {T_GQL_comment_comment} from "@/shared/types/graphql";
 import {computed, toRefs} from "vue";
 
 type TCommentCard = T_GQL_comment_comment;

@@ -2,12 +2,12 @@
 import {useQuery} from "@vue/apollo-composable";
 import {CHANNELS_LIST_SHORT_QUERY} from "@/modules/channels/api/ChannelsList";
 import {computed, onBeforeUnmount} from "vue";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import {NDescriptions, NList, NListItem} from 'naive-ui';
 import s from './ChannelsList.module.scss'
 import { useEventBus } from '@vueuse/core'
-import type {T_GQL_userChannels} from "@/types/graphql";
-import {EEventBusEmits} from "@/types/common.types";
+import type {T_GQL_userChannels} from "@/shared/types/graphql";
+import {EEventBusEmits} from "@/shared/types/common.types";
 
 const {result, refetch} = useQuery<T_GQL_userChannels>(CHANNELS_LIST_SHORT_QUERY);
 

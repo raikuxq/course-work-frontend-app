@@ -5,15 +5,15 @@ import {useRoute, useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import {NButton, NDivider, NForm, NFormItemRow, NGradientText, NInput, NModal, useMessage} from "naive-ui";
 import {TRACKER_CREATE_MUTATION} from "@/modules/trackers/api/TrackersCreate";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import type {
   T_GQL_tracker,
   T_GQL_trackerAddMember,
   T_GQL_trackerAddMemberVariables,
   T_GQL_trackerCreate,
   T_GQL_trackerCreateVariables
-} from "@/types/graphql";
-import {ETrackerMemberRole} from "@/types/graphql";
+} from "@/shared/types/graphql";
+import {ETrackerMemberRole} from "@/shared/types/graphql";
 import {TRACKER_ADD_MEMBER_MUTATION} from "@/modules/trackers/api/TrackersAddMember";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 

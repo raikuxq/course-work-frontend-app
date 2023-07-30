@@ -12,7 +12,7 @@ import {
   useMessage
 } from 'naive-ui'
 import {Add as IconAdd, CreateSharp as IconSharp, TrashBinSharp as IconTrashBin} from "@vicons/ionicons5";
-import type {T_GQL_tracker_tracker, T_GQL_trackerDelete, T_GQL_trackerDeleteVariables} from "@/types/graphql";
+import type {T_GQL_tracker_tracker, T_GQL_trackerDelete, T_GQL_trackerDeleteVariables} from "@/shared/types/graphql";
 import {computed, ref, toRefs} from "vue";
 import TrackersDetailsIssues from "@/modules/trackers/components/TrackersDetailsIssues/TrackersDetailsIssues.vue";
 import IssuesCreateForm from "@/modules/issues/components/IssuesCreateForm/IssuesCreateForm.vue";
@@ -22,7 +22,7 @@ import {useFilteredIssues} from "@/modules/trackers/hooks/useFilteredIssues";
 import {useIssueReportSelectOptions} from "@/modules/trackers/hooks/useIssueReportSelectOptions";
 import s from './TrackersDetails.module.scss'
 import {useRoute, useRouter} from "vue-router";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import TrackersUpdateForm from "@/modules/trackers/components/TrackersUpdateForm/TrackersUpdateForm.vue";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {useMutation} from "@vue/apollo-composable";

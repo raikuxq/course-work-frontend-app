@@ -6,7 +6,7 @@ import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, u
 import type {
   T_GQL_commentCreate_commentCreate,
   T_GQL_commentCreateVariables
-} from "@/types/graphql";
+} from "@/shared/types/graphql";
 import {COMMENT_CREATE_MUTATION} from "@/modules/comments/api/CommentCreate";
 
 type TCommentCreateFormProps = {

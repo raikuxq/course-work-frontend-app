@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {NButton, NDivider, NIcon, NPageHeader, NSpace, NText, useDialog, useMessage} from 'naive-ui'
-import type {T_GQL_comment_comment, T_GQL_issueReport_issueReport} from "@/types/graphql";
-import {ETrackerMemberRole} from "@/types/graphql";
+import type {T_GQL_comment_comment, T_GQL_issueReport_issueReport} from "@/shared/types/graphql";
+import {ETrackerMemberRole} from "@/shared/types/graphql";
 import {computed, ref, toRefs} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
-import {ERouteName} from "@/router";
+import {ERouteName} from "@/app/router";
 import CommentCard from "@/modules/comments/components/CommentCard/CommentCard.vue";
 import IssuesUpdateForm from "@/modules/issues/components/IssuesUpdateForm/IssuesUpdateForm.vue";
 import s from './IssuesDetails.module.scss'
