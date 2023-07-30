@@ -1,17 +1,23 @@
+/* common translations */
 import app from './ru/app.ru'
-import bug from './ru/bug.ru'
-import tracker from './ru/tracker.ru'
-import comments from './ru/comments.ru'
-import channels from './ru/channel.ru'
-import categories from './ru/categories.ru'
 import validations from './ru/validations.ru'
+/* modules translations */
+import auth from '@/modules/auth/translations/ru'
+import issues from '@/modules/issues/translations/ru'
+import trackers from '@/modules/trackers/translations/ru'
+import comments from '@/modules/comments/translations/ru'
+import channels from '@/modules/channels/translations/ru'
+import categories from '@/modules/categories/translations/ru'
+import profile from '@/modules/profile/translations/ru'
 
 export const langRu = {
     app,
-    tracker,
-    bug,
-    comments,
+    auth,
+    issues,
     categories,
     channels,
+    comments,
+    profile,
+    trackers,
     validations
 }

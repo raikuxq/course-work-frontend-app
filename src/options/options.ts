@@ -2,31 +2,31 @@ import {EIssueReportPriority, EIssueReportStatus, EIssueReportType, ERole, ETrac
 import type {TLabelMap, TSelectItemType} from "@/types/common.types";
 
 export const roleOptions: TSelectItemType<ETrackerMemberRole>[] = [
-    {label: 'bug.role_type.dev', value: ETrackerMemberRole.DEV},
-    {label: 'bug.role_type.qa', value: ETrackerMemberRole.QA},
-    {label: 'bug.role_type.guest', value: ETrackerMemberRole.GUEST}
+    {label: 'issues.role_type.dev', value: ETrackerMemberRole.DEV},
+    {label: 'issues.role_type.qa', value: ETrackerMemberRole.QA},
+    {label: 'issues.role_type.guest', value: ETrackerMemberRole.GUEST}
 ]
 
 export const priorityOptions: TSelectItemType<EIssueReportPriority>[] = [
-    {label: 'bug.priority_type.critical', value: EIssueReportPriority.CRITICAL},
-    {label: 'bug.priority_type.major', value: EIssueReportPriority.HIGH},
-    {label: 'bug.priority_type.minor', value: EIssueReportPriority.LOW},
-    {label: 'bug.priority_type.normal', value: EIssueReportPriority.NORMAL},
+    {label: 'issues.priority_type.critical', value: EIssueReportPriority.CRITICAL},
+    {label: 'issues.priority_type.major', value: EIssueReportPriority.HIGH},
+    {label: 'issues.priority_type.minor', value: EIssueReportPriority.LOW},
+    {label: 'issues.priority_type.normal', value: EIssueReportPriority.NORMAL},
 ];
 
 export const statusOptions: TSelectItemType<EIssueReportStatus>[] = [
-    {label: 'bug.status_type.closed', value: EIssueReportStatus.CLOSED},
-    {label: 'bug.status_type.to_be_discussed', value: EIssueReportStatus.DISCUSSION},
-    {label: 'bug.status_type.fulfilment', value: EIssueReportStatus.FULFILMENT},
-    {label: 'bug.status_type.new', value: EIssueReportStatus.NEW},
-    {label: 'bug.status_type.to_verify', value: EIssueReportStatus.TO_APPROVE},
+    {label: 'issues.status_type.closed', value: EIssueReportStatus.CLOSED},
+    {label: 'issues.status_type.to_be_discussed', value: EIssueReportStatus.DISCUSSION},
+    {label: 'issues.status_type.fulfilment', value: EIssueReportStatus.FULFILMENT},
+    {label: 'issues.status_type.new', value: EIssueReportStatus.NEW},
+    {label: 'issues.status_type.to_verify', value: EIssueReportStatus.TO_APPROVE},
 ];
 
 export const typeOptions: TSelectItemType<EIssueReportType>[] = [
-    {label: 'bug.type_type.func', value: EIssueReportType.FUNCTIONALITY},
-    {label: 'bug.type_type.report', value: EIssueReportType.REPORTING},
-    {label: 'bug.type_type.ui', value: EIssueReportType.OTHER},
-    {label: 'bug.type_type.vulnerability', value: EIssueReportType.VULNERABILITY},
+    {label: 'issues.type_type.func', value: EIssueReportType.FUNCTIONALITY},
+    {label: 'issues.type_type.report', value: EIssueReportType.REPORTING},
+    {label: 'issues.type_type.ui', value: EIssueReportType.OTHER},
+    {label: 'issues.type_type.vulnerability', value: EIssueReportType.VULNERABILITY},
 ];
 
 export const labelsRole: TLabelMap = roleOptions.reduce((acc, option) => {
