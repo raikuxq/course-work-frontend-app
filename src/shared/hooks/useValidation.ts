@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import {VALIDATION_RULES} from "@/options/validation";
+import {VALIDATION_RULES} from "@/app/config/validation";
 // @ts-ignore
 import {useI18n} from "vue-i18n";
 

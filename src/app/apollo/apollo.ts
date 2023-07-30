@@ -10,73 +10,87 @@ import {setContext} from "@apollo/client/link/context";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {AUTH_REFRESH_TOKEN_MUTATION} from "@/modules/auth/api/AuthRefreshToken";
 import {print} from 'graphql'
+import type {T_GQL_authRefreshToken_authRefreshToken} from "@/shared/types/graphql";
 
-interface DecodedToken {
+type TDecodedToken = {
     exp: number;
 }
 
+const isTokenExpired = (token: string): boolean => {
+    const decodedToken: TDecodedToken = jwtDecode(token);
+    return Date.now() >= decodedToken.exp * 1000;
+};
+
+const fetchNewTokens = async (refreshToken: string): Promise<T_GQL_authRefreshToken_authRefreshToken | null> => {
+    try {
+        const response = await fetch(GRAPHQL_API_ENDPOINT_URL, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ query: print(AUTH_REFRESH_TOKEN_MUTATION), variables: { token: refreshToken } }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to refresh tokens');
+        }
+
+        const data = await response.json();
+        const { accessToken, refreshToken: newRefreshToken } = data?.data?.authRefreshToken || {};
+
+        if (!accessToken || !newRefreshToken) {
+            throw new Error('Invalid response from server');
+        }
+
+        return { accessToken, refreshToken: newRefreshToken };
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
 const refreshToken = async (): Promise<string | null> => {
-    const authStore = useAuthStore()
-
+    const authStore = useAuthStore();
     const token = await localStorage.getItem(LS_KEY_ACCESS_TOKEN);
+    const refreshToken = await localStorage.getItem(LS_KEY_REFRESH_TOKEN);
 
-    if (!token) {
+    if (!token || !refreshToken) {
+        authStore.setUser(null);
         return null;
     }
 
     try {
-        const decodedToken: DecodedToken = jwtDecode(token);
-
-        const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
-
-        if (!isTokenExpired) {
+        /**
+         * Access token is still valid = use it
+         */
+        if (!isTokenExpired(token)) {
             return token;
         }
-    } catch (e) {
-        console.log(e)
-    }
 
-
-
-
-    const refreshToken = await localStorage.getItem(LS_KEY_REFRESH_TOKEN);
-    if (!refreshToken) {
-        authStore.setUser(null)
-        return null;
-    }
-
-    try {
-        const decodedToken: DecodedToken = jwtDecode(refreshToken);
-        const isTokenExpired = Date.now() >= decodedToken.exp * 1000;
-
-        if (isTokenExpired) {
-            authStore.setUser(null)
+        /**
+         * Access token and refresh token are both expired = logout
+         */
+        if (isTokenExpired(refreshToken)) {
+            authStore.setUser(null);
             return null;
         }
-    } catch (e) {
-        console.log(e)
+
+        /**
+         * Refresh token is valid = fetch new pair and update in storage
+         */
+        const newTokens = await fetchNewTokens(refreshToken);
+
+        if (newTokens) {
+            await localStorage.setItem(LS_KEY_ACCESS_TOKEN, newTokens.accessToken);
+            await localStorage.setItem(LS_KEY_REFRESH_TOKEN, newTokens.refreshToken);
+            return newTokens.accessToken;
+        }
+    } catch (error) {
+        console.error(error);
     }
 
-    const response = await fetch(GRAPHQL_API_ENDPOINT_URL, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            query: print(AUTH_REFRESH_TOKEN_MUTATION),
-            variables: {
-                token: refreshToken,
-            },
-        }),
-    });
-
-    const json = await response.json();
-    const newAccessToken = json.data.authRefreshToken.accessToken;
-    const newRefreshToken = json.data.authRefreshToken.refreshToken;
-    await localStorage.setItem(LS_KEY_ACCESS_TOKEN, newAccessToken);
-    await localStorage.setItem(LS_KEY_REFRESH_TOKEN, newRefreshToken);
-    return newAccessToken;
+    authStore.setUser(null);
+    return null;
 };
+
 
 const authLink = setContext(async (operation, { headers }) => {
     const token = await refreshToken();
