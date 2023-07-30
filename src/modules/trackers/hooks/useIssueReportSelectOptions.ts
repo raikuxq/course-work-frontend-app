@@ -1,4 +1,4 @@
-import {priorityOptions, statusOptions, typeOptions} from "@/options/options";
+import {priorityOptions, statusOptions, typeOptions} from "@/shared/options/issueOptions";
 import {toRefs, computed} from "vue";
 import type {T_GQL_tracker_tracker} from "@/shared/types/graphql";
 // @ts-ignore

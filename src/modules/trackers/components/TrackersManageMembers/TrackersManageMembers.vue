@@ -12,7 +12,7 @@ import type {
   T_GQL_trackerUpdateMemberRoleVariables
 } from "@/shared/types/graphql";
 import {ETrackerMemberRole} from "@/shared/types/graphql";
-import {roleOptions} from "@/options/options";
+import {roleOptions} from "@/shared/options/issueOptions";
 import {TRACKER_REMOVE_MEMBER_MUTATION} from "@/modules/trackers/api/TrackerRemoveMember";
 import {TRACKER_UPDATE_MEMBER_ROLE_MUTATION} from "@/modules/trackers/api/TrackerUpdateMemberRole";
 import {useAuthStore} from "@/modules/auth/store/authStore";

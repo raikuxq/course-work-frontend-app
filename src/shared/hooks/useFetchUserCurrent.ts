@@ -1,7 +1,7 @@
 import {useQuery, provideApolloClient} from "@vue/apollo-composable";
 import {USER_CURRENT} from "@/shared/api/UserCurrent";
 import {useAuthStore} from "@/modules/auth/store/authStore";
-import { client as apolloClient } from "@/options/apollo";
+import { client as apolloClient } from "@/app/apollo/apollo";
 
 
 export const useFetchUserCurrent = async () => {

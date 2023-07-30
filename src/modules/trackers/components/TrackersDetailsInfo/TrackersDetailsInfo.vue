@@ -3,7 +3,7 @@ import type {T_GQL_tracker_tracker} from "@/shared/types/graphql";
 import {computed, ref, toRefs} from "vue";
 import {NButton, NDescriptions, NDescriptionsItem, NDivider, NIcon, NSpace} from 'naive-ui'
 import s from './TrackersDetailsInfo.module.scss'
-import {labelsRole} from '@/options/options';
+import {labelsRole} from '@/shared/options/issueOptions';
 import {Add as IconAdd} from "@vicons/ionicons5";
 import TrackersAddMember from "@/modules/trackers/components/TrackersAddMember/TrackersAddMember.vue";
 import TrackersManageMembers from "@/modules/trackers/components/TrackersManageMembers/TrackersManageMembers.vue";

@@ -5,7 +5,7 @@ import {
     InMemoryCache,
 } from '@apollo/client/core';
 import jwtDecode from 'jwt-decode';
-import {GRAPHQL_API_ENDPOINT_URL, LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from './constants';
+import {GRAPHQL_API_ENDPOINT_URL, LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from '@/app/config/constants';
 import {setContext} from "@apollo/client/link/context";
 import {useAuthStore} from "@/modules/auth/store/authStore";
 import {AUTH_REFRESH_TOKEN_MUTATION} from "@/modules/auth/api/AuthRefreshToken";
@@ -101,17 +101,6 @@ const client = new ApolloClient({
     link,
     cache: new InMemoryCache(),
     connectToDevTools: true,
-    defaultOptions: {
-        watchQuery: {
-            fetchPolicy: 'network-only',
-        },
-        query: {
-            fetchPolicy: 'network-only',
-        },
-        mutate: {
-            fetchPolicy: 'network-only',
-        },
-    }
 });
 
 export { client };

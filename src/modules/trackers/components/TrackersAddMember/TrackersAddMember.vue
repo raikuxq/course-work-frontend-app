@@ -10,7 +10,7 @@ import type {
   T_GQL_trackerAddMemberVariables
 } from "@/shared/types/graphql";
 import {ETrackerMemberRole} from "@/shared/types/graphql";
-import {roleOptions} from "@/options/options";
+import {roleOptions} from "@/shared/options/issueOptions";
 import {TRACKER_ADD_MEMBER_MUTATION} from "@/modules/trackers/api/TrackersAddMember";
 
 type TTrackerAddMemberProps = {

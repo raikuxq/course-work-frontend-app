@@ -5,7 +5,7 @@ import {useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NDivider, NInput, NModal, NSelect, useMessage} from "naive-ui";
 import {REPORTS_CREATE_MUTATION} from "@/modules/issues/api/IssuesCreate";
-import {priorityOptions, statusOptions, typeOptions} from "@/options/options";
+import {priorityOptions, statusOptions, typeOptions} from "@/shared/options/issueOptions";
 import type {T_GQL_tracker_tracker_members_user} from "@/shared/types/graphql";
 import {EIssueReportPriority, EIssueReportStatus, EIssueReportType} from "@/shared/types/graphql";
 
