@@ -16,7 +16,7 @@ import {
   NModal,
   useMessage
 } from "naive-ui";
-import {useValidation} from "@/common/hooks/useValidation";
+import {useValidation} from "@/shared/hooks/useValidation";
 import {useField} from "vee-validate";
 import {TUseAuthStoreStateUser, useAuthStore} from "@/modules/auth/store/authStore";
 

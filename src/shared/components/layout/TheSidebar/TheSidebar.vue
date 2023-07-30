@@ -2,7 +2,7 @@
 import s from './TheSidebar.module.scss'
 import ChannelsList from "@/modules/channels/components/ChannelsList/ChannelsList.vue";
 import {NButton, NSpace, NIcon} from 'naive-ui'
-import TheBrandLogo from "@/common/components/layout/TheBrandLogo/TheBrandLogo.vue";
+import TheBrandLogo from "@/shared/components/layout/TheBrandLogo/TheBrandLogo.vue";
 import {RouterLink} from "vue-router";
 import ProfileWidget from "@/modules/profile/components/ProfileWidget/ProfileWidget.vue";
 import {ERouteName} from "@/router";

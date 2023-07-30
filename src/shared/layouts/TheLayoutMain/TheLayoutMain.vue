@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import s from './TheLayoutMain.module.scss'
-import TheSidebar from "@/common/components/layout/TheSidebar/TheSidebar.vue";
+import TheSidebar from "@/shared/components/layout/TheSidebar/TheSidebar.vue";
 </script>
 
 <template>

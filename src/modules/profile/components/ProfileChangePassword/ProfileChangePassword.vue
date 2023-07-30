@@ -6,7 +6,7 @@ import {ref, toRefs} from "vue";
 // import {useAuthStore} from "@/modules/auth/store/authStore";
 import {useI18n} from "vue-i18n";
 import {NButton, NForm, NFormItemRow, NGradientText, NInput, NModal, useMessage} from "naive-ui";
-import {useValidation} from "@/common/hooks/useValidation";
+import {useValidation} from "@/shared/hooks/useValidation";
 import {useField} from "vee-validate";
 
 

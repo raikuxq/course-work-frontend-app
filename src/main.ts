@@ -11,7 +11,7 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 import { client as apolloClient } from "@/options/apollo";
 import App from './App.vue'
 import router from './router'
-import {useFetchUserCurrent} from "@/common/hooks/useFetchUserCurrent";
+import {useFetchUserCurrent} from "@/shared/hooks/useFetchUserCurrent";
 
 
 /**

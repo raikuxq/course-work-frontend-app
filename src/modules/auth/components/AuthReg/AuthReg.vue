@@ -8,7 +8,7 @@ import {NInput, NForm, NFormItemRow, NButton, NGradientText, darkTheme, NConfigP
 import {ERouteName} from "@/router";
 import {LS_KEY_ACCESS_TOKEN, LS_KEY_REFRESH_TOKEN} from "@/options/constants";
 import {useForm} from 'vee-validate';
-import {useValidation} from "@/common/hooks/useValidation";
+import {useValidation} from "@/shared/hooks/useValidation";
 import {useI18n} from "vue-i18n";
 import * as yup from 'yup';
 

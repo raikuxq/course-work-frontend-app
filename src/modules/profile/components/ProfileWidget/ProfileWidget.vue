@@ -4,11 +4,11 @@ import {NAvatar, NIcon, NTooltip} from 'naive-ui'
 import {Person as IconPerson, SettingsSharp as IconSettings} from "@vicons/ionicons5";
 import {computed} from "vue";
 import {ERouteName} from "@/router";
-import {useLogout} from "@/common/hooks/useLogout";
+import {useLogout} from "@/shared/hooks/useLogout";
 import {RouterLink} from "vue-router";
 import {LogOutOutline as IconLogOut} from "@vicons/ionicons5";
 import s from './ProfileWidget.module.scss'
-import WidgetLocale from "@/common/components/widget/WidgetLocale/WidgetLocale.vue";
+import WidgetLocale from "@/shared/components/widget/WidgetLocale/WidgetLocale.vue";
 
 const authStore = useAuthStore()
 const {logout} = useLogout()

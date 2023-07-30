@@ -2,8 +2,8 @@
 import {useRoute} from 'vue-router'
 import {computed} from "vue";
 import {ELayoutType} from "@/router";
-import TheLayoutAuth from "@/common/layouts/TheLayoutAuth/TheLayoutAuth.vue";
-import TheLayoutMain from "@/common/layouts/TheLayoutMain/TheLayoutMain.vue";
+import TheLayoutAuth from "@/shared/layouts/TheLayoutAuth/TheLayoutAuth.vue";
+import TheLayoutMain from "@/shared/layouts/TheLayoutMain/TheLayoutMain.vue";
 import { NConfigProvider, NMessageProvider, NLoadingBarProvider, NDialogProvider } from 'naive-ui'
 
 const currentRoute = useRoute()

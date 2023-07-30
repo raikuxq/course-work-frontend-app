@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import s from './TheLayoutAuth.module.scss'
-import TheBrandLogo from "@/common/components/layout/TheBrandLogo/TheBrandLogo.vue";
+import TheBrandLogo from "@/shared/components/layout/TheBrandLogo/TheBrandLogo.vue";
 </script>
 
 <style lang="scss" module src="./TheLayoutAuth.module.scss" />
